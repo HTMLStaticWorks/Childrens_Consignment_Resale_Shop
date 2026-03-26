@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ReShop Marketplace — Sustainable Shopping</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav.css">
   <style>
@@ -319,6 +320,79 @@
       </div>
     </div>
   </main>
+
+  <!-- Why Shop With Us -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Buyer Promise</span>
+        <h2>Why Shop on ReShop?</h2>
+        <p>The safest, most rewarding way to buy pre-loved items</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-6); margin-top:var(--space-10);" class="stagger">
+        <div class="card p-6 text-center" data-animate="fade-in-up">
+          <div style="font-size:2.2rem; margin-bottom:var(--space-4);">🔒</div>
+          <h4>Secure Payments</h4>
+          <p class="text-sm text-secondary mt-2">All payments are held in escrow until delivery is confirmed</p>
+        </div>
+        <div class="card p-6 text-center" data-animate="fade-in-up">
+          <div style="font-size:2.2rem; margin-bottom:var(--space-4);">✅</div>
+          <h4>Verified Sellers</h4>
+          <p class="text-sm text-secondary mt-2">Every seller goes through an identity and quality verification process</p>
+        </div>
+        <div class="card p-6 text-center" data-animate="fade-in-up">
+          <div style="font-size:2.2rem; margin-bottom:var(--space-4);">🔄</div>
+          <h4>7-Day Returns</h4>
+          <p class="text-sm text-secondary mt-2">Not satisfied? Return it within 7 days for a full refund — no questions asked</p>
+        </div>
+        <div class="card p-6 text-center" data-animate="fade-in-up">
+          <div style="font-size:2.2rem; margin-bottom:var(--space-4);">🚚</div>
+          <h4>Fast Delivery</h4>
+          <p class="text-sm text-secondary mt-2">Most items ship within 24 hours of purchase from verified sellers</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trending Searches / Tags -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Hot Right Now</span>
+        <h2>Trending Searches</h2>
+        <p>What shoppers are searching for today</p>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:var(--space-3); justify-content:center; margin-top:var(--space-8);" data-animate="fade-in-up">
+        <a href="#" class="btn btn-ghost" style="border:1px solid var(--border-color);">🔥 iPhone 15</a>
+        <a href="#" class="btn btn-ghost" style="border:1px solid var(--border-color);">💻 Gaming Laptop</a>
+        <a href="#" class="btn btn-ghost" style="border:1px solid var(--border-color);">👟 Nike Air Max</a>
+        <a href="#" class="btn btn-ghost" style="border:1px solid var(--border-color);">🎧 AirPods Pro</a>
+        <a href="#" class="btn btn-ghost" style="border:1px solid var(--border-color);">📷 DSLR Camera</a>
+        <a href="#" class="btn btn-ghost" style="border:1px solid var(--border-color);">🛋️ L-Shape Sofa</a>
+        <a href="#" class="btn btn-ghost" style="border:1px solid var(--border-color);">📱 Samsung S24</a>
+        <a href="#" class="btn btn-ghost" style="border:1px solid var(--border-color);">🚲 Electric Bike</a>
+        <a href="#" class="btn btn-ghost" style="border:1px solid var(--border-color);">⌚ Apple Watch</a>
+        <a href="#" class="btn btn-ghost" style="border:1px solid var(--border-color);">📚 Python Books</a>
+        <a href="#" class="btn btn-ghost" style="border:1px solid var(--border-color);">🎮 PS5 Controller</a>
+        <a href="#" class="btn btn-ghost" style="border:1px solid var(--border-color);">🖥️ Monitor 4K</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shop Newsletter -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div style="background:linear-gradient(135deg,var(--accent-primary-dark),var(--accent-tertiary)); border-radius:var(--radius-xl); padding:var(--space-14) var(--space-8); text-align:center;" data-animate="scale-in">
+        <span class="section-label" style="color:rgba(255,255,255,0.7);">Stay Updated</span>
+        <h2 style="color:#fff; -webkit-text-fill-color:#fff; margin:var(--space-3) 0;">New Listings Every Hour</h2>
+        <p style="color:rgba(255,255,255,0.8); margin-bottom:var(--space-8);">Subscribe and receive weekly curated picks tailored to your interests — straight to your inbox.</p>
+        <form onsubmit="alert('Subscribed!'); return false;" style="display:flex; gap:var(--space-3); max-width:480px; margin:0 auto; flex-wrap:wrap;">
+          <input type="email" placeholder="Enter your email" style="flex:1; min-width:200px; padding:var(--space-4); border-radius:var(--radius-md); border:none; background:rgba(255,255,255,0.15); color:#fff; outline:none;" required>
+          <button type="submit" class="btn btn-secondary" style="white-space:nowrap;">Get Weekly Picks →</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">

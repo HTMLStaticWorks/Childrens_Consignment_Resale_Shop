@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sell Your Item — ReShop</title>
+  <title>Sell on ReShop — List Your Items</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav.css">
   <style>
@@ -57,7 +58,8 @@
   </style>
 </head>
 <body>
-  <nav class="navbar scrolled">
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🛒</div><span>ReShop</span></a>
       <div class="nav-links">
@@ -73,17 +75,23 @@
         <a href="signup.html" class="nav-link">Signup</a>
       </div>
       <div class="nav-actions"><a href="sell.html" class="nav-cta">Sell Now</a></div>
-      <div class="hamburger"><span></span><span></span><span></span></div>
+      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
     </div>
   </nav>
 
-  <div class="mobile-nav-overlay"></div>
-  <div class="mobile-nav">
+  <!-- Mobile Nav -->
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
     <a href="index.html" class="mobile-nav-link">Home</a>
+    <a href="home2.html" class="mobile-nav-link">Home 2</a>
     <a href="shop.html" class="mobile-nav-link">Shop</a>
     <a href="categories.html" class="mobile-nav-link">Categories</a>
     <a href="sell.html" class="mobile-nav-link active">Sell Item</a>
+    <a href="deals.html" class="mobile-nav-link">Deals</a>
     <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
+    <a href="about.html" class="mobile-nav-link">About</a>
+    <a href="contact.html" class="mobile-nav-link">Contact</a>
+    <a href="signup.html" class="mobile-nav-link">Signup</a>
     <a href="sell.html" class="mobile-nav-cta">🚀 Sell Now</a>
   </div>
 
@@ -162,6 +170,91 @@
       </div>
     </div>
   </main>
+
+  <!-- How It Works Section -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Simple Steps</span>
+        <h2>How Selling Works</h2>
+        <p>Turn your items into cash in just 3 easy steps</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-8); margin-top:var(--space-10);" class="stagger">
+        <div class="card p-8 text-center" data-animate="fade-in-up">
+          <div style="width:64px;height:64px;border-radius:50%;background:var(--accent-primary);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:900;color:#fff;margin:0 auto var(--space-5);">1</div>
+          <h3 style="margin-bottom:var(--space-3);">📸 List Your Item</h3>
+          <p class="text-secondary text-sm">Take a few photos, write a short description, set your price, and publish. It takes under 5 minutes.</p>
+        </div>
+        <div class="card p-8 text-center" data-animate="fade-in-up">
+          <div style="width:64px;height:64px;border-radius:50%;background:var(--accent-primary);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:900;color:#fff;margin:0 auto var(--space-5);">2</div>
+          <h3 style="margin-bottom:var(--space-3);">💬 Connect with Buyers</h3>
+          <p class="text-secondary text-sm">Buyers message you directly through our secure chat. Negotiate, agree terms, and confirm the sale.</p>
+        </div>
+        <div class="card p-8 text-center" data-animate="fade-in-up">
+          <div style="width:64px;height:64px;border-radius:50%;background:var(--accent-primary);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:900;color:#fff;margin:0 auto var(--space-5);">3</div>
+          <h3 style="margin-bottom:var(--space-3);">💳 Get Paid Fast</h3>
+          <p class="text-secondary text-sm">Once the buyer confirms receipt, your payout is released within 24 hours. No waiting, no hassle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seller Benefits -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Why Sell Here</span>
+        <h2>Seller Benefits</h2>
+        <p>Everything you need to sell with confidence</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-6); margin-top:var(--space-10);" class="stagger">
+        <div class="card p-6" style="display:flex; gap:var(--space-5); align-items:flex-start;" data-animate="fade-in-up">
+          <div style="font-size:1.8rem;flex-shrink:0;">🆓</div>
+          <div><h4>Free to List</h4><p class="text-sm text-secondary mt-1">Creating a listing costs nothing. We only take a small commission after a successful sale.</p></div>
+        </div>
+        <div class="card p-6" style="display:flex; gap:var(--space-5); align-items:flex-start;" data-animate="fade-in-up">
+          <div style="font-size:1.8rem;flex-shrink:0;">🛡️</div>
+          <div><h4>Seller Protection</h4><p class="text-sm text-secondary mt-1">Our dispute resolution team has your back if anything goes wrong with a transaction.</p></div>
+        </div>
+        <div class="card p-6" style="display:flex; gap:var(--space-5); align-items:flex-start;" data-animate="fade-in-up">
+          <div style="font-size:1.8rem;flex-shrink:0;">📊</div>
+          <div><h4>Sales Analytics</h4><p class="text-sm text-secondary mt-1">Track views, wishlist saves, and conversion rates for each listing through your dashboard.</p></div>
+        </div>
+        <div class="card p-6" style="display:flex; gap:var(--space-5); align-items:flex-start;" data-animate="fade-in-up">
+          <div style="font-size:1.8rem;flex-shrink:0;">🌍</div>
+          <div><h4>Nationwide Reach</h4><p class="text-sm text-secondary mt-1">Your listing is visible to thousands of buyers across the country, not just your local area.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seller Testimonials -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Success Stories</span>
+        <h2>Sellers Love ReShop</h2>
+        <p>Real experiences from our top sellers</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-6); margin-top:var(--space-10);" class="stagger">
+        <div class="card p-6" data-animate="fade-in-up">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I sold 3 old laptops within a week! The listing process is incredibly easy and payouts were faster than I expected."</p>
+          <div class="review-author"><div class="review-avatar" style="background:linear-gradient(135deg,#10b981,#059669);">SK</div><div class="review-author-info"><h4>Sarah K.</h4><p>238 items sold</p></div></div>
+        </div>
+        <div class="card p-6" data-animate="fade-in-up">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"ReShop is my side income! I've cleared out my wardrobe and made over $2,000 selling clothes I no longer wore."</p>
+          <div class="review-author"><div class="review-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706);">PR</div><div class="review-author-info"><h4>Priya R.</h4><p>174 items sold</p></div></div>
+        </div>
+        <div class="card p-6" data-animate="fade-in-up">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I was skeptical but my sofa sold in 2 days. The buyer was verified and the whole transaction was seamless."</p>
+          <div class="review-author"><div class="review-avatar" style="background:linear-gradient(135deg,#6366f1,#818cf8);">JW</div><div class="review-author-info"><h4>James W.</h4><p>91 items sold</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">

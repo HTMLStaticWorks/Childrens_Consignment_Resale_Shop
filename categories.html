@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Browse Categories — ReShop</title>
+  <title>Browse Categories — ReShop Marketplace</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav.css">
   <style>
@@ -60,7 +61,8 @@
   </style>
 </head>
 <body>
-  <nav class="navbar scrolled">
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">
         <div class="nav-logo-icon">🛒</div>
@@ -79,12 +81,13 @@
         <a href="signup.html" class="nav-link">Signup</a>
       </div>
       <div class="nav-actions"><a href="sell.html" class="nav-cta">Sell Now</a></div>
-      <div class="hamburger"><span></span><span></span><span></span></div>
+      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
     </div>
   </nav>
 
-  <div class="mobile-nav-overlay"></div>
-  <div class="mobile-nav">
+  <!-- Mobile Nav -->
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
     <a href="index.html" class="mobile-nav-link">Home</a>
     <a href="home2.html" class="mobile-nav-link">Home 2</a>
     <a href="shop.html" class="mobile-nav-link">Shop</a>
@@ -169,6 +172,89 @@
       </a>
     </div>
   </main>
+
+  <!-- Popular Searches Section -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Trending Now</span>
+        <h2>Popular Searches</h2>
+        <p>See what other shoppers are looking for right now</p>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:var(--space-3); justify-content:center; margin-top:var(--space-8);" data-animate="fade-in-up">
+        <a href="shop.html?q=iphone" class="btn btn-ghost" style="border:1px solid var(--border-color);">📱 iPhone</a>
+        <a href="shop.html?q=laptop" class="btn btn-ghost" style="border:1px solid var(--border-color);">💻 Laptops</a>
+        <a href="shop.html?q=sofa" class="btn btn-ghost" style="border:1px solid var(--border-color);">🛋️ Sofas</a>
+        <a href="shop.html?q=sneakers" class="btn btn-ghost" style="border:1px solid var(--border-color);">👟 Sneakers</a>
+        <a href="shop.html?q=watch" class="btn btn-ghost" style="border:1px solid var(--border-color);">⌚ Watches</a>
+        <a href="shop.html?q=camera" class="btn btn-ghost" style="border:1px solid var(--border-color);">📷 Cameras</a>
+        <a href="shop.html?q=textbooks" class="btn btn-ghost" style="border:1px solid var(--border-color);">📚 Textbooks</a>
+        <a href="shop.html?q=bicycle" class="btn btn-ghost" style="border:1px solid var(--border-color);">🚲 Bicycles</a>
+        <a href="shop.html?q=gaming" class="btn btn-ghost" style="border:1px solid var(--border-color);">🎮 Gaming</a>
+        <a href="shop.html?q=jewellery" class="btn btn-ghost" style="border:1px solid var(--border-color);">💍 Jewellery</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Sellers Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Community Stars</span>
+        <h2>Top Rated Sellers</h2>
+        <p>Trusted members with consistently excellent reviews</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-6); margin-top:var(--space-10);" class="stagger">
+        <div class="card p-6 text-center" data-animate="fade-in-up">
+          <div class="review-avatar mx-auto mb-4" style="width:60px;height:60px;font-size:1.4rem;background:linear-gradient(135deg,#10b981,#059669);">SK</div>
+          <h4>Sarah K.</h4>
+          <p class="text-xs text-muted mt-1">⭐ 4.9 · 238 sales</p>
+          <span class="badge badge-success mt-2">Electronics</span>
+        </div>
+        <div class="card p-6 text-center" data-animate="fade-in-up">
+          <div class="review-avatar mx-auto mb-4" style="width:60px;height:60px;font-size:1.4rem;background:linear-gradient(135deg,#f59e0b,#d97706);">MR</div>
+          <h4>Mike R.</h4>
+          <p class="text-xs text-muted mt-1">⭐ 4.8 · 174 sales</p>
+          <span class="badge badge-warning mt-2">Fashion</span>
+        </div>
+        <div class="card p-6 text-center" data-animate="fade-in-up">
+          <div class="review-avatar mx-auto mb-4" style="width:60px;height:60px;font-size:1.4rem;background:linear-gradient(135deg,#6366f1,#818cf8);">AT</div>
+          <h4>Alex T.</h4>
+          <p class="text-xs text-muted mt-1">⭐ 5.0 · 312 sales</p>
+          <span class="badge badge-info mt-2">Furniture</span>
+        </div>
+        <div class="card p-6 text-center" data-animate="fade-in-up">
+          <div class="review-avatar mx-auto mb-4" style="width:60px;height:60px;font-size:1.4rem;background:linear-gradient(135deg,#ec4899,#db2777);">EL</div>
+          <h4>Emma L.</h4>
+          <p class="text-xs text-muted mt-1">⭐ 4.9 · 201 sales</p>
+          <span class="badge badge-success mt-2">Books</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sell Your Item CTA -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-12); align-items:center;" data-animate="fade-in-up">
+        <div>
+          <span class="section-label">Earn Money</span>
+          <h2 style="margin:var(--space-3) 0 var(--space-5);">Have Items You No Longer Need?</h2>
+          <p class="text-secondary mb-6">Turn your unused belongings into cash. Listing on ReShop takes less than 5 minutes and is completely free. Join over 50,000 sellers who are already earning.</p>
+          <div style="display:flex; gap:var(--space-4); flex-wrap:wrap;">
+            <a href="sell.html" class="btn btn-primary btn-lg">🚀 Start Selling</a>
+            <a href="about.html" class="btn btn-outline btn-lg">Learn More</a>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4);">
+          <div class="card p-5"><div style="font-size:1.8rem;margin-bottom:var(--space-2);">⚡</div><h4>List in Minutes</h4><p class="text-xs text-muted mt-1">Quick and easy listing process</p></div>
+          <div class="card p-5"><div style="font-size:1.8rem;margin-bottom:var(--space-2);">💳</div><h4>Fast Payouts</h4><p class="text-xs text-muted mt-1">Get paid within 24 hours of sale</p></div>
+          <div class="card p-5"><div style="font-size:1.8rem;margin-bottom:var(--space-2);">🔒</div><h4>Secure Sales</h4><p class="text-xs text-muted mt-1">Buyer protection on every deal</p></div>
+          <div class="card p-5"><div style="font-size:1.8rem;margin-bottom:var(--space-2);">📊</div><h4>Track It All</h4><p class="text-xs text-muted mt-1">Dashboard analytics & reports</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">

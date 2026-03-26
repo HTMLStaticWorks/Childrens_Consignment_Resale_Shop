@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us — ReShop</title>
+  <title>About ReShop — Our Mission & Story</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav.css">
   <style>
@@ -48,7 +49,8 @@
   </style>
 </head>
 <body>
-  <nav class="navbar scrolled">
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🛒</div><span>ReShop</span></a>
       <div class="nav-links">
@@ -64,12 +66,13 @@
         <a href="signup.html" class="nav-link">Signup</a>
       </div>
       <div class="nav-actions"><a href="sell.html" class="nav-cta">Sell Now</a></div>
-      <div class="hamburger"><span></span><span></span><span></span></div>
+      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
     </div>
   </nav>
 
-  <div class="mobile-nav-overlay"></div>
-  <div class="mobile-nav">
+  <!-- Mobile Nav -->
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
     <a href="index.html" class="mobile-nav-link">Home</a>
     <a href="home2.html" class="mobile-nav-link">Home 2</a>
     <a href="shop.html" class="mobile-nav-link">Shop</a>
@@ -144,6 +147,79 @@
           <h4>Elena Rodriguez</h4>
           <p class="text-xs text-muted">Growth Lead</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Stats Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">By the Numbers</span>
+        <h2>Our Global Impact</h2>
+        <p>Every transaction on ReShop contributes to a greener, more sustainable planet</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-6); margin-top:var(--space-10);" class="stagger">
+        <div class="card p-8 text-center" data-animate="fade-in-up">
+          <div style="font-size:2.5rem; font-weight:900; color:var(--accent-primary); margin-bottom:var(--space-2);">50K+</div>
+          <div style="font-size:var(--text-sm); color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Active Users</div>
+        </div>
+        <div class="card p-8 text-center" data-animate="fade-in-up">
+          <div style="font-size:2.5rem; font-weight:900; color:var(--accent-primary); margin-bottom:var(--space-2);">2M+</div>
+          <div style="font-size:var(--text-sm); color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Items Saved from Landfills</div>
+        </div>
+        <div class="card p-8 text-center" data-animate="fade-in-up">
+          <div style="font-size:2.5rem; font-weight:900; color:var(--accent-primary); margin-bottom:var(--space-2);">12M</div>
+          <div style="font-size:var(--text-sm); color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Tons CO₂ Reduced</div>
+        </div>
+        <div class="card p-8 text-center" data-animate="fade-in-up">
+          <div style="font-size:2.5rem; font-weight:900; color:var(--accent-primary); margin-bottom:var(--space-2);">98%</div>
+          <div style="font-size:var(--text-sm); color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Buyer Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Values Section -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">What We Stand For</span>
+        <h2>Our Core Values</h2>
+        <p>The principles that guide every decision we make</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-8); margin-top:var(--space-10);" class="stagger">
+        <div class="card p-8" data-animate="fade-in-up">
+          <div style="font-size:2.5rem; margin-bottom:var(--space-4);">♻️</div>
+          <h3 style="margin-bottom:var(--space-3);">Sustainability First</h3>
+          <p class="text-secondary text-sm">We believe every product deserves a second life. Our platform is built to extend the lifecycle of goods and reduce the environmental burden of consumerism.</p>
+        </div>
+        <div class="card p-8" data-animate="fade-in-up">
+          <div style="font-size:2.5rem; margin-bottom:var(--space-4);">🔒</div>
+          <h3 style="margin-bottom:var(--space-3);">Trust & Safety</h3>
+          <p class="text-secondary text-sm">Every seller is verified. Every transaction is protected. We invest heavily in building a community where buyers and sellers feel safe doing business.</p>
+        </div>
+        <div class="card p-8" data-animate="fade-in-up">
+          <div style="font-size:2.5rem; margin-bottom:var(--space-4);">🤝</div>
+          <h3 style="margin-bottom:var(--space-3);">Community Driven</h3>
+          <p class="text-secondary text-sm">ReShop is built by its community. We listen to feedback, empower local sellers, and celebrate every milestone our users achieve together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA Section -->
+  <section class="section">
+    <div class="container">
+      <div style="background:linear-gradient(135deg,var(--accent-primary-dark),var(--accent-tertiary)); border-radius:var(--radius-xl); padding:var(--space-16) var(--space-8); text-align:center; position:relative; overflow:hidden;" data-animate="scale-in">
+        <div style="position:absolute;top:-40%;right:-10%;width:350px;height:350px;background:radial-gradient(circle,rgba(255,255,255,0.08),transparent 70%);border-radius:50%;pointer-events:none;"></div>
+        <span class="section-label" style="color:rgba(255,255,255,0.7);">Stay in the Loop</span>
+        <h2 style="color:#fff; -webkit-text-fill-color:#fff; margin:var(--space-3) 0;">Never Miss a Deal Again</h2>
+        <p style="color:rgba(255,255,255,0.8); margin-bottom:var(--space-8); font-size:var(--text-lg);">Subscribe to get exclusive offers, new arrivals, and sustainability tips delivered weekly.</p>
+        <form onsubmit="alert('Subscribed!'); return false;" style="display:flex; gap:var(--space-3); max-width:480px; margin:0 auto;">
+          <input type="email" placeholder="Enter your email address" style="flex:1; padding:var(--space-4) var(--space-5); border-radius:var(--radius-md); border:none; background:rgba(255,255,255,0.15); color:#fff; font-size:var(--text-sm); outline:none;" required>
+          <button type="submit" class="btn btn-secondary btn-lg" style="white-space:nowrap;">Subscribe →</button>
+        </form>
       </div>
     </div>
   </section>
