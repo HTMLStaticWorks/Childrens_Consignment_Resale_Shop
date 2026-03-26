@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — ReShop</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav.css">
+</head>
+<body>
+  <nav class="navbar scrolled">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🛒</div>
+        <span>ReShop</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="home2.html" class="nav-link">Home 2</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="categories.html" class="nav-link">Categories</a>
+        <a href="sell.html" class="nav-link">Sell Item</a>
+        <a href="deals.html" class="nav-link">Deals</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+        <a href="signup.html" class="nav-link">Signup</a>
+      </div>
+      <div class="nav-actions"><a href="sell.html" class="nav-cta">Sell Now</a></div>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top:120px; padding-bottom:100px;">
+    <div class="section-header">
+      <span class="section-label">Support</span>
+      <h2>Get In Touch</h2>
+      <p>We're here to help you with any questions or issues</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card p-8">
+        <h3>Send us a Message</h3>
+        <form class="mt-6" onsubmit="alert('Message Sent!'); return false;">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="Full Name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" placeholder="email@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <select class="form-select">
+              <option>General Inquiry</option>
+              <option>Order Issue</option>
+              <option>Report a Seller</option>
+              <option>Partnership</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" placeholder="How can we help?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-full">Send Message →</button>
+        </form>
+      </div>
+
+      <div class="flex flex-col gap-6">
+        <div class="card p-6">
+          <h4>📍 Headquarters</h4>
+          <p class="text-sm text-secondary mt-2">123 Marketplace Way, Tech City, NY 10001</p>
+        </div>
+        <div class="card p-6">
+          <h4>📧 Email Support</h4>
+          <p class="text-sm text-secondary mt-2">support@reshop.com<br>Response within 24 hours</p>
+        </div>
+        <div class="card p-6">
+           <h4>❓ Help Center</h4>
+           <p class="text-sm text-secondary mt-2">Visit our <a href="#" class="text-accent">Knowledge Base</a> for quick answers to common questions.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">🛒</div>
+            <span>ReShop</span>
+          </a>
+          <p>Your trusted marketplace for pre-loved items. Buy smart, sell easy, and contribute to a sustainable future.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="YouTube">🎬</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <a href="shop.html" class="footer-link">Shop</a>
+          <a href="sell.html" class="footer-link">Sell an Item</a>
+          <a href="deals.html" class="footer-link">Deals</a>
+          <a href="categories.html" class="footer-link">Categories</a>
+          <a href="dashboard.html" class="footer-link">Dashboard</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Blog</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Newsletter</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">Get the latest deals.</p>
+          <div class="footer-newsletter">
+            <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
+              <input type="email" placeholder="Your email" aria-label="Email">
+              <button type="submit">→</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ReShop. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+</body>
+</html>

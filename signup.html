@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join ReShop — Sign Up or Login</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    .auth-layout {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-12) var(--space-6);
+      background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.05), transparent 40%),
+                  radial-gradient(circle at bottom left, rgba(99, 102, 241, 0.05), transparent 40%);
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: var(--space-10);
+      box-shadow: var(--shadow-lg);
+    }
+    .auth-toggle {
+      display: flex;
+      background: var(--bg-secondary);
+      padding: var(--space-1);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-8);
+    }
+    .auth-tab {
+      flex: 1;
+      padding: var(--space-2);
+      text-align: center;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+    }
+    .auth-tab.active {
+      background: var(--accent-primary);
+      color: #fff;
+    }
+    .social-auth {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-3);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+      color: var(--text-primary);
+      transition: all var(--transition-fast);
+    }
+    .social-btn:hover { background: var(--bg-secondary); }
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+      color: var(--text-muted);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+    }
+    .auth-divider::before, .auth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-color);
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-layout">
+    <div class="auth-card">
+      <div class="text-center mb-10">
+        <a href="index.html" class="nav-logo justify-center">
+          <div class="nav-logo-icon">🛒</div>
+          <span>ReShop</span>
+        </a>
+        <h1 class="text-xl mt-4">Welcome back!</h1>
+      </div>
+
+      <div class="auth-toggle">
+        <div class="auth-tab active" id="loginTab">Login</div>
+        <div class="auth-tab" id="signupTab">Sign Up</div>
+      </div>
+
+      <div class="social-auth">
+        <button class="social-btn"><span>G</span> Google</button>
+        <button class="social-btn"><span>F</span> Facebook</button>
+      </div>
+
+      <div class="auth-divider">Or continue with email</div>
+
+      <!-- Login Form -->
+      <form id="loginForm" onsubmit="alert('Logged In!'); window.location.href='dashboard.html'; return false;">
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="email@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" placeholder="••••••••" required>
+        </div>
+        <div class="flex justify-between items-center mb-6">
+          <label class="filter-checkbox"><input type="checkbox"> Remember me</label>
+          <a href="#" class="text-xs text-accent">Forgot?</a>
+        </div>
+        <button type="submit" class="btn btn-primary w-full btn-lg">Login to Account</button>
+      </form>
+
+      <!-- Signup Form (Hidden by default) -->
+      <form id="signupForm" style="display:none" onsubmit="alert('Registered!'); window.location.href='dashboard.html'; return false;">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-input" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="email@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" placeholder="••••••••" required>
+        </div>
+        <p class="text-xs text-muted mb-6">By signing up, you agree to our <a href="#" class="text-accent">Terms</a> and <a href="#" class="text-accent">Privacy Policy</a>.</p>
+        <button type="submit" class="btn btn-primary w-full btn-lg">Create Account 🚀</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">🛒</div>
+            <span>ReShop</span>
+          </a>
+          <p>Your trusted marketplace for pre-loved items. Buy smart, sell easy, and contribute to a sustainable future.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="YouTube">🎬</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <a href="shop.html" class="footer-link">Shop</a>
+          <a href="sell.html" class="footer-link">Sell an Item</a>
+          <a href="deals.html" class="footer-link">Deals</a>
+          <a href="categories.html" class="footer-link">Categories</a>
+          <a href="dashboard.html" class="footer-link">Dashboard</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Blog</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Newsletter</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">Get the latest deals.</p>
+          <div class="footer-newsletter">
+            <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
+              <input type="email" placeholder="Your email" aria-label="Email">
+              <button type="submit">→</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ReShop. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const loginTab = document.getElementById('loginTab');
+    const signupTab = document.getElementById('signupTab');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const title = document.querySelector('h1');
+
+    loginTab.addEventListener('click', () => {
+      loginTab.classList.add('active');
+      signupTab.classList.remove('active');
+      loginForm.style.display = 'block';
+      signupForm.style.display = 'none';
+      title.textContent = 'Welcome back!';
+    });
+
+    signupTab.addEventListener('click', () => {
+      signupTab.classList.add('active');
+      loginTab.classList.remove('active');
+      signupForm.style.display = 'block';
+      loginForm.style.display = 'none';
+      title.textContent = 'Create your account';
+    });
+  </script>
+</body>
+</html>

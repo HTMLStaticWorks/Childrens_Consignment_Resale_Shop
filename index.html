@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReShop — Buy Smart. Sell Easy. Save More.</title>
+  <meta name="description" content="Discover amazing deals on pre-loved items. Buy and sell electronics, fashion, furniture, and more on ReShop.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    /* ---- Hero ---- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/hero-bg.png') center/cover no-repeat;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,14,23,0.92), rgba(10,14,23,0.7));
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      color: var(--accent-primary-light);
+      margin-bottom: var(--space-6);
+      animation: fadeInDown 0.6s ease both;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: var(--space-5);
+      animation: fadeInUp 0.7s ease 0.1s both;
+    }
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: var(--text-lg);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-8);
+      max-width: 500px;
+      line-height: 1.7;
+      animation: fadeInUp 0.7s ease 0.2s both;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      animation: fadeInUp 0.7s ease 0.3s both;
+    }
+    .hero-stats {
+      display: flex;
+      gap: var(--space-10);
+      margin-top: var(--space-12);
+      animation: fadeInUp 0.7s ease 0.4s both;
+    }
+    .hero-stat h3 {
+      font-size: var(--text-3xl);
+      font-weight: 800;
+      color: var(--accent-primary);
+    }
+    .hero-stat p {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      margin-top: var(--space-1);
+    }
+    .hero-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(16,185,129,0.08), transparent 70%);
+      top: 20%;
+      right: -5%;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* ---- Highlights Bar ---- */
+    .highlights {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: var(--space-10) 0;
+    }
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+    }
+    .highlight-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-4);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition-base);
+    }
+    .highlight-item:hover {
+      background: var(--bg-card);
+    }
+    .highlight-icon {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-md);
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .highlight-icon.green { background: rgba(16,185,129,0.12); }
+    .highlight-icon.blue { background: rgba(59,130,246,0.12); }
+    .highlight-icon.gold { background: rgba(245,158,11,0.12); }
+    .highlight-icon.purple { background: rgba(99,102,241,0.12); }
+    .highlight-item h4 { font-size: var(--text-base); margin-bottom: 2px; }
+    .highlight-item p { font-size: var(--text-sm); color: var(--text-muted); }
+
+    /* ---- Featured Listings ---- */
+    .featured-tabs {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-8);
+    }
+    .featured-tab {
+      padding: var(--space-2) var(--space-5);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: var(--radius-full);
+      transition: all var(--transition-base);
+      cursor: pointer;
+    }
+    .featured-tab:hover { color: var(--text-primary); background: var(--bg-card); }
+    .featured-tab.active {
+      background: var(--accent-primary);
+      color: #fff;
+    }
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--transition-base);
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(16,185,129,0.3);
+      box-shadow: var(--shadow-lg);
+    }
+    .product-img {
+      position: relative;
+      height: 200px;
+      background: var(--bg-secondary);
+      overflow: hidden;
+    }
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+    .product-card:hover .product-img img { transform: scale(1.05); }
+    .product-badge {
+      position: absolute;
+      top: var(--space-3);
+      left: var(--space-3);
+    }
+    .product-wishlist {
+      position: absolute;
+      top: var(--space-3);
+      right: var(--space-3);
+      width: 36px;
+      height: 36px;
+      background: rgba(10,14,23,0.6);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: var(--text-lg);
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+    .product-wishlist:hover { color: #ef4444; background: rgba(239,68,68,0.15); }
+    .product-info { padding: var(--space-4); }
+    .product-category { font-size: var(--text-xs); color: var(--accent-primary); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .product-title {
+      font-size: var(--text-base);
+      font-weight: 600;
+      margin: var(--space-1) 0 var(--space-2);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .product-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .product-price {
+      font-size: var(--text-xl);
+      font-weight: 800;
+      color: var(--accent-primary);
+    }
+    .product-price .old {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      text-decoration: line-through;
+      font-weight: 400;
+      margin-left: var(--space-2);
+    }
+    .product-seller {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      margin-top: var(--space-3);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--border-color);
+    }
+    .seller-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-primary));
+    }
+
+    /* ---- Categories Preview ---- */
+    .category-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      text-align: center;
+      transition: all var(--transition-base);
+      cursor: pointer;
+    }
+    .category-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(16,185,129,0.3);
+      box-shadow: var(--shadow-lg);
+    }
+    .category-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto var(--space-4);
+      background: rgba(16,185,129,0.08);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      transition: all var(--transition-base);
+    }
+    .category-card:hover .category-icon {
+      background: rgba(16,185,129,0.15);
+      transform: scale(1.1);
+    }
+    .category-card h3 { font-size: var(--text-base); margin-bottom: var(--space-1); }
+    .category-card p { font-size: var(--text-sm); color: var(--text-muted); }
+
+    /* ---- Reviews ---- */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .review-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      transition: all var(--transition-base);
+    }
+    .review-card:hover {
+      border-color: rgba(16,185,129,0.2);
+      box-shadow: var(--shadow-md);
+    }
+    .review-stars { color: var(--accent-secondary); font-size: var(--text-lg); margin-bottom: var(--space-3); letter-spacing: 2px; }
+    .review-text {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: var(--space-4);
+      font-style: italic;
+    }
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .review-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: var(--text-sm);
+      color: #fff;
+    }
+    .review-author-info h4 { font-size: var(--text-sm); }
+    .review-author-info p { font-size: var(--text-xs); color: var(--text-muted); }
+
+    /* ---- CTA Banner ---- */
+    .cta-banner {
+      position: relative;
+      background: linear-gradient(135deg, var(--accent-primary-dark), var(--accent-tertiary));
+      border-radius: var(--radius-xl);
+      padding: var(--space-16) var(--space-8);
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-banner h2 {
+      font-size: var(--text-4xl);
+      color: #fff;
+      margin-bottom: var(--space-4);
+      -webkit-text-fill-color: #fff;
+    }
+    .cta-banner p { color: rgba(255,255,255,0.8); font-size: var(--text-lg); margin-bottom: var(--space-8); }
+    .cta-banner .btn { position: relative; z-index: 2; }
+
+    @media (max-width: 992px) {
+      .highlights-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .hero-stats { gap: var(--space-6); flex-wrap: wrap; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons .btn { width: 100%; }
+    }
+    @media (max-width: 480px) {
+      .highlights-grid { grid-template-columns: 1fr; }
+      .cta-banner { padding: var(--space-10) var(--space-5); }
+      .cta-banner h2 { font-size: var(--text-2xl); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🛒</div>
+        <span>ReShop</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="home2.html" class="nav-link">Home 2</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="categories.html" class="nav-link">Categories</a>
+        <a href="sell.html" class="nav-link">Sell Item</a>
+        <a href="deals.html" class="nav-link">Deals</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="signup.html" class="nav-link">Signup</a>
+      </div>
+      <div class="nav-actions">
+        <a href="sell.html" class="nav-cta">Sell Now</a>
+      </div>
+      <div class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link active">Home</a>
+    <a href="home2.html" class="mobile-nav-link">Home 2</a>
+    <a href="shop.html" class="mobile-nav-link">Shop</a>
+    <a href="categories.html" class="mobile-nav-link">Categories</a>
+    <a href="sell.html" class="mobile-nav-link">Sell Item</a>
+    <a href="deals.html" class="mobile-nav-link">Deals</a>
+    <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
+    <a href="about.html" class="mobile-nav-link">About</a>
+    <a href="contact.html" class="mobile-nav-link">Contact</a>
+    <a href="signup.html" class="mobile-nav-link">Signup</a>
+    <a href="sell.html" class="mobile-nav-cta">🚀 Sell Now</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">🔥 Trusted by 50,000+ users</div>
+        <h1>Buy Smart.<br><span class="highlight">Sell Easy.</span><br>Save More.</h1>
+        <p class="hero-sub">Discover amazing deals on pre-loved items. From electronics to fashion, find quality products at unbeatable prices.</p>
+        <div class="hero-buttons">
+          <a href="shop.html" class="btn btn-primary btn-lg">🛍 Shop Now</a>
+          <a href="sell.html" class="btn btn-outline btn-lg">💰 Sell Your Item</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <h3>50K+</h3>
+            <p>Active Users</p>
+          </div>
+          <div class="hero-stat">
+            <h3>120K+</h3>
+            <p>Items Listed</p>
+          </div>
+          <div class="hero-stat">
+            <h3>98%</h3>
+            <p>Happy Buyers</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="highlights" data-animate="fade-in-up">
+    <div class="container">
+      <div class="highlights-grid stagger">
+        <div class="highlight-item" data-animate="fade-in-up">
+          <div class="highlight-icon green">💲</div>
+          <div>
+            <h4>Affordable Prices</h4>
+            <p>Save up to 70% on quality items</p>
+          </div>
+        </div>
+        <div class="highlight-item" data-animate="fade-in-up">
+          <div class="highlight-icon blue">✅</div>
+          <div>
+            <h4>Verified Sellers</h4>
+            <p>Trusted community of sellers</p>
+          </div>
+        </div>
+        <div class="highlight-item" data-animate="fade-in-up">
+          <div class="highlight-icon green">♻️</div>
+          <div>
+            <h4>Eco-Friendly Shopping</h4>
+            <p>Reduce waste, buy pre-loved</p>
+          </div>
+        </div>
+        <div class="highlight-item" data-animate="fade-in-up">
+          <div class="highlight-icon gold">🔄</div>
+          <div>
+            <h4>Easy Returns</h4>
+            <p>Hassle-free 7-day returns</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Listings -->
+  <section class="section" id="featured">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Marketplace</span>
+        <h2>Featured Listings</h2>
+        <p>Explore top picks from our community of sellers</p>
+      </div>
+      <div class="featured-tabs" data-animate="fade-in-up">
+        <button class="featured-tab active" data-tab="trending">🔥 Trending</button>
+        <button class="featured-tab" data-tab="recent">🆕 Recently Added</button>
+        <button class="featured-tab" data-tab="deals">💰 Best Deals</button>
+      </div>
+      <div class="grid grid-4 stagger" id="productGrid">
+        <!-- Product 1 -->
+        <div class="product-card" data-animate="fade-in-up">
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop" alt="Headphones">
+            <span class="badge badge-success product-badge">Like New</span>
+            <div class="product-wishlist">♡</div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Electronics</span>
+            <h3 class="product-title">Premium Wireless Headphones</h3>
+            <div class="product-meta">
+              <span class="product-price">$49 <span class="old">$199</span></span>
+              <span class="badge badge-warning">-75%</span>
+            </div>
+            <div class="product-seller">
+              <div class="seller-avatar"></div>
+              <span>Sarah K. • ⭐ 4.9</span>
+            </div>
+          </div>
+        </div>
+        <!-- Product 2 -->
+        <div class="product-card" data-animate="fade-in-up">
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=300&fit=crop" alt="Sneakers">
+            <span class="badge badge-info product-badge">Refurbished</span>
+            <div class="product-wishlist">♡</div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Fashion</span>
+            <h3 class="product-title">Designer Running Sneakers</h3>
+            <div class="product-meta">
+              <span class="product-price">$35 <span class="old">$120</span></span>
+              <span class="badge badge-warning">-71%</span>
+            </div>
+            <div class="product-seller">
+              <div class="seller-avatar"></div>
+              <span>Mike R. • ⭐ 4.7</span>
+            </div>
+          </div>
+        </div>
+        <!-- Product 3 -->
+        <div class="product-card" data-animate="fade-in-up">
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=300&fit=crop" alt="Laptop">
+            <span class="badge badge-success product-badge">Like New</span>
+            <div class="product-wishlist">♡</div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Electronics</span>
+            <h3 class="product-title">MacBook Pro 2023 – 256GB</h3>
+            <div class="product-meta">
+              <span class="product-price">$899 <span class="old">$1,499</span></span>
+              <span class="badge badge-warning">-40%</span>
+            </div>
+            <div class="product-seller">
+              <div class="seller-avatar"></div>
+              <span>Alex T. • ⭐ 5.0</span>
+            </div>
+          </div>
+        </div>
+        <!-- Product 4 -->
+        <div class="product-card" data-animate="fade-in-up">
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=300&fit=crop" alt="Sofa">
+            <span class="badge badge-purple product-badge">Used</span>
+            <div class="product-wishlist">♡</div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Furniture</span>
+            <h3 class="product-title">Modern 3-Seater Sofa – Grey</h3>
+            <div class="product-meta">
+              <span class="product-price">$180 <span class="old">$650</span></span>
+              <span class="badge badge-warning">-72%</span>
+            </div>
+            <div class="product-seller">
+              <div class="seller-avatar"></div>
+              <span>Emma L. • ⭐ 4.8</span>
+            </div>
+          </div>
+        </div>
+        <!-- Product 5 -->
+        <div class="product-card" data-animate="fade-in-up">
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="Phone">
+            <span class="badge badge-success product-badge">Like New</span>
+            <div class="product-wishlist">♡</div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Mobiles</span>
+            <h3 class="product-title">iPhone 14 Pro – 128GB Unlocked</h3>
+            <div class="product-meta">
+              <span class="product-price">$599 <span class="old">$999</span></span>
+              <span class="badge badge-warning">-40%</span>
+            </div>
+            <div class="product-seller">
+              <div class="seller-avatar"></div>
+              <span>David W. • ⭐ 4.9</span>
+            </div>
+          </div>
+        </div>
+        <!-- Product 6 -->
+        <div class="product-card" data-animate="fade-in-up">
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop" alt="Watch">
+            <span class="badge badge-info product-badge">Refurbished</span>
+            <div class="product-wishlist">♡</div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Accessories</span>
+            <h3 class="product-title">Classic Leather Watch – Brown</h3>
+            <div class="product-meta">
+              <span class="product-price">$45 <span class="old">$150</span></span>
+              <span class="badge badge-warning">-70%</span>
+            </div>
+            <div class="product-seller">
+              <div class="seller-avatar"></div>
+              <span>Lisa M. • ⭐ 4.6</span>
+            </div>
+          </div>
+        </div>
+        <!-- Product 7 -->
+        <div class="product-card" data-animate="fade-in-up">
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=300&fit=crop" alt="Books">
+            <span class="badge badge-purple product-badge">Used</span>
+            <div class="product-wishlist">♡</div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Books</span>
+            <h3 class="product-title">Best Sellers Book Bundle (5 books)</h3>
+            <div class="product-meta">
+              <span class="product-price">$18 <span class="old">$75</span></span>
+              <span class="badge badge-warning">-76%</span>
+            </div>
+            <div class="product-seller">
+              <div class="seller-avatar"></div>
+              <span>Chris P. • ⭐ 4.8</span>
+            </div>
+          </div>
+        </div>
+        <!-- Product 8 -->
+        <div class="product-card" data-animate="fade-in-up">
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=400&h=300&fit=crop" alt="Camera">
+            <span class="badge badge-success product-badge">Like New</span>
+            <div class="product-wishlist">♡</div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Electronics</span>
+            <h3 class="product-title">DSLR Camera – Full Kit</h3>
+            <div class="product-meta">
+              <span class="product-price">$320 <span class="old">$800</span></span>
+              <span class="badge badge-warning">-60%</span>
+            </div>
+            <div class="product-seller">
+              <div class="seller-avatar"></div>
+              <span>Nina V. • ⭐ 4.9</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <a href="shop.html" class="btn btn-outline">View All Listings →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Preview -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Browse</span>
+        <h2>Shop by Category</h2>
+        <p>Find exactly what you're looking for</p>
+      </div>
+      <div class="grid grid-6 stagger">
+        <a href="shop.html?cat=electronics" class="category-card" data-animate="fade-in-up">
+          <div class="category-icon">📱</div>
+          <h3>Electronics</h3>
+          <p>2,400+ items</p>
+        </a>
+        <a href="shop.html?cat=fashion" class="category-card" data-animate="fade-in-up">
+          <div class="category-icon">👗</div>
+          <h3>Fashion</h3>
+          <p>5,100+ items</p>
+        </a>
+        <a href="shop.html?cat=furniture" class="category-card" data-animate="fade-in-up">
+          <div class="category-icon">🛋️</div>
+          <h3>Furniture</h3>
+          <p>1,800+ items</p>
+        </a>
+        <a href="shop.html?cat=books" class="category-card" data-animate="fade-in-up">
+          <div class="category-icon">📚</div>
+          <h3>Books</h3>
+          <p>3,200+ items</p>
+        </a>
+        <a href="shop.html?cat=vehicles" class="category-card" data-animate="fade-in-up">
+          <div class="category-icon">🚗</div>
+          <h3>Vehicles</h3>
+          <p>890+ items</p>
+        </a>
+        <a href="shop.html?cat=mobiles" class="category-card" data-animate="fade-in-up">
+          <div class="category-icon">📲</div>
+          <h3>Mobiles</h3>
+          <p>1,600+ items</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Testimonials</span>
+        <h2>What Our Users Say</h2>
+        <p>Real stories from real buyers and sellers</p>
+      </div>
+      <div class="reviews-grid stagger">
+        <div class="review-card" data-animate="fade-in-up">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Found an amazing MacBook at half the retail price. The seller was verified and the device was in perfect condition. Love this platform!"</p>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">JD</div>
+            <div class="review-author-info">
+              <h4>James D.</h4>
+              <p>Buyer • Verified Purchase</p>
+            </div>
+          </div>
+        </div>
+        <div class="review-card" data-animate="fade-in-up">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Sold my old furniture in just 2 days! The listing process is so simple, and I love how quickly buyers reach out through the platform."</p>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">PR</div>
+            <div class="review-author-info">
+              <h4>Priya R.</h4>
+              <p>Seller • 45 listings sold</p>
+            </div>
+          </div>
+        </div>
+        <div class="review-card" data-animate="fade-in-up">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"As a student on a budget, this site is a lifesaver. I've furnished my entire dorm room for under $200. Everything was exactly as described."</p>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg, #6366f1, #818cf8);">MK</div>
+            <div class="review-author-info">
+              <h4>Maria K.</h4>
+              <p>Buyer • 12 purchases</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner" data-animate="scale-in">
+        <h2>Ready to Start Buying or Selling?</h2>
+        <p>Join thousands of happy users and discover amazing deals today.</p>
+        <div class="flex justify-center gap-4">
+          <a href="shop.html" class="btn btn-secondary btn-lg">🛍 Start Buying</a>
+          <a href="sell.html" class="btn btn-lg" style="background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3);">💰 Start Selling</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">🛒</div>
+            <span>ReShop</span>
+          </a>
+          <p>Your trusted marketplace for pre-loved items. Buy smart, sell easy, and contribute to a sustainable future.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="YouTube">🎬</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <a href="shop.html" class="footer-link">Shop</a>
+          <a href="sell.html" class="footer-link">Sell an Item</a>
+          <a href="deals.html" class="footer-link">Deals</a>
+          <a href="categories.html" class="footer-link">Categories</a>
+          <a href="dashboard.html" class="footer-link">Dashboard</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Blog</a>
+          <a href="#" class="footer-link">Press</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Newsletter</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">Get the latest deals & updates.</p>
+          <div class="footer-newsletter">
+            <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
+              <input type="email" placeholder="Your email" aria-label="Email">
+              <button type="submit">→</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ReShop. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script>
+    // Featured tabs switching
+    document.querySelectorAll('.featured-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.featured-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
+
+    // Wishlist toggle
+    document.querySelectorAll('.product-wishlist').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
+        btn.style.color = btn.textContent === '♥' ? '#ef4444' : '';
+      });
+    });
+  </script>
+</body>
+</html>

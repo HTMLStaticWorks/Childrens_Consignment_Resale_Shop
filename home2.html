@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReShop — Start Selling Today</title>
+  <meta name="description" content="Learn how to buy and sell on ReShop. Join thousands of users saving money and reducing waste.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    /* ---- Video Hero ---- */
+    .video-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .video-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/hero2-bg.png') center/cover no-repeat;
+    }
+    .video-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10,14,23,0.85), rgba(10,14,23,0.6), rgba(10,14,23,0.9));
+    }
+    .video-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 0 var(--space-6);
+    }
+    .video-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      margin-bottom: var(--space-5);
+      animation: fadeInUp 0.7s ease both;
+    }
+    .video-hero h1 .accent { color: var(--accent-primary-light); -webkit-text-fill-color: var(--accent-primary-light); }
+    .video-hero p {
+      font-size: var(--text-xl);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-8);
+      animation: fadeInUp 0.7s ease 0.15s both;
+    }
+    .video-hero .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      animation: fadeInUp 0.7s ease 0.3s both;
+    }
+    .play-btn {
+      width: 80px;
+      height: 80px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #fff;
+      margin: 0 auto var(--space-8);
+      cursor: pointer;
+      transition: all var(--transition-base);
+      animation: fadeIn 1s ease 0.5s both;
+    }
+    .play-btn:hover {
+      border-color: var(--accent-primary);
+      background: rgba(16,185,129,0.15);
+      transform: scale(1.1);
+    }
+
+    /* ---- How It Works ---- */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 50px;
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary), transparent);
+      z-index: 0;
+    }
+    .step-card {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .step-number {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto var(--space-4);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: var(--text-2xl);
+      font-weight: 800;
+      color: #fff;
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
+      transition: all var(--transition-base);
+    }
+    .step-card:hover .step-number {
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-glow);
+    }
+    .step-card h3 { font-size: var(--text-base); margin-bottom: var(--space-2); }
+    .step-card p { font-size: var(--text-sm); color: var(--text-muted); line-height: 1.6; }
+    .step-icon { font-size: 2rem; margin-bottom: var(--space-2); }
+
+    /* ---- Deals Carousel ---- */
+    .carousel-wrap { position: relative; overflow: hidden; }
+    .carousel-track {
+      display: flex;
+      gap: var(--space-5);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      padding: var(--space-2) 0;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .carousel-item {
+      min-width: 280px;
+      scroll-snap-align: start;
+      flex-shrink: 0;
+    }
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+    .carousel-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-lg);
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+    .carousel-btn:hover { background: var(--accent-primary); border-color: var(--accent-primary); }
+
+    /* ---- Testimonial Slider ---- */
+    .testimonial-slider {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .testimonial-slide {
+      display: none;
+    }
+    .testimonial-slide.active { display: block; }
+    .testimonial-quote {
+      font-size: var(--text-xl);
+      line-height: 1.8;
+      color: var(--text-secondary);
+      font-style: italic;
+      margin-bottom: var(--space-6);
+    }
+    .testimonial-quote::before { content: '"'; font-size: 3rem; color: var(--accent-primary); line-height: 0; vertical-align: -0.4em; margin-right: 4px; }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+    }
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+    }
+    .testimonial-dots {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-2);
+      margin-top: var(--space-6);
+    }
+    .testimonial-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border-color);
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+    .testimonial-dot.active { background: var(--accent-primary); width: 28px; border-radius: var(--radius-full); }
+
+    /* ---- Email Signup ---- */
+    .email-signup {
+      background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary));
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: var(--space-16) var(--space-8);
+      text-align: center;
+    }
+    .email-signup h2 { font-size: var(--text-3xl); margin-bottom: var(--space-3); }
+    .email-signup p { color: var(--text-secondary); margin-bottom: var(--space-8); }
+    .email-form {
+      display: flex;
+      gap: var(--space-3);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .email-form input {
+      flex: 1;
+      padding: var(--space-4) var(--space-5);
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      color: var(--text-primary);
+      font-size: var(--text-base);
+      outline: none;
+    }
+    .email-form input:focus { border-color: var(--accent-primary); }
+
+    @media (max-width: 768px) {
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid::before { display: none; }
+      .email-form { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .steps-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🛒</div>
+        <span>ReShop</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="home2.html" class="nav-link active">Home 2</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="categories.html" class="nav-link">Categories</a>
+        <a href="sell.html" class="nav-link">Sell Item</a>
+        <a href="deals.html" class="nav-link">Deals</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="signup.html" class="nav-link">Signup</a>
+      </div>
+      <div class="nav-actions"><a href="sell.html" class="nav-cta">Sell Now</a></div>
+      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link">Home</a>
+    <a href="home2.html" class="mobile-nav-link active">Home 2</a>
+    <a href="shop.html" class="mobile-nav-link">Shop</a>
+    <a href="categories.html" class="mobile-nav-link">Categories</a>
+    <a href="sell.html" class="mobile-nav-link">Sell Item</a>
+    <a href="deals.html" class="mobile-nav-link">Deals</a>
+    <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
+    <a href="about.html" class="mobile-nav-link">About</a>
+    <a href="contact.html" class="mobile-nav-link">Contact</a>
+    <a href="signup.html" class="mobile-nav-link">Signup</a>
+    <a href="sell.html" class="mobile-nav-cta">🚀 Sell Now</a>
+  </div>
+
+  <!-- Video Hero -->
+  <section class="video-hero">
+    <div class="video-hero-bg"></div>
+    <div class="video-hero-content">
+      <h1>Turn Your Clutter into <span class="accent">Cash</span></h1>
+      <div class="play-btn" id="playBtn">▶</div>
+      <p>Join the resale revolution. Sell your pre-loved items, find incredible deals, and shop sustainably.</p>
+      <div class="hero-buttons">
+        <a href="sell.html" class="btn btn-primary btn-lg">🚀 Start Selling Today</a>
+        <a href="shop.html" class="btn btn-outline btn-lg">Browse Deals</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Simple Process</span>
+        <h2>How It Works</h2>
+        <p>Buying and selling has never been this easy</p>
+      </div>
+      <div class="steps-grid stagger">
+        <div class="step-card" data-animate="fade-in-up">
+          <div class="step-icon">📸</div>
+          <div class="step-number">1</div>
+          <h3>List Your Item</h3>
+          <p>Snap a photo, add a description, and set your price. It takes under 2 minutes!</p>
+        </div>
+        <div class="step-card" data-animate="fade-in-up">
+          <div class="step-icon">🔍</div>
+          <div class="step-number">2</div>
+          <h3>Get Discovered</h3>
+          <p>Your listing reaches thousands of buyers. We promote top deals automatically.</p>
+        </div>
+        <div class="step-card" data-animate="fade-in-up">
+          <div class="step-icon">💬</div>
+          <div class="step-number">3</div>
+          <h3>Chat & Negotiate</h3>
+          <p>Connect directly with interested buyers through our built-in messaging.</p>
+        </div>
+        <div class="step-card" data-animate="fade-in-up">
+          <div class="step-icon">💰</div>
+          <div class="step-number">4</div>
+          <h3>Get Paid</h3>
+          <p>Complete the sale and receive payment securely through our platform.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Deals Carousel -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Today's Picks</span>
+        <h2>Top Deals 🔥</h2>
+        <p>Don't miss these amazing offers</p>
+      </div>
+      <div class="carousel-wrap" data-animate="fade-in-up">
+        <div class="carousel-track" id="dealsCarousel">
+          <div class="carousel-item">
+            <div class="product-card">
+              <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop" alt="Smart Watch">
+                <span class="badge badge-danger product-badge">Flash Sale</span>
+              </div>
+              <div class="product-info">
+                <span class="product-category">Electronics</span>
+                <h3 class="product-title">Smart Watch Series X</h3>
+                <div class="product-meta">
+                  <span class="product-price">$79 <span class="old">$299</span></span>
+                  <span class="badge badge-warning">-74%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="product-card">
+              <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop" alt="Sneakers">
+                <span class="badge badge-danger product-badge">Flash Sale</span>
+              </div>
+              <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3 class="product-title">Limited Edition Sneakers</h3>
+                <div class="product-meta">
+                  <span class="product-price">$55 <span class="old">$200</span></span>
+                  <span class="badge badge-warning">-72%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="product-card">
+              <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&h=300&fit=crop" alt="Perfume">
+                <span class="badge badge-danger product-badge">Flash Sale</span>
+              </div>
+              <div class="product-info">
+                <span class="product-category">Accessories</span>
+                <h3 class="product-title">Designer Fragrance Set</h3>
+                <div class="product-meta">
+                  <span class="product-price">$32 <span class="old">$120</span></span>
+                  <span class="badge badge-warning">-73%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="product-card">
+              <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=300&fit=crop" alt="Laptop">
+                <span class="badge badge-danger product-badge">Flash Sale</span>
+              </div>
+              <div class="product-info">
+                <span class="product-category">Electronics</span>
+                <h3 class="product-title">Gaming Laptop RTX 4060</h3>
+                <div class="product-meta">
+                  <span class="product-price">$650 <span class="old">$1,400</span></span>
+                  <span class="badge badge-warning">-54%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="product-card">
+              <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=400&h=300&fit=crop" alt="Bag">
+                <span class="badge badge-danger product-badge">Flash Sale</span>
+              </div>
+              <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3 class="product-title">Premium Leather Backpack</h3>
+                <div class="product-meta">
+                  <span class="product-price">$40 <span class="old">$150</span></span>
+                  <span class="badge badge-warning">-73%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" id="carouselPrev">←</button>
+          <button class="carousel-btn" id="carouselNext">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Slider -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Reviews</span>
+        <h2>Loved by Thousands</h2>
+        <p>Hear what our community has to say</p>
+      </div>
+      <div class="testimonial-slider" data-animate="fade-in-up">
+        <div class="testimonial-slide active" data-slide="0">
+          <p class="testimonial-quote">I sold my entire gaming setup in under 48 hours. The process was incredibly smooth and the buyers were genuine. This platform changed how I think about selling stuff!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">AK</div>
+            <div>
+              <h4 style="font-size: var(--text-base);">Aaron K.</h4>
+              <p style="font-size: var(--text-sm); color: var(--text-muted);">Seller • Gaming Enthusiast</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-slide" data-slide="1">
+          <p class="testimonial-quote">As a single mom, budget matters. ReShop helped me furnish my kids' rooms without breaking the bank. Everything arrived in great condition — better than I expected!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">SM</div>
+            <div>
+              <h4 style="font-size: var(--text-base);">Sandra M.</h4>
+              <p style="font-size: var(--text-sm); color: var(--text-muted);">Buyer • Parent</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-slide" data-slide="2">
+          <p class="testimonial-quote">I've been buying and selling on ReShop for 6 months. I've made over $3,000 from items I no longer needed. It's like having a side hustle that runs itself!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #6366f1, #818cf8);">RT</div>
+            <div>
+              <h4 style="font-size: var(--text-base);">Raj T.</h4>
+              <p style="font-size: var(--text-sm); color: var(--text-muted);">Buyer & Seller • Power User</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-dots">
+          <div class="testimonial-dot active" data-dot="0"></div>
+          <div class="testimonial-dot" data-dot="1"></div>
+          <div class="testimonial-dot" data-dot="2"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Email Signup -->
+  <section class="section">
+    <div class="container">
+      <div class="email-signup" data-animate="scale-in">
+        <span class="section-label">Stay Updated</span>
+        <h2>Never Miss a Deal 📬</h2>
+        <p>Subscribe to get exclusive deals, new listings, and marketplace updates delivered to your inbox.</p>
+        <form class="email-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='✓ Subscribed!'; this.querySelector('button').style.background='var(--accent-primary-dark)';">
+          <input type="email" placeholder="Enter your email address" required aria-label="Email address">
+          <button type="submit" class="btn btn-primary btn-lg">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🛒</div><span>ReShop</span></a>
+          <p>Your trusted marketplace for pre-loved items. Buy smart, sell easy, and contribute to a sustainable future.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="YouTube">🎬</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <a href="shop.html" class="footer-link">Shop</a>
+          <a href="sell.html" class="footer-link">Sell an Item</a>
+          <a href="deals.html" class="footer-link">Deals</a>
+          <a href="categories.html" class="footer-link">Categories</a>
+          <a href="dashboard.html" class="footer-link">Dashboard</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Blog</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Newsletter</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">Get the latest deals.</p>
+          <div class="footer-newsletter">
+            <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
+              <input type="email" placeholder="Your email" aria-label="Email">
+              <button type="submit">→</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ReShop. All rights reserved.</span>
+        <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script>
+    // Carousel
+    const track = document.getElementById('dealsCarousel');
+    document.getElementById('carouselNext').addEventListener('click', () => {
+      track.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+    document.getElementById('carouselPrev').addEventListener('click', () => {
+      track.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+
+    // Testimonial Slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.testimonial-dot');
+
+    function showSlide(n) {
+      slides.forEach(s => s.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
+      slides[n].classList.add('active');
+      dots[n].classList.add('active');
+      currentSlide = n;
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => showSlide(parseInt(dot.dataset.dot)));
+    });
+
+    setInterval(() => {
+      showSlide((currentSlide + 1) % slides.length);
+    }, 5000);
+  </script>
+</body>
+</html>

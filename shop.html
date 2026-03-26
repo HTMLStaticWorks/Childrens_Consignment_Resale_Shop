@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReShop Marketplace — Sustainable Shopping</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    /* ---- Shop Layout ---- */
+    .shop-container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--space-8);
+      padding-top: 100px;
+      padding-bottom: var(--space-20);
+    }
+
+    /* ---- Sidebar Filters ---- */
+    .filters-sidebar {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+    }
+    .filter-section { margin-bottom: var(--space-8); }
+    .filter-title {
+      font-size: var(--text-base);
+      font-weight: 700;
+      margin-bottom: var(--space-4);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .filter-options { display: flex; flex-direction: column; gap: var(--space-3); }
+    .filter-checkbox {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: color var(--transition-fast);
+    }
+    .filter-checkbox:hover { color: var(--text-primary); }
+    .filter-checkbox input {
+      accent-color: var(--accent-primary);
+      width: 18px;
+      height: 18px;
+    }
+
+    .range-slider {
+      width: 100%;
+      accent-color: var(--accent-primary);
+      margin: var(--space-4) 0;
+    }
+    .range-values {
+      display: flex;
+      justify-content: space-between;
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+    }
+
+    /* ---- Shop Header ---- */
+    .shop-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-6);
+    }
+    .shop-results-count { font-size: var(--text-sm); color: var(--text-muted); }
+    .shop-sort select {
+      padding: var(--space-2) var(--space-4);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: var(--text-sm);
+      outline: none;
+    }
+
+    /* ---- Mobile Filter Toggle ---- */
+    .mobile-filter-btn {
+      display: none;
+      width: 100%;
+      padding: var(--space-4);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-4);
+      font-weight: 600;
+      gap: var(--space-2);
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 992px) {
+      .shop-container { grid-template-columns: 1fr; }
+      .filters-sidebar { display: none; }
+      .filters-sidebar.active {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        top: 0;
+        height: 100vh;
+        border-radius: 0;
+        overflow-y: auto;
+      }
+      .mobile-filter-btn { display: flex; }
+      .filter-close {
+        display: block;
+        position: absolute;
+        top: var(--space-4);
+        right: var(--space-4);
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar scrolled">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🛒</div>
+        <span>ReShop</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="home2.html" class="nav-link">Home 2</a>
+        <a href="shop.html" class="nav-link active">Shop</a>
+        <a href="categories.html" class="nav-link">Categories</a>
+        <a href="sell.html" class="nav-link">Sell Item</a>
+        <a href="deals.html" class="nav-link">Deals</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="signup.html" class="nav-link">Signup</a>
+      </div>
+      <div class="nav-actions"><a href="sell.html" class="nav-cta">Sell Now</a></div>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <div class="mobile-nav-overlay"></div>
+  <div class="mobile-nav">
+    <a href="index.html" class="mobile-nav-link">Home</a>
+    <a href="home2.html" class="mobile-nav-link">Home 2</a>
+    <a href="shop.html" class="mobile-nav-link active">Shop</a>
+    <a href="categories.html" class="mobile-nav-link">Categories</a>
+    <a href="sell.html" class="mobile-nav-link">Sell Item</a>
+    <a href="deals.html" class="mobile-nav-link">Deals</a>
+    <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
+    <a href="about.html" class="mobile-nav-link">About</a>
+    <a href="contact.html" class="mobile-nav-link">Contact</a>
+    <a href="signup.html" class="mobile-nav-link">Signup</a>
+    <a href="sell.html" class="mobile-nav-cta">🚀 Sell Now</a>
+  </div>
+
+  <main class="container">
+    <div class="shop-container">
+      <!-- Sidebar Filters -->
+      <aside class="filters-sidebar" id="sidebar">
+        <button class="filter-close" onclick="document.getElementById('sidebar').classList.remove('active')" style="display:none">✕</button>
+        <div class="filter-section">
+          <h3 class="filter-title">Categories</h3>
+          <div class="filter-options">
+            <label class="filter-checkbox"><input type="checkbox" checked> Electronics</label>
+            <label class="filter-checkbox"><input type="checkbox"> Fashion</label>
+            <label class="filter-checkbox"><input type="checkbox"> Home & Furniture</label>
+            <label class="filter-checkbox"><input type="checkbox"> Mobiles</label>
+            <label class="filter-checkbox"><input type="checkbox"> Vehicles</label>
+            <label class="filter-checkbox"><input type="checkbox"> Books</label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <h3 class="filter-title">Price Range</h3>
+          <input type="range" class="range-slider" min="0" max="5000" step="50">
+          <div class="range-values">
+            <span>$0</span>
+            <span>$5,000+</span>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <h3 class="filter-title">Condition</h3>
+          <div class="filter-options">
+            <label class="filter-checkbox"><input type="checkbox"> Brand New</label>
+            <label class="filter-checkbox"><input type="checkbox" checked> Like New</label>
+            <label class="filter-checkbox"><input type="checkbox"> Refurbished</label>
+            <label class="filter-checkbox"><input type="checkbox"> Used</label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <h3 class="filter-title">Location</h3>
+          <select class="form-select">
+            <option>All Locations</option>
+            <option>New York, NY</option>
+            <option>Los Angeles, CA</option>
+            <option>Chicago, IL</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary w-full mt-4">Apply Filters</button>
+      </aside>
+
+      <!-- Main Shop Content -->
+      <div class="shop-content">
+        <button class="mobile-filter-btn" onclick="document.getElementById('sidebar').classList.add('active')">
+          <span>🔍</span> Filter & Sort
+        </button>
+
+        <div class="shop-header">
+          <div class="shop-results-count">Showing 1,240 items</div>
+          <div class="shop-sort">
+            <label class="text-xs text-muted mr-2">Sort by:</label>
+            <select>
+              <option>Newest First</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Most Popular</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-3 stagger">
+          <!-- Item 1 -->
+          <div class="product-card">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=300&fit=crop" alt="Sneakers">
+              <span class="badge badge-success product-badge">Like New</span>
+            </div>
+            <div class="product-info">
+              <span class="product-category">Fashion</span>
+              <h3 class="product-title">Designer Sneaker - Size 10</h3>
+              <div class="product-meta">
+                <span class="product-price">$45 <span class="old">$120</span></span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 2 -->
+          <div class="product-card">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop" alt="Beats">
+              <span class="badge badge-info product-badge">Refurbished</span>
+            </div>
+            <div class="product-info">
+              <span class="product-category">Electronics</span>
+              <h3 class="product-title">Wireless Over-Ear Headphones</h3>
+              <div class="product-meta">
+                <span class="product-price">$89 <span class="old">$199</span></span>
+              </div>
+            </div>
+          </div>
+          <!-- More items... -->
+          <!-- Repeat several times to fill grid -->
+          <div class="product-card">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=300&fit=crop" alt="Laptop">
+              <span class="badge badge-success product-badge">Like New</span>
+            </div>
+            <div class="product-info">
+              <span class="product-category">Electronics</span>
+              <h3 class="product-title">MacBook Pro 14" M2</h3>
+              <div class="product-meta">
+                <span class="product-price">$1,299</span>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=300&fit=crop" alt="Sofa">
+              <span class="badge badge-purple product-badge">Used</span>
+            </div>
+            <div class="product-info">
+              <span class="product-category">Furniture</span>
+              <h3 class="product-title">Modern Grey Sectional Sofa</h3>
+              <div class="product-meta">
+                <span class="product-price">$350 <span class="old">$900</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="Phone">
+              <span class="badge badge-success product-badge">Like New</span>
+            </div>
+            <div class="product-info">
+              <span class="product-category">Mobiles</span>
+              <h3 class="product-title">iPhone 13 Pro Max - 256GB</h3>
+              <div class="product-meta">
+                <span class="product-price">$540</span>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=300&fit=crop" alt="Book">
+              <span class="badge badge-purple product-badge">Used</span>
+            </div>
+            <div class="product-info">
+              <span class="product-category">Books</span>
+              <h3 class="product-title">Hardcover Fiction Bundle</h3>
+              <div class="product-meta">
+                <span class="product-price">$12</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <button class="btn btn-outline btn-lg">Load More Items</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">🛒</div>
+            <span>ReShop</span>
+          </a>
+          <p>Your trusted marketplace for pre-loved items. Buy smart, sell easy, and contribute to a sustainable future.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="YouTube">🎬</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <a href="shop.html" class="footer-link">Shop</a>
+          <a href="sell.html" class="footer-link">Sell an Item</a>
+          <a href="deals.html" class="footer-link">Deals</a>
+          <a href="categories.html" class="footer-link">Categories</a>
+          <a href="dashboard.html" class="footer-link">Dashboard</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Blog</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Newsletter</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">Get the latest deals.</p>
+          <div class="footer-newsletter">
+            <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
+              <input type="email" placeholder="Your email" aria-label="Email">
+              <button type="submit">→</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ReShop. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard — ReShop</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    .dash-layout {
+      padding-top: 100px;
+      padding-bottom: var(--space-20);
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: var(--space-8);
+    }
+    .dash-sidebar {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      height: fit-content;
+    }
+    .dash-nav-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      color: var(--text-secondary);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      margin-bottom: var(--space-2);
+      cursor: pointer;
+    }
+    .dash-nav-item:hover, .dash-nav-item.active {
+      background: rgba(16, 185, 129, 0.08);
+      color: var(--accent-primary);
+    }
+    .dash-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+      margin-bottom: var(--space-10);
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: var(--space-6);
+      border-radius: var(--radius-lg);
+    }
+    .stat-card h4 { color: var(--text-muted); font-size: var(--text-xs); text-transform: uppercase; margin-bottom: var(--space-2); }
+    .stat-card p { font-size: var(--text-2xl); font-weight: 800; color: var(--text-primary); }
+
+    .dash-table-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+    .dash-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .dash-table th {
+      text-align: left;
+      background: var(--bg-secondary);
+      padding: var(--space-4) var(--space-6);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .dash-table td {
+      padding: var(--space-4) var(--space-6);
+      border-bottom: 1px solid var(--border-light);
+      font-size: var(--text-sm);
+    }
+    .dash-table tr:last-child td { border-bottom: none; }
+
+    @media (max-width: 992px) {
+      .dash-layout { grid-template-columns: 1fr; }
+      .dash-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar scrolled">
+    <div class="container">
+      <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🛒</div><span>ReShop</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="home2.html" class="nav-link">Home 2</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="categories.html" class="nav-link">Categories</a>
+        <a href="sell.html" class="nav-link">Sell Item</a>
+        <a href="deals.html" class="nav-link">Deals</a>
+        <a href="dashboard.html" class="nav-link active">Dashboard</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="signup.html" class="nav-link">Signup</a>
+      </div>
+      <div class="nav-actions"><a href="signup.html" class="nav-cta">Logout</a></div>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="dash-layout">
+      <aside class="dash-sidebar">
+        <div class="user-info p-4 text-center mb-6">
+          <div class="review-avatar mx-auto mb-3" style="width:60px; height:60px; font-size:1.5rem; background: var(--accent-primary);">JD</div>
+          <h3 class="text-base">John Doe</h3>
+          <p class="text-xs text-muted">Verification Level: Gold</p>
+        </div>
+        <div class="dash-nav-item active">🏠 Overview</div>
+        <div class="dash-nav-item">📦 My Orders</div>
+        <div class="dash-nav-item">💖 Wishlist</div>
+        <div class="dash-nav-item">🏷️ My Listings</div>
+        <div class="dash-nav-item">💬 Messages <span class="badge badge-danger ml-auto">2</span></div>
+        <div class="dash-nav-item">📊 Sales History</div>
+        <div class="dash-nav-item">⚙️ Settings</div>
+      </aside>
+
+      <div class="dash-content">
+        <div class="section-header" style="text-align:left; margin-bottom:var(--space-8)">
+          <h2>Welcome back, John! 🚀</h2>
+          <p>Here's what's happening with your account today.</p>
+        </div>
+
+        <div class="dash-stats">
+          <div class="stat-card"><h4>Active Listings</h4><p>12</p></div>
+          <div class="stat-card"><h4>Total Earnings</h4><p>$1,420</p></div>
+          <div class="stat-card"><h4>Pending Orders</h4><p>3</p></div>
+          <div class="stat-card"><h4>Account Credit</h4><p>$45.00</p></div>
+        </div>
+
+        <div class="dash-table-card">
+          <div class="p-6 flex justify-between items-center">
+            <h3 class="text-lg">Recent Listings</h3>
+            <a href="sell.html" class="btn btn-primary btn-sm">+ New Listing</a>
+          </div>
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>iPhone 13 Pro Max</td>
+                <td>Mobiles</td>
+                <td>$540</td>
+                <td><span class="badge badge-success">Active</span></td>
+                <td><button class="btn btn-ghost text-xs">Edit</button></td>
+              </tr>
+              <tr>
+                <td>MacBook Pro 14"</td>
+                <td>Electronics</td>
+                <td>$1,299</td>
+                <td><span class="badge badge-warning">Sold</span></td>
+                <td><button class="btn btn-ghost text-xs">Details</button></td>
+              </tr>
+              <tr>
+                <td>Grey Sectional Sofa</td>
+                <td>Furniture</td>
+                <td>$350</td>
+                <td><span class="badge badge-danger">Pending</span></td>
+                <td><button class="btn btn-ghost text-xs">Review</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">🛒</div>
+            <span>ReShop</span>
+          </a>
+          <p>Your trusted marketplace for pre-loved items. Buy smart, sell easy, and contribute to a sustainable future.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="YouTube">🎬</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <a href="shop.html" class="footer-link">Shop</a>
+          <a href="sell.html" class="footer-link">Sell an Item</a>
+          <a href="deals.html" class="footer-link">Deals</a>
+          <a href="categories.html" class="footer-link">Categories</a>
+          <a href="dashboard.html" class="footer-link">Dashboard</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Blog</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Newsletter</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">Get the latest deals.</p>
+          <div class="footer-newsletter">
+            <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
+              <input type="email" placeholder="Your email" aria-label="Email">
+              <button type="submit">→</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ReShop. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+</body>
+</html>

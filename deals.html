@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deals & Offers — ReShop</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    .deals-hero {
+      padding: 120px 0 60px;
+      background: linear-gradient(135deg, #7c2d12, #0c0a09);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .flash-timer {
+      display: inline-flex;
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+    .timer-unit {
+      background: rgba(255,255,255,0.1);
+      padding: var(--space-4);
+      border-radius: var(--radius-lg);
+      min-width: 80px;
+    }
+    .timer-val { font-size: var(--text-3xl); font-weight: 800; display: block; }
+    .timer-lbl { font-size: var(--text-xs); text-transform: uppercase; color: var(--text-muted); }
+
+    .deal-badge-lg {
+      background: var(--danger);
+      color: #fff;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-4);
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar scrolled">
+    <div class="container">
+      <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🛒</div><span>ReShop</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="categories.html" class="nav-link">Categories</a>
+        <a href="sell.html" class="nav-link">Sell Item</a>
+        <a href="deals.html" class="nav-link active">Deals</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+      </div>
+      <div class="nav-actions"><a href="sell.html" class="nav-cta">Sell Now</a></div>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <section class="deals-hero">
+    <div class="container">
+      <div class="deal-badge-lg animate-float">FLASH SALE</div>
+      <h1>Huge Discounts Ending Soon!</h1>
+      <p class="text-secondary">Save up to 80% on electronics, fashion, and more.</p>
+      
+      <div class="flash-timer">
+        <div class="timer-unit"><span class="timer-val">04</span><span class="timer-lbl">Hours</span></div>
+        <div class="timer-unit"><span class="timer-val">32</span><span class="timer-lbl">Mins</span></div>
+        <div class="timer-unit"><span class="timer-val">15</span><span class="timer-lbl">Secs</span></div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container section">
+    <div class="section-header">
+      <span class="section-label">Flash Sales</span>
+      <h2>Limited Time Offers</h2>
+    </div>
+
+    <div class="grid grid-4 stagger">
+      <!-- Deal 1 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop" alt="Watch">
+          <span class="badge badge-danger product-badge">80% OFF</span>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Electronics</span>
+          <h3 class="product-title">Premium Fitness Watch</h3>
+          <div class="product-meta">
+            <span class="product-price">$19 <span class="old">$99</span></span>
+          </div>
+        </div>
+      </div>
+      <!-- Deal 2 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop" alt="Shoes">
+          <span class="badge badge-danger product-badge">70% OFF</span>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Fashion</span>
+          <h3 class="product-title">Active Running Shoes</h3>
+          <div class="product-meta">
+            <span class="product-price">$29 <span class="old">$99</span></span>
+          </div>
+        </div>
+      </div>
+      <!-- Deal 3 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop" alt="Audio">
+          <span class="badge badge-danger product-badge">65% OFF</span>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Electronics</span>
+          <h3 class="product-title">Noise Canceling Buds</h3>
+          <div class="product-meta">
+            <span class="product-price">$45 <span class="old">$129</span></span>
+          </div>
+        </div>
+      </div>
+      <!-- Deal 4 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400&h=300&fit=crop" alt="Bag">
+          <span class="badge badge-danger product-badge">60% OFF</span>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Fashion</span>
+          <h3 class="product-title">Tote Bag - Tan Leather</h3>
+          <div class="product-meta">
+            <span class="product-price">$39 <span class="old">$110</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header mt-16">
+      <span class="section-label">Clearance</span>
+      <h2>Warehouse Clearance</h2>
+      <p>Items priced to move. Once they're gone, they're gone!</p>
+    </div>
+    <div class="grid grid-4 stagger">
+      <!-- Repeat 4 more items -->
+      <div class="product-card">
+         <div class="product-img"><img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=400&h=300&fit=crop" alt="Gadget"></div>
+         <div class="product-info">
+           <span class="product-category">Electronics</span>
+           <h3 class="product-title">USB-C Desktop Hub</h3>
+           <div class="product-meta"><span class="product-price">$12 <span class="old">$45</span></span></div>
+         </div>
+      </div>
+      <div class="product-card">
+         <div class="product-img"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=300&fit=crop" alt="Book"></div>
+         <div class="product-info">
+           <span class="product-category">Books</span>
+           <h3 class="product-title">Art of War - Hardcover</h3>
+           <div class="product-meta"><span class="product-price">$5 <span class="old">$25</span></span></div>
+         </div>
+      </div>
+      <div class="product-card">
+         <div class="product-img"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&h=300&fit=crop" alt="Cosmetic"></div>
+         <div class="product-info">
+           <span class="product-category">Fashion</span>
+           <h3 class="product-title">Matte Lipstick Set</h3>
+           <div class="product-meta"><span class="product-price">$8 <span class="old">$32</span></span></div>
+         </div>
+      </div>
+      <div class="product-card">
+         <div class="product-img"><img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=400&h=300&fit=crop" alt="Home"></div>
+         <div class="product-info">
+           <span class="product-category">Furniture</span>
+           <h3 class="product-title">Mini Humidifier</h3>
+           <div class="product-meta"><span class="product-price">$15 <span class="old">$50</span></span></div>
+         </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">🛒</div>
+            <span>ReShop</span>
+          </a>
+          <p>Your trusted marketplace for pre-loved items. Buy smart, sell easy, and contribute to a sustainable future.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="YouTube">🎬</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <a href="shop.html" class="footer-link">Shop</a>
+          <a href="sell.html" class="footer-link">Sell an Item</a>
+          <a href="deals.html" class="footer-link">Deals</a>
+          <a href="categories.html" class="footer-link">Categories</a>
+          <a href="dashboard.html" class="footer-link">Dashboard</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Blog</a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Newsletter</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">Get the latest deals.</p>
+          <div class="footer-newsletter">
+            <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
+              <input type="email" placeholder="Your email" aria-label="Email">
+              <button type="submit">→</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ReShop. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="nav.js"></script>
+</body>
+</html>
