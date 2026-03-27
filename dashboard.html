@@ -85,6 +85,10 @@
       .dash-stats { grid-template-columns: 1fr 1fr; gap: var(--space-3); }
       .stat-card { padding: var(--space-4); }
       .stat-card p { font-size: var(--text-xl); }
+      .dash-table-header { flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+    }
+    @media (max-width: 360px) {
+      .dash-stats { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -143,7 +147,7 @@
         </div>
 
         <div class="dash-table-card">
-          <div class="p-6 flex justify-between items-center">
+          <div class="p-6 flex justify-between items-center dash-table-header">
             <h3 class="text-lg">Recent Listings</h3>
             <a href="sell.html" class="btn btn-primary btn-sm">+ New Listing</a>
           </div>
@@ -194,7 +198,7 @@
         <h2>Quick Actions</h2>
         <p>Jump straight to the tasks you do most</p>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-6); margin-top:var(--space-8);" class="stagger">
+      <div class="grid grid-4 stagger mt-8">
         <a href="sell.html" class="card p-6 text-center" style="text-decoration:none;" data-animate="fade-in-up">
           <div style="font-size:2rem; margin-bottom:var(--space-3);">➕</div>
           <h4>New Listing</h4>
@@ -255,7 +259,7 @@
         <h2>Recommended Items</h2>
         <p>Based on your browsing and purchase history</p>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-6); margin-top:var(--space-8);" class="stagger">
+      <div class="grid grid-4 stagger mt-8">
         <div class="product-card" data-animate="fade-in-up"><div class="product-img"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop" alt="Watch"><span class="badge badge-warning product-badge">-65%</span></div><div class="product-info"><span class="product-category">Accessories</span><h3 class="product-title">Smart Fitness Watch</h3><div class="product-meta"><span class="product-price">$35 <span class="old">$99</span></span></div></div></div>
         <div class="product-card" data-animate="fade-in-up"><div class="product-img"><img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=300&fit=crop" alt="Laptop"><span class="badge badge-success product-badge">Like New</span></div><div class="product-info"><span class="product-category">Electronics</span><h3 class="product-title">MacBook Air M1 — 256GB</h3><div class="product-meta"><span class="product-price">$720 <span class="old">$1,099</span></span></div></div></div>
         <div class="product-card" data-animate="fade-in-up"><div class="product-img"><img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=300&fit=crop" alt="Shoes"><span class="badge badge-info product-badge">Refurbished</span></div><div class="product-info"><span class="product-category">Fashion</span><h3 class="product-title">Designer Sneakers</h3><div class="product-meta"><span class="product-price">$45 <span class="old">$120</span></span></div></div></div>
