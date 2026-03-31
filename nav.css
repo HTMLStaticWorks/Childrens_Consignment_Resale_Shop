@@ -17,10 +17,9 @@
   transition: all var(--transition-base);
 }
 .navbar.scrolled {
-  background: var(--bg-primary);
+  background: var(--bg-glass);
   box-shadow: var(--shadow-md);
   padding: var(--space-2) 0;
-  border-bottom-color: var(--border-color);
 }
 .navbar .container {
   display: flex;
@@ -68,15 +67,15 @@
   padding: var(--space-2) var(--space-3);
   font-size: 0.95rem;
   font-weight: 600;
-  color: rgba(241, 245, 249, 0.75);
+  color: var(--text-secondary);
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   white-space: nowrap;
   position: relative;
 }
 .nav-link:hover {
-  color: var(--accent-primary);
-  background: rgba(16, 185, 129, 0.1);
+  color: var(--text-primary);
+  background: rgba(148, 163, 184, 0.12);
 }
 .nav-link.active {
   color: var(--accent-primary);
