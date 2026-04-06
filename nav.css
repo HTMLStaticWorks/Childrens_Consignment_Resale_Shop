@@ -99,6 +99,19 @@
   align-items: center;
   gap: var(--space-3);
 }
+
+.nav-btn-login {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.nav-btn-login:hover {
+  color: var(--accent-primary);
+}
+
 .nav-cta,
 .nav-btn-signup {
   padding: var(--space-2) var(--space-5);

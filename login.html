@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up — ReShop</title>
+  <title>Login — ReShop</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav.css">
@@ -84,8 +84,8 @@
           <div class="nav-logo-icon">🛒</div>
           <span>ReShop</span>
         </a>
-        <h1 class="text-xl mt-4">Create your account</h1>
-        <p class="text-sm text-muted mt-2">Join thousands of smart buyers and sellers</p>
+        <h1 class="text-xl mt-4">Welcome back!</h1>
+        <p class="text-sm text-muted mt-2">Login to your account to continue</p>
       </div>
 
       <div class="social-auth">
@@ -95,12 +95,8 @@
 
       <div class="auth-divider">Or continue with email</div>
 
-      <!-- Signup Form -->
-      <form id="signupForm" onsubmit="alert('Registered!'); window.location.href='dashboard.html'; return false;">
-        <div class="form-group">
-          <label class="form-label">Full Name</label>
-          <input type="text" class="form-input" placeholder="John Doe" required>
-        </div>
+      <!-- Login Form -->
+      <form id="loginForm" onsubmit="alert('Logged In!'); window.location.href='dashboard.html'; return false;">
         <div class="form-group">
           <label class="form-label">Email Address</label>
           <input type="email" class="form-input" placeholder="email@example.com" required>
@@ -109,19 +105,19 @@
           <label class="form-label">Password</label>
           <input type="password" class="form-input" placeholder="••••••••" required>
         </div>
-        <p class="text-xs text-muted mb-6">By signing up, you agree to our <a href="#" class="text-accent">Terms</a> and <a href="#" class="text-accent">Privacy Policy</a>.</p>
-        <button type="submit" class="btn btn-primary w-full btn-lg">Create Account 🚀</button>
+        <div class="flex justify-between items-center mb-6">
+          <label class="filter-checkbox"><input type="checkbox"> Remember me</label>
+          <a href="#" class="text-xs text-accent">Forgot?</a>
+        </div>
+        <button type="submit" class="btn btn-primary w-full btn-lg">Login to Account</button>
       </form>
 
       <div class="auth-footer">
-        Already have an account? <a href="login.html">Login</a>
+        Don't have an account? <a href="signup.html">Sign Up</a>
       </div>
     </div>
   </div>
 
   <script src="nav.js"></script>
-</body>
-</html>
-t src="nav.js"></script>
 </body>
 </html>
