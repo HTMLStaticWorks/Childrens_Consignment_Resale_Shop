@@ -242,7 +242,7 @@
 /* ---------- Responsive Nav ---------- */
 @media (max-width: 1100px) {
   .nav-links { display: none; }
-  .nav-cta, .nav-btn-signup { display: none; }
+  .nav-cta, .nav-btn-signup, .nav-btn-login { display: none; }
   .hamburger { display: flex; }
   .mobile-nav-overlay { display: block; pointer-events: none; }
   .mobile-nav-overlay.active { pointer-events: all; }
