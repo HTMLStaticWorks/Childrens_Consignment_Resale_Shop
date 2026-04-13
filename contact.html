@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact ReShop — Support & Inquiries</title>
+  <title>Contact Us — Little Loops</title>
   <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="description" content="Get in touch with Little Loops. Questions about buying, selling, or consigning kids' items? We're here to help.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav.css">
   <style>
@@ -14,28 +15,75 @@
     .faq-icon { transition: transform 0.3s ease; color: var(--accent-primary); }
     .faq-item.active .faq-icon { transform: rotate(180deg); }
     .faq-item:hover { transform: translateY(-2px); border-color: var(--accent-primary); }
+    
+    .map-container {
+      width: 100%;
+      height: 450px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-lg);
+      margin-bottom: var(--space-16);
+    }
+    .map-container iframe { width: 100%; height: 100%; border: 0; }
+    
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+      margin-top: var(--space-8);
+    }
+    .social-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      text-align: center;
+      transition: all var(--transition-base);
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    .social-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-lg);
+    }
+    .social-card-icon {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-4);
+      transition: all var(--transition-base);
+    }
+    .social-card-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .social-card:hover .social-card-icon { transform: scale(1.1); background: var(--accent-primary); color: #fff; }
+    
+    @media (max-width: 992px) {
+      .social-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 576px) {
       .benefit-grid { grid-template-columns: 1fr !important; }
-      .contact-form-wrap { flex-direction: column !important; }
-      .contact-form-wrap input { width: 100% !important; margin-bottom: var(--space-4); }
-      .contact-form-wrap button { width: 100% !important; margin-left: 0 !important; }
+      .social-grid { grid-template-columns: 1fr; }
+      .map-container { height: 300px; }
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
   <nav class="navbar scrolled" id="navbar">
     <div class="container">
-      <a href="index.html" class="nav-logo">
-        <div class="nav-logo-icon">🛒</div>
-        <span>ReShop</span>
-      </a>
+      <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🧸</div><span>Little Loops</span></a>
       <div class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="home2.html" class="nav-link">Home 2</a>
         <a href="shop.html" class="nav-link">Shop</a>
         <a href="categories.html" class="nav-link">Categories</a>
-        <a href="sell.html" class="nav-link">Sell Item</a>
+        <a href="sell.html" class="nav-link">Sell Items</a>
         <a href="deals.html" class="nav-link">Deals</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link active">Contact</a>
@@ -43,249 +91,189 @@
       </div>
       <div class="nav-actions">
         <a href="login.html" class="nav-btn-login">Login</a>
-        <a href="signup.html" class="nav-btn-signup">Signup</a>
+        <a href="signup.html" class="nav-btn-signup">Sign Up</a>
         <a href="sell.html" class="nav-cta">Sell Now</a>
       </div>
       <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
     </div>
   </nav>
-
-  <!-- Mobile Nav -->
   <div class="mobile-nav-overlay" id="mobileOverlay"></div>
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html" class="mobile-nav-link">Home</a>
     <a href="home2.html" class="mobile-nav-link">Home 2</a>
     <a href="shop.html" class="mobile-nav-link">Shop</a>
     <a href="categories.html" class="mobile-nav-link">Categories</a>
-    <a href="sell.html" class="mobile-nav-link">Sell Item</a>
+    <a href="sell.html" class="mobile-nav-link">Sell Items</a>
     <a href="deals.html" class="mobile-nav-link">Deals</a>
     <a href="about.html" class="mobile-nav-link">About</a>
     <a href="contact.html" class="mobile-nav-link active">Contact</a>
     <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
     <a href="login.html" class="mobile-nav-link">Login</a>
-    <a href="signup.html" class="mobile-nav-signup">Signup</a>
-    <a href="sell.html" class="mobile-nav-cta">🚀 Sell Now</a>
+    <a href="signup.html" class="mobile-nav-signup">Sign Up</a>
+    <a href="sell.html" class="mobile-nav-cta">🧸 Sell Now</a>
   </div>
 
   <main class="container" style="padding-top:120px; padding-bottom:100px;">
     <div class="section-header">
-      <span class="section-label">Support</span>
-      <h2>Get In Touch</h2>
-      <p>We're here to help you with any questions or issues</p>
+      <span class="section-label">We're Here to Help</span>
+      <h2>Contact Us</h2>
+      <p>Have a question about buying, selling, or consignment? Reach out!</p>
     </div>
-
     <div class="grid grid-2">
       <div class="card p-8">
-        <h3>Send us a Message</h3>
-        <form class="mt-6" onsubmit="alert('Message Sent!'); return false;">
-          <div class="form-group">
-            <label class="form-label">Your Name</label>
-            <input type="text" class="form-input" placeholder="Full Name" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Email Address</label>
-            <input type="email" class="form-input" placeholder="email@example.com" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Subject</label>
+        <h3>Send us a Message 💌</h3>
+        <form class="mt-6" onsubmit="alert('Message sent! We\\'ll get back to you soon.'); return false;">
+          <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="e.g. Jessica Miller" required></div>
+          <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="jessica@email.com" required></div>
+          <div class="form-group"><label class="form-label">Subject</label>
             <select class="form-select">
-              <option>General Inquiry</option>
-              <option>Order Issue</option>
-              <option>Report a Seller</option>
+              <option>General Question</option>
+              <option>Buying Help</option>
+              <option>Selling Help</option>
+              <option>Item Not as Described</option>
+              <option>Safety Concern</option>
               <option>Partnership</option>
             </select>
           </div>
-          <div class="form-group">
-            <label class="form-label">Message</label>
-            <textarea class="form-textarea" placeholder="How can we help?" required></textarea>
-          </div>
+          <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Tell us how we can help..." required></textarea></div>
           <button type="submit" class="btn btn-primary w-full">Send Message →</button>
         </form>
       </div>
-
       <div class="flex flex-col gap-6">
         <div class="card p-6">
-          <h4>📍 Headquarters</h4>
-          <p class="text-sm text-secondary mt-2">123 Marketplace Way, Tech City, NY 10001</p>
+          <h4>📍 Where We Are</h4>
+          <p class="text-sm text-secondary mt-2">123 Family Lane, Kidsville, CA 90210</p>
         </div>
         <div class="card p-6">
-          <h4>📧 Email Support</h4>
-          <p class="text-sm text-secondary mt-2">support@reshop.com<br>Response within 24 hours</p>
+          <h4>📧 Email Us</h4>
+          <p class="text-sm text-secondary mt-2">hello@littleloops.com<br>Response within 24 hours</p>
         </div>
         <div class="card p-6">
-           <h4>❓ Help Center</h4>
-           <p class="text-sm text-secondary mt-2">Visit our <a href="#" class="text-accent">Knowledge Base</a> for quick answers to common questions.</p>
+          <h4>📱 Call or Text</h4>
+          <p class="text-sm text-secondary mt-2">(555) 123-LOOP<br>Mon–Fri, 9AM–5PM PST</p>
+        </div>
+        <div class="card p-6">
+          <h4>❓ Quick Help</h4>
+          <p class="text-sm text-secondary mt-2">Check our <a href="#faq" class="text-accent">FAQ below</a> for instant answers to common questions.</p>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- FAQ Section -->
-  <section class="section" style="background:var(--bg-secondary);">
+  <!-- Map Section -->
+  <section class="section" style="padding-top: 0;">
     <div class="container">
       <div class="section-header" data-animate="fade-in-up">
-        <span class="section-label">Help Center</span>
-        <h2>Frequently Asked Questions</h2>
-        <p>Quick answers to our most common questions</p>
+        <span class="section-label">Find Us In Person</span>
+        <h2>Visit Our Little Studio</h2>
+        <p>Come drop off your items or see our featured collection (By appointment only)</p>
+      </div>
+      <div class="map-container" data-animate="scale-in">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105658.11896796213!2d-118.47164998816694!3d34.14815259960244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bc04772097e1%3A0xc3952ba6e594dfb9!2sBeverly%20Hills%2C%20CA!5e0!3m2!1sen!2sus!4v1713000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Follow Us Section -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Join the Community</span>
+        <h2>Follow Our Growth</h2>
+        <p>Join 10,000+ local families sharing tips and deals daily</p>
+      </div>
+      <div class="social-grid stagger">
+        <a href="#" class="social-card" data-animate="fade-in-up">
+          <div class="social-card-icon"><img src="images/icons/instagram.svg" alt="Instagram"></div>
+          <h4>Instagram</h4>
+          <p class="text-xs text-muted mt-2">Daily deals & styling tips</p>
+        </a>
+        <a href="#" class="social-card" data-animate="fade-in-up">
+          <div class="social-card-icon"><img src="images/icons/facebook.svg" alt="Facebook"></div>
+          <h4>Facebook</h4>
+          <p class="text-xs text-muted mt-2">Join our parent community</p>
+        </a>
+        <a href="#" class="social-card" data-animate="fade-in-up">
+          <div class="social-card-icon"><img src="images/icons/tiktok.svg" alt="TikTok"></div>
+          <h4>TikTok</h4>
+          <p class="text-xs text-muted mt-2">Unboxing & DIY hacks</p>
+        </a>
+        <a href="#" class="social-card" data-animate="fade-in-up">
+          <div class="social-card-icon"><img src="images/icons/pinterest.svg" alt="Pinterest"></div>
+          <h4>Pinterest</h4>
+          <p class="text-xs text-muted mt-2">Kid nursery inspirations</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">FAQ</span>
+        <h2>Common Questions</h2>
+        <p>Quick answers about buying & selling kids' items</p>
       </div>
       <div style="max-width:720px; margin:var(--space-10) auto 0; display:flex; flex-direction:column; gap:var(--space-4);" class="stagger">
         <div class="card p-6 faq-item active" data-animate="fade-in-up" onclick="this.classList.toggle('active')">
           <div class="flex justify-between items-center">
-            <h4 style="margin-bottom:0;">How do I create a listing?</h4>
+            <h4 style="margin-bottom:0;">How do I sell my kids' outgrown items?</h4>
             <span class="faq-icon">▼</span>
           </div>
           <div class="faq-answer">
-            <p class="text-sm text-secondary">Go to the Sell page, fill in your item details, upload photos, set a price, and click Publish. Your listing goes live immediately.</p>
+            <p class="text-sm text-secondary">It's easy! Click "Sell Now" in the menu, take a few photos of your item, add a description and price, and publish. Your listing goes live instantly for other parents to see.</p>
           </div>
         </div>
         <div class="card p-6 faq-item" data-animate="fade-in-up" onclick="this.classList.toggle('active')">
           <div class="flex justify-between items-center">
-            <h4 style="margin-bottom:0;">How long does it take to receive payment?</h4>
+            <h4 style="margin-bottom:0;">Are all items checked for safety?</h4>
             <span class="faq-icon">▼</span>
           </div>
           <div class="faq-answer">
-            <p class="text-sm text-secondary">Payouts are processed within 24 hours of a confirmed sale. Funds arrive in your linked account within 1–3 business days.</p>
+            <p class="text-sm text-secondary">Yes! We cross-reference all listed items with CPSC recalls. Any item flagged for safety concerns is immediately removed from the marketplace.</p>
           </div>
         </div>
         <div class="card p-6 faq-item" data-animate="fade-in-up" onclick="this.classList.toggle('active')">
           <div class="flex justify-between items-center">
-            <h4 style="margin-bottom:0;">Is my payment information secure?</h4>
+            <h4 style="margin-bottom:0;">What if an item isn't as described?</h4>
             <span class="faq-icon">▼</span>
           </div>
           <div class="faq-answer">
-            <p class="text-sm text-secondary">Yes. All transactions are encrypted and processed via industry-standard payment gateways. We never store card details on our servers.</p>
+            <p class="text-sm text-secondary">We offer a 7-day return guarantee. If an item significantly differs from its description, contact us and we'll arrange a full refund or exchange.</p>
           </div>
         </div>
         <div class="card p-6 faq-item" data-animate="fade-in-up" onclick="this.classList.toggle('active')">
           <div class="flex justify-between items-center">
-            <h4 style="margin-bottom:0;">What's your return policy?</h4>
+            <h4 style="margin-bottom:0;">Can I sell items in bulk or as a bundle?</h4>
             <span class="faq-icon">▼</span>
           </div>
           <div class="faq-answer">
-            <p class="text-sm text-secondary">Buyers can raise a return within 7 days of delivery if the item significantly differs from its description. Our team mediates all disputes fairly.</p>
+            <p class="text-sm text-secondary">Absolutely! Bundles are very popular — grouping by size, season, or theme helps items sell faster. Just create one listing and note it's a bundle in the description.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Social Connect Section -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header" data-animate="fade-in-up">
-        <span class="section-label">Join the Community</span>
-        <h2>Connect With Us</h2>
-        <p>Follow us on social media for deals, updates, and seller spotlights</p>
-      </div>
-      <div class="benefit-grid mt-10 stagger">
-        <a href="#" class="card p-8 text-center" style="text-decoration:none;" data-animate="fade-in-up">
-          <div style="font-size:2.5rem; margin-bottom:var(--space-4); color:#1877F2;">
-            <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
-          </div>
-          <h4>Facebook</h4>
-          <p class="text-xs text-muted mt-1">42K Followers</p>
-        </a>
-        <a href="#" class="card p-8 text-center" style="text-decoration:none;" data-animate="fade-in-up">
-          <div style="font-size:2.5rem; margin-bottom:var(--space-4); color:#1DA1F2;">
-            <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-          </div>
-          <h4>Twitter / X</h4>
-          <p class="text-xs text-muted mt-1">18K Followers</p>
-        </a>
-        <a href="#" class="card p-8 text-center" style="text-decoration:none;" data-animate="fade-in-up">
-          <div style="font-size:2.5rem; margin-bottom:var(--space-4); color:#E4405F;">
-            <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          </div>
-          <h4>Instagram</h4>
-          <p class="text-xs text-muted mt-1">76K Followers</p>
-        </a>
-        <a href="#" class="card p-8 text-center" style="text-decoration:none;" data-animate="fade-in-up">
-          <div style="font-size:2.5rem; margin-bottom:var(--space-4); color:#FF0000;">
-            <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </div>
-          <h4>YouTube</h4>
-          <p class="text-xs text-muted mt-1">8K Subscribers</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Deal Alert CTA -->
-  <section class="section" style="background:var(--bg-secondary);">
-    <div class="container">
-      <div style="background:linear-gradient(135deg,var(--accent-primary-dark),var(--accent-tertiary)); border-radius:var(--radius-xl); padding:var(--space-20) var(--space-10); text-align:center;" data-animate="scale-in">
-        <h2 style="color:#fff; -webkit-text-fill-color:#fff; margin-bottom:var(--space-3);">Get Instant Deal Alerts 🔔</h2>
-        <p style="color:rgba(255,255,255,0.8); margin-bottom:var(--space-8);">Be the first to know when hot deals drop. Cancel anytime.</p>
-        <form onsubmit="alert('You\'re signed up!'); return false;" class="contact-form-wrap" style="display:flex; gap:var(--space-3); max-width:460px; margin:0 auto; flex-wrap:wrap;">
-          <input type="email" placeholder="your@email.com" style="flex:1; min-width:200px; padding:var(--space-4); border-radius:var(--radius-md); border:none; background:rgba(255,255,255,0.15); color:#fff; outline:none;" required>
-          <button type="submit" class="btn btn-secondary">Notify Me</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="nav-logo">
-            <div class="nav-logo-icon">🛒</div>
-            <span>ReShop</span>
-          </a>
-          <p>Your trusted marketplace for pre-loved items. Buy smart, sell easy, and contribute to a sustainable future.</p>
+          <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🧸</div><span>Little Loops</span></a>
+          <p>Your friendly marketplace for gently used kids' clothes, toys, and gear.</p>
           <div class="footer-social">
-            <a href="#" aria-label="Facebook">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
-            </a>
-            <a href="#" aria-label="Twitter">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-            </a>
-            <a href="#" aria-label="Instagram">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            </a>
-            <a href="#" aria-label="YouTube">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
+            <a href="#" aria-label="Facebook"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="#" aria-label="Pinterest"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg></a>
           </div>
         </div>
-        <div>
-          <h4 class="footer-heading">Quick Links</h4>
-          <a href="shop.html" class="footer-link">Shop</a>
-          <a href="sell.html" class="footer-link">Sell an Item</a>
-          <a href="deals.html" class="footer-link">Deals</a>
-          <a href="categories.html" class="footer-link">Categories</a>
-          <a href="dashboard.html" class="footer-link">Dashboard</a>
-        </div>
-        <div>
-          <h4 class="footer-heading">Company</h4>
-          <a href="about.html" class="footer-link">About Us</a>
-          <a href="contact.html" class="footer-link">Contact</a>
-          <a href="#" class="footer-link">Careers</a>
-          <a href="#" class="footer-link">Blog</a>
-        </div>
-        <div>
-          <h4 class="footer-heading">Newsletter</h4>
-          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">Get the latest deals.</p>
-          <div class="footer-newsletter">
-            <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
-              <input type="email" placeholder="Your email" aria-label="Email">
-              <button type="submit">→</button>
-            </form>
-          </div>
-        </div>
+        <div><h4 class="footer-heading">Shop</h4><a href="shop.html" class="footer-link">All Items</a><a href="categories.html" class="footer-link">Categories</a><a href="deals.html" class="footer-link">Deals</a></div>
+        <div><h4 class="footer-heading">Community</h4><a href="about.html" class="footer-link">About Us</a><a href="contact.html" class="footer-link">Contact</a><a href="sell.html" class="footer-link">Sell Items</a></div>
+        <div><h4 class="footer-heading">Stay in the Loop</h4><p style="font-size:var(--text-sm); color:var(--text-secondary); margin-bottom:var(--space-4);">Deals & tips.</p><div class="footer-newsletter"><form class="footer-newsletter-form" onsubmit="event.preventDefault();"><input type="email" placeholder="Your email" aria-label="Email"><button type="submit">→</button></form></div></div>
       </div>
-      <div class="footer-bottom">
-        <span>© 2026 ReShop. All rights reserved.</span>
-        <div class="footer-bottom-links">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="#">Cookies</a>
-        </div>
-      </div>
+      <div class="footer-bottom"><span>© 2026 Little Loops. All rights reserved.</span><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Safety</a></div></div>
     </div>
   </footer>
-
   <script src="nav.js"></script>
 </body>
 </html>

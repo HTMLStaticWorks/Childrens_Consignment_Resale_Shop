@@ -1,0 +1,13 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="30" cy="30" r="30" fill="#1A1A2E"/>
+  <rect x="18" y="22" width="24" height="18" rx="4" fill="url(#instagrad)" />
+  <circle cx="30" cy="31" r="5" fill="white" fill-opacity="0.3"/>
+  <circle cx="30" cy="31" r="3" fill="white" />
+  <circle cx="38" cy="25" r="1.5" fill="white" />
+  <defs>
+    <linearGradient id="instagrad" x1="18" y1="22" x2="42" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF7F6B"/>
+      <stop offset="1" stop-color="#FFD166"/>
+    </linearGradient>
+  </defs>
+</svg>

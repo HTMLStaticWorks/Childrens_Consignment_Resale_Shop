@@ -3,343 +3,154 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Browse Categories — ReShop Marketplace</title>
+  <title>Browse Categories — Little Loops</title>
   <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="description" content="Browse kids' consignment items by category — baby clothes, toys, books, gear, shoes and more at Little Loops.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav.css">
   <style>
-    .cat-hero {
-      padding: 120px 0 60px;
-      text-align: center;
-      background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
-    }
-    .cat-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-8);
-      padding-bottom: var(--space-20);
-    }
-    .cat-large-card {
-      position: relative;
-      height: 350px;
+    .cat-hero { padding: 120px 0 60px; text-align: center; background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary)); }
+    .cat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
       border-radius: var(--radius-xl);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
       padding: var(--space-8);
+      text-align: center;
       transition: all var(--transition-base);
       cursor: pointer;
-      border: 1px solid var(--border-color);
+      display: block;
+      text-decoration: none;
     }
-    .cat-large-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 40%, rgba(10,14,23,0.9));
-      z-index: 1;
+    .cat-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255,127,107,0.3);
+      box-shadow: var(--shadow-lg);
     }
-    .cat-large-card img {
-      position: absolute;
-      inset: 0;
+    .cat-emoji {
+      display: block;
+      width: 72px;
+      height: 72px;
+      margin: 0 auto var(--space-4);
+      transition: transform var(--transition-spring);
+    }
+    .cat-emoji img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: transform var(--transition-slow);
-      z-index: 0;
+      object-fit: contain;
     }
-    .cat-large-card:hover { border-color: var(--accent-primary); box-shadow: var(--shadow-lg); }
-    .cat-large-card:hover img { transform: scale(1.08); }
-    .cat-large-card-content { position: relative; z-index: 2; }
-    .cat-large-card h2 { 
-      font-size: var(--text-3xl); 
-      margin-bottom: var(--space-2); 
-      color: #ffffff;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    }
-    .cat-large-card p { 
-      color: rgba(255, 255, 255, 0.9); 
-      margin-bottom: var(--space-4); 
-      text-shadow: 0 1px 5px rgba(0,0,0,0.5);
-    }
-    .cat-large-card .btn-outline {
-      border-color: rgba(255, 255, 255, 0.6);
-      color: #ffffff;
-    }
-    .cat-large-card .btn-outline:hover {
-      background: #ffffff;
-      color: var(--bg-primary);
-      border-color: #ffffff;
-    }
-
-    @media (max-width: 768px) {
-      .cat-grid { grid-template-columns: 1fr; }
-      .cat-large-card { height: 280px; }
-    }
+    .cat-card:hover .cat-emoji { transform: scale(1.2) rotate(-5deg); }
+    .cat-card h3 { font-size: var(--text-xl); margin-bottom: var(--space-2); }
+    .cat-card p { font-size: var(--text-sm); color: var(--text-muted); margin-bottom: var(--space-4); }
+    .cat-count { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-1) var(--space-3); background: rgba(255,127,107,0.1); color: var(--accent-primary); font-size: var(--text-xs); font-weight: 700; border-radius: var(--radius-full); }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
   <nav class="navbar scrolled" id="navbar">
     <div class="container">
-      <a href="index.html" class="nav-logo">
-        <div class="nav-logo-icon">🛒</div>
-        <span>ReShop</span>
-      </a>
+      <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🧸</div><span>Little Loops</span></a>
       <div class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="home2.html" class="nav-link">Home 2</a>
-        <a href="shop.html" class="nav-link">Shop</a>
-        <a href="categories.html" class="nav-link active">Categories</a>
-        <a href="sell.html" class="nav-link">Sell Item</a>
-        <a href="deals.html" class="nav-link">Deals</a>
-        <a href="about.html" class="nav-link">About</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="home2.html" class="nav-link">Home 2</a><a href="shop.html" class="nav-link">Shop</a><a href="categories.html" class="nav-link active">Categories</a>
+        <a href="sell.html" class="nav-link">Sell Items</a><a href="deals.html" class="nav-link">Deals</a><a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a><a href="dashboard.html" class="nav-link">Dashboard</a>
       </div>
-      <div class="nav-actions">
-        <a href="login.html" class="nav-btn-login">Login</a>
-        <a href="signup.html" class="nav-btn-signup">Signup</a>
-        <a href="sell.html" class="nav-cta">Sell Now</a>
-      </div>
+      <div class="nav-actions"><a href="login.html" class="nav-btn-login">Login</a><a href="signup.html" class="nav-btn-signup">Sign Up</a><a href="sell.html" class="nav-cta">Sell Now</a></div>
       <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
     </div>
   </nav>
-
-  <!-- Mobile Nav -->
   <div class="mobile-nav-overlay" id="mobileOverlay"></div>
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html" class="mobile-nav-link">Home</a>
-    <a href="home2.html" class="mobile-nav-link">Home 2</a>
-    <a href="shop.html" class="mobile-nav-link">Shop</a>
-    <a href="categories.html" class="mobile-nav-link active">Categories</a>
-    <a href="sell.html" class="mobile-nav-link">Sell Item</a>
-    <a href="deals.html" class="mobile-nav-link">Deals</a>
-    <a href="about.html" class="mobile-nav-link">About</a>
-    <a href="contact.html" class="mobile-nav-link">Contact</a>
-    <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
-    <a href="login.html" class="mobile-nav-link">Login</a>
-    <a href="signup.html" class="mobile-nav-signup">Signup</a>
-    <a href="sell.html" class="mobile-nav-cta">🚀 Sell Now</a>
+    <a href="home2.html" class="mobile-nav-link">Home 2</a><a href="shop.html" class="mobile-nav-link">Shop</a><a href="categories.html" class="mobile-nav-link active">Categories</a>
+    <a href="sell.html" class="mobile-nav-link">Sell Items</a><a href="deals.html" class="mobile-nav-link">Deals</a><a href="about.html" class="mobile-nav-link">About</a>
+    <a href="contact.html" class="mobile-nav-link">Contact</a><a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
+    <a href="login.html" class="mobile-nav-link">Login</a><a href="signup.html" class="mobile-nav-signup">Sign Up</a><a href="sell.html" class="mobile-nav-cta">🧸 Sell Now</a>
   </div>
 
   <section class="cat-hero">
     <div class="container">
-      <h1 class="animate-fade-in-up">Browse by Category</h1>
-      <p class="text-secondary mt-2 animate-fade-in-up" style="animation-delay:0.1s">Find the best deals across all our major departments</p>
+      <span class="section-label">Explore</span>
+      <h1>Browse by Category 🌈</h1>
+      <p class="text-secondary mt-4" style="max-width:520px;margin:var(--space-4) auto 0;">Find exactly what your little one needs — from newborn essentials to big-kid gear.</p>
     </div>
   </section>
 
-  <main class="container">
-    <div class="cat-grid stagger">
-      <!-- Electronics -->
-      <a href="shop.html?cat=electronics" class="cat-large-card" data-animate="fade-in-up">
-        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800&h=600&fit=crop" alt="Electronics">
-        <div class="cat-large-card-content">
-          <span class="badge badge-success mb-2">2,400+ Items</span>
-          <h2>Electronics</h2>
-          <p>Laptops, Headphones, Cameras & Gadgets</p>
-          <div class="btn btn-outline">Explore Selection →</div>
-        </div>
-      </a>
-      <!-- Fashion -->
-      <a href="shop.html?cat=fashion" class="cat-large-card" data-animate="fade-in-up">
-        <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&h=600&fit=crop" alt="Fashion">
-        <div class="cat-large-card-content">
-          <span class="badge badge-purple mb-2">5,100+ Items</span>
-          <h2>Fashion</h2>
-          <p>Designer Clothing, Shoes & Luxury Bags</p>
-          <div class="btn btn-outline">Explore Selection →</div>
-        </div>
-      </a>
-      <!-- Furniture -->
-      <a href="shop.html?cat=furniture" class="cat-large-card" data-animate="fade-in-up">
-        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&h=600&fit=crop" alt="Home">
-        <div class="cat-large-card-content">
-          <span class="badge badge-warning mb-2">1,800+ Items</span>
-          <h2>Home & Furniture</h2>
-          <p>Sofas, Decor, Kitchenware & Storage</p>
-          <div class="btn btn-outline">Explore Selection →</div>
-        </div>
-      </a>
-      <!-- Mobiles -->
-      <a href="shop.html?cat=mobiles" class="cat-large-card" data-animate="fade-in-up">
-        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&h=600&fit=crop" alt="Mobiles">
-        <div class="cat-large-card-content">
-          <span class="badge badge-info mb-2">1,600+ Items</span>
-          <h2>Mobiles</h2>
-          <p>Smartphones, Tablets & Tech Accessories</p>
-          <div class="btn btn-outline">Explore Selection →</div>
-        </div>
-      </a>
-      <!-- Vehicles -->
-      <a href="shop.html?cat=vehicles" class="cat-large-card" data-animate="fade-in-up">
-        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop" alt="Vehicles">
-        <div class="cat-large-card-content">
-          <span class="badge badge-success mb-2">890+ Items</span>
-          <h2>Vehicles</h2>
-          <p>Cars, Motorcycles & Electric Bikes</p>
-          <div class="btn btn-outline">Explore Selection →</div>
-        </div>
-      </a>
-      <!-- Books -->
-      <a href="shop.html?cat=books" class="cat-large-card" data-animate="fade-in-up">
-        <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=800&h=600&fit=crop" alt="Books">
-        <div class="cat-large-card-content">
-          <span class="badge badge-purple mb-2">3,200+ Items</span>
-          <h2>Books & Accessories</h2>
-          <p>Bestsellers, Textbooks & Stationery</p>
-          <div class="btn btn-outline">Explore Selection →</div>
-        </div>
-      </a>
-    </div>
-  </main>
-
-  <!-- Popular Searches Section -->
-  <section class="section" style="background:var(--bg-secondary);">
-    <div class="container">
-      <div class="section-header" data-animate="fade-in-up">
-        <span class="section-label">Trending Now</span>
-        <h2>Popular Searches</h2>
-        <p>See what other shoppers are looking for right now</p>
-      </div>
-      <div style="display:flex; flex-wrap:wrap; gap:var(--space-3); justify-content:center; margin-top:var(--space-8);" data-animate="fade-in-up">
-        <a href="shop.html?q=iphone" class="btn btn-ghost" style="border:1px solid var(--border-color);">📱 iPhone</a>
-        <a href="shop.html?q=laptop" class="btn btn-ghost" style="border:1px solid var(--border-color);">💻 Laptops</a>
-        <a href="shop.html?q=sofa" class="btn btn-ghost" style="border:1px solid var(--border-color);">🛋️ Sofas</a>
-        <a href="shop.html?q=sneakers" class="btn btn-ghost" style="border:1px solid var(--border-color);">👟 Sneakers</a>
-        <a href="shop.html?q=watch" class="btn btn-ghost" style="border:1px solid var(--border-color);">⌚ Watches</a>
-        <a href="shop.html?q=camera" class="btn btn-ghost" style="border:1px solid var(--border-color);">📷 Cameras</a>
-        <a href="shop.html?q=textbooks" class="btn btn-ghost" style="border:1px solid var(--border-color);">📚 Textbooks</a>
-        <a href="shop.html?q=bicycle" class="btn btn-ghost" style="border:1px solid var(--border-color);">🚲 Bicycles</a>
-        <a href="shop.html?q=gaming" class="btn btn-ghost" style="border:1px solid var(--border-color);">🎮 Gaming</a>
-        <a href="shop.html?q=jewellery" class="btn btn-ghost" style="border:1px solid var(--border-color);">💍 Jewellery</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Sellers Section -->
   <section class="section">
     <div class="container">
-      <div class="section-header" data-animate="fade-in-up">
-        <span class="section-label">Community Stars</span>
-        <h2>Top Rated Sellers</h2>
-        <p>Trusted members with consistently excellent reviews</p>
-      </div>
-      <div class="benefit-grid stagger">
-        <div class="card p-6 text-center" data-animate="fade-in-up">
-          <div class="review-avatar mx-auto mb-4" style="width:60px;height:60px;font-size:1.4rem;background:linear-gradient(135deg,#10b981,#059669);">SK</div>
-          <h4>Sarah K.</h4>
-          <p class="text-xs text-muted mt-1">⭐ 4.9 · 238 sales</p>
-          <span class="badge badge-success mt-2">Electronics</span>
-        </div>
-        <div class="card p-6 text-center" data-animate="fade-in-up">
-          <div class="review-avatar mx-auto mb-4" style="width:60px;height:60px;font-size:1.4rem;background:linear-gradient(135deg,#f59e0b,#d97706);">MR</div>
-          <h4>Mike R.</h4>
-          <p class="text-xs text-muted mt-1">⭐ 4.8 · 174 sales</p>
-          <span class="badge badge-warning mt-2">Fashion</span>
-        </div>
-        <div class="card p-6 text-center" data-animate="fade-in-up">
-          <div class="review-avatar mx-auto mb-4" style="width:60px;height:60px;font-size:1.4rem;background:linear-gradient(135deg,#6366f1,#818cf8);">AT</div>
-          <h4>Alex T.</h4>
-          <p class="text-xs text-muted mt-1">⭐ 5.0 · 312 sales</p>
-          <span class="badge badge-info mt-2">Furniture</span>
-        </div>
-        <div class="card p-6 text-center" data-animate="fade-in-up">
-          <div class="review-avatar mx-auto mb-4" style="width:60px;height:60px;font-size:1.4rem;background:linear-gradient(135deg,#ec4899,#db2777);">EL</div>
-          <h4>Emma L.</h4>
-          <p class="text-xs text-muted mt-1">⭐ 4.9 · 201 sales</p>
-          <span class="badge badge-success mt-2">Books</span>
-        </div>
+      <div class="grid grid-4 stagger">
+        <a href="shop.html?cat=baby-clothing" class="cat-card" data-animate="fade-in-up">
+          <span class="cat-emoji"><img src="images/icons/baby-clothing.png" alt="Baby Clothing"></span>
+          <h3>Baby Clothing</h3>
+          <p>Onesies, rompers, sleepers & more for ages 0–24 months</p>
+          <span class="cat-count">3,200+ items</span>
+        </a>
+        <a href="shop.html?cat=girls-clothing" class="cat-card" data-animate="fade-in-up">
+          <span class="cat-emoji"><img src="images/icons/girls-clothing.png" alt="Girls Clothing"></span>
+          <h3>Girls' Clothing</h3>
+          <p>Dresses, tops, pants & outfits for sizes 2T–14</p>
+          <span class="cat-count">5,100+ items</span>
+        </a>
+        <a href="shop.html?cat=boys-clothing" class="cat-card" data-animate="fade-in-up">
+          <span class="cat-emoji"><img src="images/icons/boys-clothing.png" alt="Boys Clothing"></span>
+          <h3>Boys' Clothing</h3>
+          <p>Tees, jeans, jackets & sets for sizes 2T–14</p>
+          <span class="cat-count">4,800+ items</span>
+        </a>
+        <a href="shop.html?cat=toys" class="cat-card" data-animate="fade-in-up">
+          <span class="cat-emoji"><img src="images/icons/toys-games.png" alt="Toys Games"></span>
+          <h3>Toys & Games</h3>
+          <p>Building sets, dolls, puzzles, board games & more</p>
+          <span class="cat-count">6,400+ items</span>
+        </a>
+        <a href="shop.html?cat=outdoor" class="cat-card" data-animate="fade-in-up">
+          <span class="cat-emoji"><img src="images/icons/outdoor-ride.png" alt="Outdoor Ride-On"></span>
+          <h3>Outdoor & Ride-On</h3>
+          <p>Bikes, scooters, trampolines & outdoor play</p>
+          <span class="cat-count">1,800+ items</span>
+        </a>
+        <a href="shop.html?cat=books" class="cat-card" data-animate="fade-in-up">
+          <span class="cat-emoji"><img src="images/icons/books-learning.png" alt="Books Learning"></span>
+          <h3>Books & Learning</h3>
+          <p>Picture books, chapter books, educational toys & workbooks</p>
+          <span class="cat-count">8,200+ items</span>
+        </a>
+        <a href="shop.html?cat=gear" class="cat-card" data-animate="fade-in-up">
+          <span class="cat-emoji"><img src="images/icons/baby-gear.png" alt="Baby Gear"></span>
+          <h3>Baby Gear</h3>
+          <p>Strollers, car seats, cribs, high chairs & carriers</p>
+          <span class="cat-count">2,100+ items</span>
+        </a>
+        <a href="shop.html?cat=shoes" class="cat-card" data-animate="fade-in-up">
+          <span class="cat-emoji"><img src="images/icons/kids-shoes.png" alt="Kids Shoes"></span>
+          <h3>Kids' Shoes</h3>
+          <p>Sneakers, sandals, boots & dress shoes in all sizes</p>
+          <span class="cat-count">3,600+ items</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Sell Your Item CTA -->
   <section class="section" style="background:var(--bg-secondary);">
     <div class="container">
-      <div class="earn-money-grid" data-animate="fade-in-up">
-        <div>
-          <span class="section-label">Earn Money</span>
-          <h2 style="margin:var(--space-3) 0 var(--space-5);">Have Items You No Longer Need?</h2>
-          <p class="text-secondary mb-6">Turn your unused belongings into cash. Listing on ReShop takes less than 5 minutes and is completely free. Join over 50,000 sellers who are already earning.</p>
-          <div style="display:flex; gap:var(--space-4); flex-wrap:wrap;">
-            <a href="sell.html" class="btn btn-primary btn-lg">🚀 Start Selling</a>
-            <a href="about.html" class="btn btn-outline btn-lg">Learn More</a>
-          </div>
-        </div>
-        <div class="earn-money-cards">
-          <div class="card p-8"><div style="font-size:1.8rem;margin-bottom:var(--space-2);">⚡</div><h4>List in Minutes</h4><p class="text-xs text-muted mt-1">Quick and easy listing process</p></div>
-          <div class="card p-8"><div style="font-size:1.8rem;margin-bottom:var(--space-2);">💳</div><h4>Fast Payouts</h4><p class="text-xs text-muted mt-1">Get paid within 24 hours of sale</p></div>
-          <div class="card p-8"><div style="font-size:1.8rem;margin-bottom:var(--space-2);">🔒</div><h4>Secure Sales</h4><p class="text-xs text-muted mt-1">Buyer protection on every deal</p></div>
-          <div class="card p-8"><div style="font-size:1.8rem;margin-bottom:var(--space-2);">📊</div><h4>Track It All</h4><p class="text-xs text-muted mt-1">Dashboard analytics & reports</p></div>
-        </div>
+      <div style="background:linear-gradient(135deg,var(--accent-primary-dark),var(--accent-tertiary)); border-radius:var(--radius-xl); padding:var(--space-16) var(--space-8); text-align:center;" data-animate="scale-in">
+        <h2 style="color:#fff; -webkit-text-fill-color:#fff;">Can't Find What You Need?</h2>
+        <p style="color:rgba(255,255,255,0.8); margin:var(--space-3) 0 var(--space-8);">Set up alerts and we'll notify you when matching items are listed.</p>
+        <a href="signup.html" class="btn btn-secondary btn-lg">Create Free Account →</a>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="index.html" class="nav-logo">
-            <div class="nav-logo-icon">🛒</div>
-            <span>ReShop</span>
-          </a>
-          <p>Your trusted marketplace for pre-loved items. Buy smart, sell easy, and contribute to a sustainable future.</p>
-          <div class="footer-social">
-            <a href="#" aria-label="Facebook">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
-            </a>
-            <a href="#" aria-label="Twitter">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-            </a>
-            <a href="#" aria-label="Instagram">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            </a>
-            <a href="#" aria-label="YouTube">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
-          </div>
-        </div>
-        <div>
-          <h4 class="footer-heading">Quick Links</h4>
-          <a href="shop.html" class="footer-link">Shop</a>
-          <a href="sell.html" class="footer-link">Sell an Item</a>
-          <a href="deals.html" class="footer-link">Deals</a>
-          <a href="categories.html" class="footer-link">Categories</a>
-          <a href="dashboard.html" class="footer-link">Dashboard</a>
-        </div>
-        <div>
-          <h4 class="footer-heading">Company</h4>
-          <a href="about.html" class="footer-link">About Us</a>
-          <a href="contact.html" class="footer-link">Contact</a>
-          <a href="#" class="footer-link">Careers</a>
-          <a href="#" class="footer-link">Blog</a>
-        </div>
-        <div>
-          <h4 class="footer-heading">Newsletter</h4>
-          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">Get the latest deals.</p>
-          <div class="footer-newsletter">
-            <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
-              <input type="email" placeholder="Your email" aria-label="Email">
-              <button type="submit">→</button>
-            </form>
-          </div>
-        </div>
+        <div class="footer-brand"><a href="index.html" class="nav-logo"><div class="nav-logo-icon">🧸</div><span>Little Loops</span></a><p>Your friendly marketplace for gently used kids' stuff.</p></div>
+        <div><h4 class="footer-heading">Shop</h4><a href="shop.html" class="footer-link">All Items</a><a href="categories.html" class="footer-link">Categories</a><a href="deals.html" class="footer-link">Deals</a></div>
+        <div><h4 class="footer-heading">Community</h4><a href="about.html" class="footer-link">About Us</a><a href="contact.html" class="footer-link">Contact</a><a href="sell.html" class="footer-link">Sell Items</a></div>
+        <div><h4 class="footer-heading">Stay in the Loop</h4><p style="font-size:var(--text-sm); color:var(--text-secondary); margin-bottom:var(--space-4);">Deals & tips.</p><div class="footer-newsletter"><form class="footer-newsletter-form" onsubmit="event.preventDefault();"><input type="email" placeholder="Your email" aria-label="Email"><button type="submit">→</button></form></div></div>
       </div>
-      <div class="footer-bottom">
-        <span>© 2026 ReShop. All rights reserved.</span>
-        <div class="footer-bottom-links">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="#">Cookies</a>
-        </div>
-      </div>
+      <div class="footer-bottom"><span>© 2026 Little Loops. All rights reserved.</span><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Safety</a></div></div>
     </div>
   </footer>
-
   <script src="nav.js"></script>
 </body>
 </html>

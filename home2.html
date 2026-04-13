@@ -3,256 +3,289 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReShop — Buy Smart. Sell Easy. Save More.</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-  <meta name="description" content="Learn how to buy and sell on ReShop. Join thousands of users saving money and reducing waste.">
+  <title>Little Loops — Where Kids' Stuff Gets a Second Life</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="description" content="The community marketplace for gently used kids' clothing, toys, and gear. Buy smart, sell easy, save the planet.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav.css">
   <style>
-    /* ---- Video Hero ---- */
-    .video-hero {
-      position: relative;
+    /* ---- Split Hero ---- */
+    .hero2 {
       min-height: 100vh;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
-      justify-content: center;
-      text-align: center;
+      padding-top: 80px;
+      gap: var(--space-12);
       overflow: hidden;
     }
-    .video-hero-bg {
-      position: absolute;
-      inset: 0;
-      background: url('images/hero2-bg.png') center/cover no-repeat;
+    .hero2-text {
+      padding: var(--space-16) var(--space-6) var(--space-16) 0;
     }
-    .video-hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(10,14,23,0.85), rgba(10,14,23,0.6), rgba(10,14,23,0.9));
+    .hero2-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      background: rgba(255,127,107,0.1);
+      border: 1px solid rgba(255,127,107,0.2);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: var(--space-6);
+      animation: fadeInDown 0.6s ease both;
     }
-    .video-hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 700px;
-      padding: 0 var(--space-6);
-    }
-    .video-hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
+    .hero2 h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
       font-weight: 900;
+      line-height: 1.1;
       margin-bottom: var(--space-5);
-      color: #ffffff;
-      text-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      animation: fadeInUp 0.7s ease both;
+      animation: fadeInUp 0.7s ease 0.1s both;
     }
-    .video-hero h1 .accent { color: var(--accent-primary-light); -webkit-text-fill-color: var(--accent-primary-light); }
-    .video-hero p {
-      font-size: var(--text-xl);
-      color: rgba(255, 255, 255, 0.9);
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    .hero2 h1 .gradient {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-warm));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero2-desc {
+      font-size: var(--text-lg);
+      color: var(--text-secondary);
+      line-height: 1.8;
       margin-bottom: var(--space-8);
-      animation: fadeInUp 0.7s ease 0.15s both;
+      max-width: 480px;
+      animation: fadeInUp 0.7s ease 0.2s both;
     }
-    .video-hero .hero-buttons {
+    .hero2-actions {
       display: flex;
-      justify-content: center;
       gap: var(--space-4);
       flex-wrap: wrap;
       animation: fadeInUp 0.7s ease 0.3s both;
     }
-    .play-btn {
-      width: 80px;
-      height: 80px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 50%;
+    .hero2-trust {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: #fff;
-      margin: 0 auto var(--space-8);
-      cursor: pointer;
-      transition: all var(--transition-base);
-      animation: fadeIn 1s ease 0.5s both;
+      gap: var(--space-4);
+      margin-top: var(--space-10);
+      animation: fadeInUp 0.7s ease 0.4s both;
     }
-    .play-btn:hover {
-      border-color: var(--accent-primary);
-      background: rgba(16,185,129,0.15);
-      transform: scale(1.1);
+    .trust-avatars {
+      display: flex;
     }
-
-    /* ---- How It Works ---- */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-6);
-      position: relative;
-    }
-    .steps-grid::before {
-      content: '';
-      position: absolute;
-      top: 50px;
-      left: 12%;
-      right: 12%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary), transparent);
-      z-index: 0;
-    }
-    .step-card {
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-    .step-number {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto var(--space-4);
+    .trust-avatars span {
+      width: 36px;
+      height: 36px;
       border-radius: var(--radius-full);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-heading);
-      font-size: var(--text-2xl);
-      font-weight: 800;
+      font-size: var(--text-sm);
+      font-weight: 700;
       color: #fff;
-      background: var(--accent-primary);
-      box-shadow: 0 0 20px rgba(16,185,129,0.2);
-      border: 2px solid rgba(255,255,255,0.2);
-      transition: all var(--transition-base);
+      margin-left: -8px;
+      border: 2px solid var(--bg-primary);
     }
-    .step-card:hover .step-number {
-      border-color: var(--accent-primary);
-      box-shadow: var(--shadow-glow);
-    }
-    .step-card h3 { font-size: var(--text-base); margin-bottom: var(--space-2); }
-    .step-card p { font-size: var(--text-sm); color: var(--text-muted); line-height: 1.6; }
-    .step-icon { font-size: 2rem; margin-bottom: var(--space-2); }
+    .trust-avatars span:first-child { margin-left: 0; }
+    .trust-text { font-size: var(--text-sm); color: var(--text-muted); }
+    .trust-text strong { color: var(--accent-primary); }
 
-    /* ---- Deals Carousel ---- */
-    .carousel-wrap { position: relative; overflow: hidden; }
-    .carousel-track {
+    .hero2-visual {
+      position: relative;
+      height: 100%;
+      min-height: 500px;
       display: flex;
-      gap: var(--space-5);
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 1s ease 0.3s both;
+    }
+    .hero2-visual-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/hero-bg.png') center/cover no-repeat;
+      border-radius: 0 0 0 60px;
+      overflow: hidden;
+    }
+    .hero2-visual-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,127,107,0.15), rgba(167,139,250,0.15));
+    }
+    .hero2-floating-cards {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      padding: var(--space-8);
+    }
+    .float-card {
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4) var(--space-5);
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      box-shadow: var(--shadow-lg);
+      max-width: 320px;
+    }
+    .float-card:nth-child(2) { margin-left: var(--space-12); }
+    .float-card:nth-child(3) { margin-left: var(--space-4); }
+    .float-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .float-card h4 { font-size: var(--text-sm); margin-bottom: 2px; }
+    .float-card p { font-size: var(--text-xs); color: var(--text-muted); }
+
+    /* ---- Age Group Section ---- */
+    .age-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8) var(--space-6);
+      text-align: center;
+      transition: all var(--transition-base);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .age-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      transition: height var(--transition-base);
+    }
+    .age-card:hover::before { height: 6px; }
+    .age-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .age-card .age-emoji { font-size: 3rem; display: block; margin-bottom: var(--space-4); }
+    .age-card h3 { margin-bottom: var(--space-2); }
+    .age-card p { font-size: var(--text-sm); color: var(--text-muted); }
+
+    /* ---- Trending Carousel ---- */
+    .trending-scroll {
+      display: flex;
+      gap: var(--space-6);
       overflow-x: auto;
       scroll-snap-type: x mandatory;
+      padding-bottom: var(--space-4);
       -ms-overflow-style: none;
       scrollbar-width: none;
-      padding: var(--space-2) 0;
     }
-    .carousel-track::-webkit-scrollbar { display: none; }
-    .carousel-item {
+    .trending-scroll::-webkit-scrollbar { display: none; }
+    .trending-scroll .product-card {
       min-width: 280px;
       scroll-snap-align: start;
       flex-shrink: 0;
     }
-    .carousel-nav {
-      display: flex;
-      justify-content: center;
-      gap: var(--space-3);
-      margin-top: var(--space-6);
+
+    /* ---- Sustainability Section ---- */
+    .eco-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+      align-items: center;
     }
-    .carousel-btn {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius-full);
+    .eco-stat-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-5);
+      padding: var(--space-5);
       background: var(--bg-card);
       border: 1px solid var(--border-color);
-      color: var(--text-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: var(--text-lg);
-      cursor: pointer;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-4);
       transition: all var(--transition-base);
     }
-    .carousel-btn:hover { background: var(--accent-primary); border-color: var(--accent-primary); }
-
-    /* ---- Testimonial Slider ---- */
-    .testimonial-slider {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .testimonial-slide {
-      display: none;
-    }
-    .testimonial-slide.active { display: block; }
-    .testimonial-quote {
-      font-size: var(--text-xl);
-      line-height: 1.8;
-      color: var(--text-secondary);
-      font-style: italic;
-      margin-bottom: var(--space-6);
-    }
-    .testimonial-quote::before { content: '"'; font-size: 3rem; color: var(--accent-primary); line-height: 0; vertical-align: -0.4em; margin-right: 4px; }
-    .testimonial-author {
+    .eco-stat-row:hover { border-color: rgba(78,205,196,0.3); transform: translateX(4px); }
+    .eco-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-lg);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var(--space-3);
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      background: rgba(78,205,196,0.1);
     }
-    .testimonial-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      color: #fff;
-    }
-    .testimonial-dots {
-      display: flex;
-      justify-content: center;
-      gap: var(--space-2);
-      margin-top: var(--space-6);
-    }
-    .testimonial-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--border-color);
-      cursor: pointer;
-      transition: all var(--transition-base);
-    }
-    .testimonial-dot.active { background: var(--accent-primary); width: 28px; border-radius: var(--radius-full); }
+    .eco-stat-row h4 { margin-bottom: 2px; }
+    .eco-stat-row p { font-size: var(--text-sm); color: var(--text-muted); }
 
-    /* ---- Email Signup ---- */
-    .email-signup {
-      background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary));
+    /* ---- Parent Tips Section ---- */
+    .tip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+    .tip-card-alt {
+      background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-xl);
-      padding: var(--space-16) var(--space-8);
-      text-align: center;
+      padding: var(--space-8);
+      transition: all var(--transition-base);
     }
-    .email-signup h2 { font-size: var(--text-3xl); margin-bottom: var(--space-3); }
-    .email-signup p { color: var(--text-secondary); margin-bottom: var(--space-8); }
-    .email-form {
-      display: flex;
-      gap: var(--space-3);
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    .email-form input {
-      flex: 1;
-      padding: var(--space-4) var(--space-5);
-      background: var(--bg-primary);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      color: var(--text-primary);
-      font-size: var(--text-base);
-      outline: none;
-    }
-    .email-form input:focus { border-color: var(--accent-primary); }
+    .tip-card-alt:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(255,127,107,0.2); }
+    .tip-emoji { font-size: 2.5rem; margin-bottom: var(--space-4); display: block; }
+    .tip-card-alt h3 { margin-bottom: var(--space-3); font-size: var(--text-lg); }
+    .tip-card-alt p { font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.7; }
 
-    @media (max-width: 768px) {
-      .steps-grid { grid-template-columns: repeat(2, 1fr); }
-      .steps-grid::before { display: none; }
-      .email-form { flex-direction: column; }
-      .video-hero .hero-buttons { flex-direction: column; }
-      .video-hero .hero-buttons .btn { width: 100%; }
+    /* ---- CTA Split ---- */
+    .cta-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
     }
-    @media (max-width: 480px) {
-      .steps-grid { grid-template-columns: 1fr; }
+    .cta-card {
+      border-radius: var(--radius-xl);
+      padding: var(--space-12) var(--space-8);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-card h3 { font-size: var(--text-2xl); color: #fff; -webkit-text-fill-color: #fff; margin-bottom: var(--space-3); }
+    .cta-card p { color: rgba(255,255,255,0.8); margin-bottom: var(--space-6); font-size: var(--text-sm); }
+    .cta-buy { background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-dark)); }
+    .cta-sell { background: linear-gradient(135deg, var(--accent-secondary-dark), var(--accent-tertiary)); }
+
+    @media (max-width: 992px) {
+      .hero2 { grid-template-columns: 1fr; min-height: auto; padding-bottom: 0; }
+      .hero2-text { padding: var(--space-8) 0 var(--space-4); text-align: center; }
+      .hero2-desc { margin: 0 auto var(--space-8); }
+      .hero2-actions { justify-content: center; }
+      .hero2-trust { justify-content: center; }
+      .hero2-visual { min-height: 350px; }
+      .hero2-visual-bg { border-radius: 0; }
+      .eco-grid { grid-template-columns: 1fr; }
+      .tip-grid { grid-template-columns: 1fr; }
+      .cta-split { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .hero2 h1 { font-size: 2rem; }
+      .hero2-actions { flex-direction: column; }
+      .hero2-actions .btn { width: 100%; }
+      .float-card:nth-child(2) { margin-left: 0; }
+      .float-card:nth-child(3) { margin-left: 0; }
     }
   </style>
 </head>
@@ -261,15 +294,15 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">
-        <div class="nav-logo-icon">🛒</div>
-        <span>ReShop</span>
+        <div class="nav-logo-icon">🧸</div>
+        <span>Little Loops</span>
       </a>
       <div class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="home2.html" class="nav-link active">Home 2</a>
         <a href="shop.html" class="nav-link">Shop</a>
         <a href="categories.html" class="nav-link">Categories</a>
-        <a href="sell.html" class="nav-link">Sell Item</a>
+        <a href="sell.html" class="nav-link">Sell Items</a>
         <a href="deals.html" class="nav-link">Deals</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
@@ -277,7 +310,7 @@
       </div>
       <div class="nav-actions">
         <a href="login.html" class="nav-btn-login">Login</a>
-        <a href="signup.html" class="nav-btn-signup">Signup</a>
+        <a href="signup.html" class="nav-btn-signup">Sign Up</a>
         <a href="sell.html" class="nav-cta">Sell Now</a>
       </div>
       <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
@@ -289,225 +322,210 @@
     <a href="home2.html" class="mobile-nav-link active">Home 2</a>
     <a href="shop.html" class="mobile-nav-link">Shop</a>
     <a href="categories.html" class="mobile-nav-link">Categories</a>
-    <a href="sell.html" class="mobile-nav-link">Sell Item</a>
+    <a href="sell.html" class="mobile-nav-link">Sell Items</a>
     <a href="deals.html" class="mobile-nav-link">Deals</a>
     <a href="about.html" class="mobile-nav-link">About</a>
     <a href="contact.html" class="mobile-nav-link">Contact</a>
     <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
     <a href="login.html" class="mobile-nav-link">Login</a>
-    <a href="signup.html" class="mobile-nav-signup">Signup</a>
-    <a href="sell.html" class="mobile-nav-cta">🚀 Sell Now</a>
+    <a href="signup.html" class="mobile-nav-signup">Sign Up</a>
+    <a href="sell.html" class="mobile-nav-cta">🧸 Sell Now</a>
   </div>
 
-  <!-- Video Hero -->
-  <section class="video-hero">
-    <div class="video-hero-bg"></div>
-    <div class="video-hero-content">
-      <h1>Turn Your Clutter into <span class="accent">Cash</span></h1>
-      <div class="play-btn" id="playBtn">▶</div>
-      <p>Join the resale revolution. Sell your pre-loved items, find incredible deals, and shop sustainably.</p>
-      <div class="hero-buttons">
-        <a href="sell.html" class="btn btn-primary btn-lg">🚀 Start Selling Today</a>
-        <a href="shop.html" class="btn btn-outline btn-lg">Browse Deals</a>
+  <!-- Split Hero -->
+  <section class="hero2">
+    <div class="container">
+      <div class="hero2-text">
+        <div class="hero2-tag">🌟 #1 Kids' Consignment Marketplace</div>
+        <h1>The Smartest Way to<br><span class="gradient">Shop & Sell</span><br>Kids' Stuff</h1>
+        <p class="hero2-desc">Join our community of 10,000+ families who buy and sell gently used children's clothes, toys, and gear — saving money and saving the planet.</p>
+        <div class="hero2-actions">
+          <a href="shop.html" class="btn btn-primary btn-lg">🛍 Browse Items</a>
+          <a href="sell.html" class="btn btn-outline btn-lg">📦 List an Item</a>
+        </div>
+        <div class="hero2-trust">
+          <div class="trust-avatars">
+            <span style="background:linear-gradient(135deg,var(--accent-primary),var(--accent-warm));">J</span>
+            <span style="background:linear-gradient(135deg,var(--accent-secondary),var(--accent-secondary-dark));">R</span>
+            <span style="background:linear-gradient(135deg,var(--accent-tertiary),var(--accent-tertiary-light));">M</span>
+            <span style="background:linear-gradient(135deg,var(--accent-warm),var(--accent-primary));">A</span>
+            <span style="background:linear-gradient(135deg,var(--accent-pink),var(--accent-tertiary));">+</span>
+          </div>
+          <div class="trust-text"><strong>10,000+</strong> happy families already saving</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero2-visual">
+      <div class="hero2-visual-bg"></div>
+      <div class="hero2-floating-cards">
+        <div class="float-card" style="animation: fadeInUp 0.6s ease 0.4s both;">
+          <div class="float-card-icon" style="background:rgba(255,127,107,0.12);">👗</div>
+          <div><h4>Just Listed</h4><p>Girls' Summer Dress — $8</p></div>
+        </div>
+        <div class="float-card" style="animation: fadeInUp 0.6s ease 0.6s both;">
+          <div class="float-card-icon" style="background:rgba(78,205,196,0.12);">🧸</div>
+          <div><h4>Sold in 2 hours!</h4><p>LEGO Duplo Set — $15</p></div>
+        </div>
+        <div class="float-card" style="animation: fadeInUp 0.6s ease 0.8s both;">
+          <div class="float-card-icon" style="background:rgba(167,139,250,0.12);">⭐</div>
+          <div><h4>5-Star Review</h4><p>"Best deal ever!" — Mom of 3</p></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- How It Works -->
-  <section class="section" style="background: var(--bg-secondary);">
+  <!-- Shop by Age -->
+  <section class="section" style="background:var(--bg-secondary);">
     <div class="container">
       <div class="section-header" data-animate="fade-in-up">
-        <span class="section-label">Simple Process</span>
-        <h2>How It Works</h2>
-        <p>Buying and selling has never been this easy</p>
+        <span class="section-label">Find the Right Fit</span>
+        <h2>Shop by Age Group</h2>
+        <p>Curated selections for every stage of childhood</p>
       </div>
-      <div class="steps-grid stagger">
-        <div class="step-card" data-animate="fade-in-up">
-          <div class="step-icon">📸</div>
-          <div class="step-number">1</div>
-          <h3>List Your Item</h3>
-          <p>Snap a photo, add a description, and set your price. It takes under 2 minutes!</p>
-        </div>
-        <div class="step-card" data-animate="fade-in-up">
-          <div class="step-icon">🔍</div>
-          <div class="step-number">2</div>
-          <h3>Get Discovered</h3>
-          <p>Your listing reaches thousands of buyers. We promote top deals automatically.</p>
-        </div>
-        <div class="step-card" data-animate="fade-in-up">
-          <div class="step-icon">💬</div>
-          <div class="step-number">3</div>
-          <h3>Chat & Negotiate</h3>
-          <p>Connect directly with interested buyers through our built-in messaging.</p>
-        </div>
-        <div class="step-card" data-animate="fade-in-up">
-          <div class="step-icon">💰</div>
-          <div class="step-number">4</div>
-          <h3>Get Paid</h3>
-          <p>Complete the sale and receive payment securely through our platform.</p>
-        </div>
+      <div class="grid grid-4 stagger">
+        <a href="shop.html?age=newborn" class="age-card" data-animate="fade-in-up" style="text-decoration:none;">
+          <span class="age-emoji">🍼</span>
+          <h3>Newborn</h3>
+          <p>0–6 months</p>
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,var(--accent-primary),var(--accent-warm));border-radius:var(--radius-xl) var(--radius-xl) 0 0;"></div>
+        </a>
+        <a href="shop.html?age=baby" class="age-card" data-animate="fade-in-up" style="text-decoration:none;">
+          <span class="age-emoji">👶</span>
+          <h3>Baby</h3>
+          <p>6–24 months</p>
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,var(--accent-secondary),var(--accent-secondary-dark));border-radius:var(--radius-xl) var(--radius-xl) 0 0;"></div>
+        </a>
+        <a href="shop.html?age=toddler" class="age-card" data-animate="fade-in-up" style="text-decoration:none;">
+          <span class="age-emoji">🧒</span>
+          <h3>Toddler</h3>
+          <p>2–5 years</p>
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,var(--accent-tertiary),var(--accent-tertiary-light));border-radius:var(--radius-xl) var(--radius-xl) 0 0;"></div>
+        </a>
+        <a href="shop.html?age=big-kid" class="age-card" data-animate="fade-in-up" style="text-decoration:none;">
+          <span class="age-emoji">🎒</span>
+          <h3>Big Kid</h3>
+          <p>6–12 years</p>
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,var(--accent-warm),var(--accent-primary));border-radius:var(--radius-xl) var(--radius-xl) 0 0;"></div>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Top Deals Carousel -->
+  <!-- Trending Now (Scrollable) -->
   <section class="section">
     <div class="container">
       <div class="section-header" data-animate="fade-in-up">
-        <span class="section-label">Today's Picks</span>
-        <h2>Top Deals 🔥</h2>
-        <p>Don't miss these amazing offers</p>
+        <span class="section-label">🔥 Trending</span>
+        <h2>Selling Fast This Week</h2>
+        <p>These picks won't last long — grab them before they're gone!</p>
       </div>
-      <div class="carousel-wrap" data-animate="fade-in-up">
-        <div class="carousel-track" id="dealsCarousel">
-          <div class="carousel-item">
-            <div class="product-card">
-              <div class="product-img">
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop" alt="Smart Watch">
-                <span class="badge badge-danger product-badge">Flash Sale</span>
-              </div>
-              <div class="product-info">
-                <span class="product-category">Electronics</span>
-                <h3 class="product-title">Smart Watch Series X</h3>
-                <div class="product-meta">
-                  <span class="product-price">$79 <span class="old">$299</span></span>
-                  <span class="badge badge-warning">-74%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="product-card">
-              <div class="product-img">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop" alt="Sneakers">
-                <span class="badge badge-danger product-badge">Flash Sale</span>
-              </div>
-              <div class="product-info">
-                <span class="product-category">Fashion</span>
-                <h3 class="product-title">Limited Edition Sneakers</h3>
-                <div class="product-meta">
-                  <span class="product-price">$55 <span class="old">$200</span></span>
-                  <span class="badge badge-warning">-72%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="product-card">
-              <div class="product-img">
-                <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&h=300&fit=crop" alt="Perfume">
-                <span class="badge badge-danger product-badge">Flash Sale</span>
-              </div>
-              <div class="product-info">
-                <span class="product-category">Accessories</span>
-                <h3 class="product-title">Designer Fragrance Set</h3>
-                <div class="product-meta">
-                  <span class="product-price">$32 <span class="old">$120</span></span>
-                  <span class="badge badge-warning">-73%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="product-card">
-              <div class="product-img">
-                <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=300&fit=crop" alt="Laptop">
-                <span class="badge badge-danger product-badge">Flash Sale</span>
-              </div>
-              <div class="product-info">
-                <span class="product-category">Electronics</span>
-                <h3 class="product-title">Gaming Laptop RTX 4060</h3>
-                <div class="product-meta">
-                  <span class="product-price">$650 <span class="old">$1,400</span></span>
-                  <span class="badge badge-warning">-54%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="product-card">
-              <div class="product-img">
-                <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=400&h=300&fit=crop" alt="Bag">
-                <span class="badge badge-danger product-badge">Flash Sale</span>
-              </div>
-              <div class="product-info">
-                <span class="product-category">Fashion</span>
-                <h3 class="product-title">Premium Leather Backpack</h3>
-                <div class="product-meta">
-                  <span class="product-price">$40 <span class="old">$150</span></span>
-                  <span class="badge badge-warning">-73%</span>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="trending-scroll">
+        <div class="product-card">
+          <div class="product-img"><img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?w=400&h=300&fit=crop" alt="Stroller"><span class="badge badge-success product-badge">Like New</span><div class="product-wishlist">♡</div></div>
+          <div class="product-info"><span class="product-category">Baby Gear</span><h3 class="product-title">City Mini Stroller — Grey</h3><div class="product-meta"><span class="product-price">$65 <span class="old">$249</span></span><span class="badge badge-warning">-74%</span></div></div>
         </div>
-        <div class="carousel-nav">
-          <button class="carousel-btn" id="carouselPrev">←</button>
-          <button class="carousel-btn" id="carouselNext">→</button>
+        <div class="product-card">
+          <div class="product-img"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=400&h=300&fit=crop" alt="Girls Clothes"><span class="badge badge-coral product-badge">Bundle</span><div class="product-wishlist">♡</div></div>
+          <div class="product-info"><span class="product-category">Girls' Clothing</span><h3 class="product-title">Summer Dress Pack (5 pcs) — 4T</h3><div class="product-meta"><span class="product-price">$18 <span class="old">$75</span></span><span class="badge badge-warning">-76%</span></div></div>
         </div>
+        <div class="product-card">
+          <div class="product-img"><img src="https://i.pinimg.com/1200x/87/fd/50/87fd5027de8a64aa660f1cf68dc9c970.jpg" alt="Blocks"><span class="badge badge-success product-badge">Like New</span><div class="product-wishlist">♡</div></div>
+          <div class="product-info"><span class="product-category">Toys & Games</span><h3 class="product-title">Building Blocks Mega Set — 500 pcs</h3><div class="product-meta"><span class="product-price">$22 <span class="old">$60</span></span><span class="badge badge-warning">-63%</span></div></div>
+        </div>
+        <div class="product-card">
+          <div class="product-img"><img src="https://i.pinimg.com/736x/c0/7a/9c/c07a9ca5fc905f80a5938e378de14b2e.jpg" alt="Bike"><span class="badge badge-purple product-badge">Gently Used</span><div class="product-wishlist">♡</div></div>
+          <div class="product-info"><span class="product-category">Outdoor</span><h3 class="product-title">Kids' Balance Bike — Ages 3-5</h3><div class="product-meta"><span class="product-price">$35 <span class="old">$110</span></span><span class="badge badge-warning">-68%</span></div></div>
+        </div>
+        <div class="product-card">
+          <div class="product-img"><img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=300&fit=crop" alt="Books"><span class="badge badge-info product-badge">Great Deal</span><div class="product-wishlist">♡</div></div>
+          <div class="product-info"><span class="product-category">Books</span><h3 class="product-title">Picture Book Bundle (12 Books)</h3><div class="product-meta"><span class="product-price">$15 <span class="old">$96</span></span><span class="badge badge-warning">-84%</span></div></div>
+        </div>
+        <div class="product-card">
+          <div class="product-img"><img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&h=300&fit=crop" alt="Wooden Toys"><span class="badge badge-pink product-badge">Adorable</span><div class="product-wishlist">♡</div></div>
+          <div class="product-info"><span class="product-category">Toys</span><h3 class="product-title">Montessori Wooden Stacking Toy</h3><div class="product-meta"><span class="product-price">$14 <span class="old">$40</span></span><span class="badge badge-warning">-65%</span></div></div>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <a href="shop.html" class="btn btn-outline">View All Items →</a>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials Slider -->
-  <section class="section" style="background: var(--bg-secondary);">
+  <!-- Sustainability Section -->
+  <section class="section" style="background:var(--bg-secondary);">
     <div class="container">
-      <div class="section-header" data-animate="fade-in-up">
-        <span class="section-label">Reviews</span>
-        <h2>Loved by Thousands</h2>
-        <p>Hear what our community has to say</p>
-      </div>
-      <div class="testimonial-slider" data-animate="fade-in-up">
-        <div class="testimonial-slide active" data-slide="0">
-          <p class="testimonial-quote">I sold my entire gaming setup in under 48 hours. The process was incredibly smooth and the buyers were genuine. This platform changed how I think about selling stuff!</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">AK</div>
-            <div>
-              <h4 style="font-size: var(--text-base);">Aaron K.</h4>
-              <p style="font-size: var(--text-sm); color: var(--text-muted);">Seller • Gaming Enthusiast</p>
-            </div>
+      <div class="eco-grid">
+        <div data-animate="slide-left">
+          <span class="section-label">♻️ Our Impact</span>
+          <h2 class="mb-4" style="font-size:var(--text-3xl);">Good for Your Wallet.<br>Great for the Planet.</h2>
+          <p class="text-secondary mb-8">Every item bought on Little Loops is one less item in a landfill. Together, our community is making a real difference.</p>
+          <div class="eco-stat-row" data-animate="fade-in-up">
+            <div class="eco-icon">🌍</div>
+            <div><h4>12,000+ lbs</h4><p>of textile waste prevented this year</p></div>
+          </div>
+          <div class="eco-stat-row" data-animate="fade-in-up">
+            <div class="eco-icon" style="background:rgba(255,127,107,0.1);">💰</div>
+            <div><h4>$2M+ saved</h4><p>by families shopping secondhand</p></div>
+          </div>
+          <div class="eco-stat-row" data-animate="fade-in-up">
+            <div class="eco-icon" style="background:rgba(167,139,250,0.1);">🔄</div>
+            <div><h4>45,000+ items</h4><p>given a loving second home</p></div>
           </div>
         </div>
-        <div class="testimonial-slide" data-slide="1">
-          <p class="testimonial-quote">As a single mom, budget matters. ReShop helped me furnish my kids' rooms without breaking the bank. Everything arrived in great condition — better than I expected!</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">SM</div>
-            <div>
-              <h4 style="font-size: var(--text-base);">Sandra M.</h4>
-              <p style="font-size: var(--text-sm); color: var(--text-muted);">Buyer • Parent</p>
+        <div data-animate="slide-right" style="display:flex;align-items:center;justify-content:center;">
+          <div style="position:relative;">
+            <img src="https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=500&h=500&fit=crop" alt="Kids playing sustainably" style="border-radius:var(--radius-xl); box-shadow:var(--shadow-lg); max-width:100%;">
+            <div style="position:absolute; bottom:-20px; right:-20px; background:var(--accent-secondary); color:var(--text-inverse); padding:var(--space-4) var(--space-6); border-radius:var(--radius-lg); font-weight:800; font-size:var(--text-lg); box-shadow:var(--shadow-md);">
+              🌱 98% Happy Parents
             </div>
           </div>
-        </div>
-        <div class="testimonial-slide" data-slide="2">
-          <p class="testimonial-quote">I've been buying and selling on ReShop for 6 months. I've made over $3,000 from items I no longer needed. It's like having a side hustle that runs itself!</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #6366f1, #818cf8);">RT</div>
-            <div>
-              <h4 style="font-size: var(--text-base);">Raj T.</h4>
-              <p style="font-size: var(--text-sm); color: var(--text-muted);">Buyer & Seller • Power User</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-dots">
-          <div class="testimonial-dot active" data-dot="0"></div>
-          <div class="testimonial-dot" data-dot="1"></div>
-          <div class="testimonial-dot" data-dot="2"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Email Signup -->
+  <!-- Parent Tips / Blog -->
   <section class="section">
     <div class="container">
-      <div class="email-signup" data-animate="scale-in">
-        <span class="section-label">Stay Updated</span>
-        <h2>Never Miss a Deal 📬</h2>
-        <p>Subscribe to get exclusive deals, new listings, and marketplace updates delivered to your inbox.</p>
-        <form class="email-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='✓ Subscribed!'; this.querySelector('button').style.background='var(--accent-primary-dark)';">
-          <input type="email" placeholder="Enter your email address" required aria-label="Email address">
-          <button type="submit" class="btn btn-primary btn-lg">Subscribe</button>
-        </form>
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">From the Community</span>
+        <h2>Tips from Fellow Parents</h2>
+        <p>Wisdom from our community of savvy moms and dads</p>
+      </div>
+      <div class="tip-grid stagger">
+        <div class="tip-card-alt" data-animate="fade-in-up">
+          <span class="tip-emoji">👕</span>
+          <h3>Buy One Size Up</h3>
+          <p>Kids grow fast! Buying one size ahead means they'll get more wear out of each piece — especially when you're scoring deals at 70% off.</p>
+        </div>
+        <div class="tip-card-alt" data-animate="fade-in-up">
+          <span class="tip-emoji">📸</span>
+          <h3>Photos Sell Items</h3>
+          <p>Natural lighting and 4+ photos make your listings sell 3x faster. Show the front, back, labels, and any imperfections upfront.</p>
+        </div>
+        <div class="tip-card-alt" data-animate="fade-in-up">
+          <span class="tip-emoji">📦</span>
+          <h3>Bundle & Save</h3>
+          <p>Group items by size or season for bigger savings. Sellers love clearing closets in bulk, and you get a wardrobe for the price of a single outfit!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dual CTA -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="cta-split" data-animate="scale-in">
+        <div class="cta-card cta-buy">
+          <h3>🛍 Ready to Shop?</h3>
+          <p>Browse thousands of quality kids' items at up to 80% off retail prices.</p>
+          <a href="shop.html" class="btn btn-lg" style="background:rgba(255,255,255,0.2); color:#fff; border:2px solid rgba(255,255,255,0.3);">Start Shopping →</a>
+        </div>
+        <div class="cta-card cta-sell">
+          <h3>📦 Ready to Sell?</h3>
+          <p>Turn outgrown items into cash. List for free and reach thousands of families.</p>
+          <a href="sell.html" class="btn btn-lg" style="background:rgba(255,255,255,0.2); color:#fff; border:2px solid rgba(255,255,255,0.3);">Start Selling →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -517,41 +535,31 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🛒</div><span>ReShop</span></a>
-          <p>Your trusted marketplace for pre-loved items. Buy smart, sell easy, and contribute to a sustainable future.</p>
+          <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🧸</div><span>Little Loops</span></a>
+          <p>Your friendly neighborhood marketplace for gently used kids' clothes, toys, and gear. Great for your wallet, great for the planet.</p>
           <div class="footer-social">
-            <a href="#" aria-label="Facebook">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
-            </a>
-            <a href="#" aria-label="Twitter">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-            </a>
-            <a href="#" aria-label="Instagram">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            </a>
-            <a href="#" aria-label="YouTube">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
+            <a href="#" aria-label="Facebook"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="#" aria-label="Pinterest"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg></a>
+            <a href="#" aria-label="TikTok"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89A2.89 2.89 0 019.49 12.4v-3.5a6.37 6.37 0 00-.98-.08A6.39 6.39 0 002.13 15.2a6.39 6.39 0 0011.14 4.29V13.1a8.2 8.2 0 004.72 1.49h.12V11.1a4.83 4.83 0 01-1.48.24 4.81 4.81 0 01-3.04-1.1V6.69h6z"/></svg></a>
           </div>
         </div>
         <div>
-          <h4 class="footer-heading">Quick Links</h4>
-          <a href="shop.html" class="footer-link">Shop</a>
-          <a href="sell.html" class="footer-link">Sell an Item</a>
-          <a href="deals.html" class="footer-link">Deals</a>
+          <h4 class="footer-heading">Shop</h4>
+          <a href="shop.html" class="footer-link">All Items</a>
           <a href="categories.html" class="footer-link">Categories</a>
-          <a href="dashboard.html" class="footer-link">Dashboard</a>
+          <a href="deals.html" class="footer-link">Deals & Bundles</a>
         </div>
         <div>
-          <h4 class="footer-heading">Company</h4>
+          <h4 class="footer-heading">Community</h4>
           <a href="about.html" class="footer-link">About Us</a>
           <a href="contact.html" class="footer-link">Contact</a>
-          <a href="#" class="footer-link">Careers</a>
-          <a href="#" class="footer-link">Blog</a>
+          <a href="sell.html" class="footer-link">Sell Items</a>
+          <a href="dashboard.html" class="footer-link">My Dashboard</a>
         </div>
         <div>
-          <h4 class="footer-heading">Newsletter</h4>
-          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">Get the latest deals.</p>
+          <h4 class="footer-heading">Stay in the Loop</h4>
+          <p style="font-size:var(--text-sm); color:var(--text-secondary); margin-bottom:var(--space-4);">Get deals, tips & parenting hacks.</p>
           <div class="footer-newsletter">
             <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
               <input type="email" placeholder="Your email" aria-label="Email">
@@ -561,43 +569,20 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 ReShop. All rights reserved.</span>
-        <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+        <span>© 2026 Little Loops. All rights reserved.</span>
+        <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Safety</a></div>
       </div>
     </div>
   </footer>
 
   <script src="nav.js"></script>
   <script>
-    // Carousel
-    const track = document.getElementById('dealsCarousel');
-    document.getElementById('carouselNext').addEventListener('click', () => {
-      track.scrollBy({ left: 300, behavior: 'smooth' });
+    document.querySelectorAll('.product-wishlist').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
+        btn.style.color = btn.textContent === '♥' ? 'var(--accent-pink)' : '';
+      });
     });
-    document.getElementById('carouselPrev').addEventListener('click', () => {
-      track.scrollBy({ left: -300, behavior: 'smooth' });
-    });
-
-    // Testimonial Slider
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const dots = document.querySelectorAll('.testimonial-dot');
-
-    function showSlide(n) {
-      slides.forEach(s => s.classList.remove('active'));
-      dots.forEach(d => d.classList.remove('active'));
-      slides[n].classList.add('active');
-      dots[n].classList.add('active');
-      currentSlide = n;
-    }
-
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => showSlide(parseInt(dot.dataset.dot)));
-    });
-
-    setInterval(() => {
-      showSlide((currentSlide + 1) % slides.length);
-    }, 5000);
   </script>
 </body>
 </html>

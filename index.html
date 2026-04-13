@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ReShop — Buy Smart. Sell Easy. Save More.</title>
+  <title>Little Loops — Gently Used Kids' Clothes, Toys & Gear</title>
   <link rel="icon" type="image/png" href="favicon.png">
-  <meta name="description" content="Discover amazing deals on pre-loved items. Buy and sell electronics, fashion, furniture, and more on ReShop.">
+  <meta name="description" content="Shop and sell gently used children's clothing, toys, and gear. Save big on quality kids' items while giving them a second life at Little Loops.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav.css">
   <style>
@@ -27,12 +27,12 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(10,14,23,0.92), rgba(10,14,23,0.7));
+      background: linear-gradient(135deg, rgba(26,26,46,0.92), rgba(26,26,46,0.72));
     }
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 680px;
+      max-width: 700px;
       margin: 0 auto;
       text-align: center;
     }
@@ -41,8 +41,8 @@
       align-items: center;
       gap: var(--space-2);
       padding: var(--space-2) var(--space-4);
-      background: rgba(16,185,129,0.1);
-      border: 1px solid rgba(16,185,129,0.2);
+      background: rgba(255,127,107,0.12);
+      border: 1px solid rgba(255,127,107,0.2);
       border-radius: var(--radius-full);
       font-size: var(--text-sm);
       color: var(--accent-primary-light);
@@ -52,24 +52,24 @@
     .hero h1 {
       font-size: clamp(2.5rem, 6vw, 4rem);
       font-weight: 900;
-      line-height: 1.08;
+      line-height: 1.1;
       margin-bottom: var(--space-5);
       color: #ffffff;
-      text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
       animation: fadeInUp 0.7s ease 0.1s both;
     }
     .hero h1 .highlight {
-      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary-light));
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-warm));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     .hero-sub {
       font-size: var(--text-lg);
-      color: rgba(255, 255, 255, 0.9);
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
       margin: 0 auto var(--space-8);
-      max-width: 500px;
+      max-width: 520px;
       line-height: 1.7;
       animation: fadeInUp 0.7s ease 0.2s both;
     }
@@ -101,9 +101,19 @@
       position: absolute;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(16,185,129,0.08), transparent 70%);
+      background: radial-gradient(circle, rgba(255,127,107,0.08), transparent 70%);
       top: 20%;
       right: -5%;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-glow-2 {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(78,205,196,0.06), transparent 70%);
+      bottom: 10%;
+      left: -5%;
       border-radius: 50%;
       pointer-events: none;
     }
@@ -130,21 +140,22 @@
     }
     .highlight-item:hover {
       background: var(--bg-card);
+      transform: translateY(-2px);
     }
     .highlight-icon {
-      width: 52px;
-      height: 52px;
+      width: 56px;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: var(--radius-md);
-      font-size: 1.5rem;
+      border-radius: var(--radius-lg);
+      font-size: 1.6rem;
       flex-shrink: 0;
     }
-    .highlight-icon.green { background: rgba(16,185,129,0.12); }
-    .highlight-icon.blue { background: rgba(59,130,246,0.12); }
-    .highlight-icon.gold { background: rgba(245,158,11,0.12); }
-    .highlight-icon.purple { background: rgba(99,102,241,0.12); }
+    .highlight-icon.coral { background: rgba(255,127,107,0.12); }
+    .highlight-icon.mint { background: rgba(78,205,196,0.12); }
+    .highlight-icon.purple { background: rgba(167,139,250,0.12); }
+    .highlight-icon.warm { background: rgba(255,209,102,0.12); }
     .highlight-item h4 { font-size: var(--text-base); margin-bottom: 2px; }
     .highlight-item p { font-size: var(--text-sm); color: var(--text-muted); }
 
@@ -158,7 +169,7 @@
     .featured-tab {
       padding: var(--space-2) var(--space-5);
       font-size: var(--text-sm);
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-muted);
       border-radius: var(--radius-full);
       transition: all var(--transition-base);
@@ -168,99 +179,6 @@
     .featured-tab.active {
       background: var(--accent-primary);
       color: #fff;
-    }
-    .product-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: all var(--transition-base);
-    }
-    .product-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(16,185,129,0.3);
-      box-shadow: var(--shadow-lg);
-    }
-    .product-img {
-      position: relative;
-      height: 200px;
-      background: var(--bg-secondary);
-      overflow: hidden;
-    }
-    .product-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform var(--transition-slow);
-    }
-    .product-card:hover .product-img img { transform: scale(1.05); }
-    .product-badge {
-      position: absolute;
-      top: var(--space-3);
-      left: var(--space-3);
-    }
-    .product-wishlist {
-      position: absolute;
-      top: var(--space-3);
-      right: var(--space-3);
-      width: 36px;
-      height: 36px;
-      background: rgba(10,14,23,0.6);
-      backdrop-filter: blur(8px);
-      border-radius: var(--radius-full);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-secondary);
-      font-size: var(--text-lg);
-      cursor: pointer;
-      transition: all var(--transition-base);
-    }
-    .product-wishlist:hover { color: #ef4444; background: rgba(239,68,68,0.15); }
-    .product-info { padding: var(--space-4); }
-    .product-category { font-size: var(--text-xs); color: var(--accent-primary); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-    .product-title {
-      font-size: var(--text-base);
-      font-weight: 600;
-      margin: var(--space-1) 0 var(--space-2);
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .product-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .product-price {
-      font-size: var(--text-xl);
-      font-weight: 800;
-      color: var(--accent-primary);
-    }
-    .product-price .old {
-      font-size: var(--text-sm);
-      color: var(--text-muted);
-      text-decoration: line-through;
-      font-weight: 400;
-      margin-left: var(--space-2);
-    }
-    .product-seller {
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      font-size: var(--text-xs);
-      color: var(--text-muted);
-      margin-top: var(--space-3);
-      padding-top: var(--space-3);
-      border-top: 1px solid var(--border-color);
-    }
-    .seller-avatar {
-      width: 24px;
-      height: 24px;
-      border-radius: var(--radius-full);
-      background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-primary));
     }
 
     /* ---- Categories Preview ---- */
@@ -275,27 +193,45 @@
     }
     .category-card:hover {
       transform: translateY(-6px);
-      border-color: rgba(16,185,129,0.3);
+      border-color: rgba(255,127,107,0.3);
       box-shadow: var(--shadow-lg);
     }
     .category-icon {
-      width: 64px;
-      height: 64px;
+      width: 68px;
+      height: 68px;
       margin: 0 auto var(--space-4);
-      background: rgba(16,185,129,0.08);
-      border-radius: var(--radius-lg);
+      background: rgba(255,127,107,0.08);
+      border-radius: var(--radius-xl);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 2.2rem;
       transition: all var(--transition-base);
     }
     .category-card:hover .category-icon {
-      background: rgba(16,185,129,0.15);
-      transform: scale(1.1);
+      background: rgba(255,127,107,0.15);
+      transform: scale(1.1) rotate(-5deg);
     }
     .category-card h3 { font-size: var(--text-base); margin-bottom: var(--space-1); }
     .category-card p { font-size: var(--text-sm); color: var(--text-muted); }
+
+    /* ---- How It Works ---- */
+    .how-step {
+      text-align: center;
+      padding: var(--space-6);
+    }
+    .how-step-number {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-xl);
+      font-weight: 900;
+      margin: 0 auto var(--space-4);
+      color: #fff;
+    }
 
     /* ---- Reviews ---- */
     .reviews-grid {
@@ -311,10 +247,11 @@
       transition: all var(--transition-base);
     }
     .review-card:hover {
-      border-color: rgba(16,185,129,0.2);
+      border-color: rgba(255,127,107,0.2);
       box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
     }
-    .review-stars { color: var(--accent-secondary); font-size: var(--text-lg); margin-bottom: var(--space-3); letter-spacing: 2px; }
+    .review-stars { color: var(--accent-warm); font-size: var(--text-lg); margin-bottom: var(--space-3); letter-spacing: 2px; }
     .review-text {
       font-size: var(--text-sm);
       color: var(--text-secondary);
@@ -328,8 +265,8 @@
       gap: var(--space-3);
     }
     .review-avatar {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: var(--radius-full);
       display: flex;
       align-items: center;
@@ -391,15 +328,15 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">
-        <div class="nav-logo-icon">🛒</div>
-        <span>ReShop</span>
+        <div class="nav-logo-icon">🧸</div>
+        <span>Little Loops</span>
       </a>
       <div class="nav-links">
         <a href="index.html" class="nav-link active">Home</a>
         <a href="home2.html" class="nav-link">Home 2</a>
         <a href="shop.html" class="nav-link">Shop</a>
         <a href="categories.html" class="nav-link">Categories</a>
-        <a href="sell.html" class="nav-link">Sell Item</a>
+        <a href="sell.html" class="nav-link">Sell Items</a>
         <a href="deals.html" class="nav-link">Deals</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
@@ -407,7 +344,7 @@
       </div>
       <div class="nav-actions">
         <a href="login.html" class="nav-btn-login">Login</a>
-        <a href="signup.html" class="nav-btn-signup">Signup</a>
+        <a href="signup.html" class="nav-btn-signup">Sign Up</a>
         <a href="sell.html" class="nav-cta">Sell Now</a>
       </div>
       <div class="hamburger" id="hamburger" aria-label="Menu">
@@ -423,41 +360,42 @@
     <a href="home2.html" class="mobile-nav-link">Home 2</a>
     <a href="shop.html" class="mobile-nav-link">Shop</a>
     <a href="categories.html" class="mobile-nav-link">Categories</a>
-    <a href="sell.html" class="mobile-nav-link">Sell Item</a>
+    <a href="sell.html" class="mobile-nav-link">Sell Items</a>
     <a href="deals.html" class="mobile-nav-link">Deals</a>
     <a href="about.html" class="mobile-nav-link">About</a>
     <a href="contact.html" class="mobile-nav-link">Contact</a>
     <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
     <a href="login.html" class="mobile-nav-link">Login</a>
-    <a href="signup.html" class="mobile-nav-signup">Signup</a>
-    <a href="sell.html" class="mobile-nav-cta">🚀 Sell Now</a>
+    <a href="signup.html" class="mobile-nav-signup">Sign Up</a>
+    <a href="sell.html" class="mobile-nav-cta">🧸 Sell Now</a>
   </div>
 
   <!-- Hero -->
   <section class="hero" id="hero">
     <div class="hero-bg"></div>
     <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
     <div class="container">
       <div class="hero-content">
-        <div class="hero-badge">🔥 Trusted by 50,000+ users</div>
-        <h1>Buy Smart.<br><span class="highlight">Sell Easy.</span><br>Save More.</h1>
-        <p class="hero-sub">Discover amazing deals on pre-loved items. From electronics to fashion, find quality products at unbeatable prices.</p>
+        <div class="hero-badge">🌟 Trusted by 10,000+ families</div>
+        <h1>Give Kids' Stuff<br><span class="highlight">A Second Life.</span><br>Save Big.</h1>
+        <p class="hero-sub">Shop and sell gently used children's clothes, toys, and gear. Great for your wallet, great for the planet.</p>
         <div class="hero-buttons">
-          <a href="shop.html" class="btn btn-primary btn-lg">🛍 Shop Now</a>
-          <a href="sell.html" class="btn btn-outline btn-lg">💰 Sell Your Item</a>
+          <a href="shop.html" class="btn btn-primary btn-lg">🛍 Shop Kids' Items</a>
+          <a href="sell.html" class="btn btn-outline btn-lg">📦 Sell Outgrown Stuff</a>
         </div>
         <div class="hero-stats">
           <div class="hero-stat">
-            <h3>50K+</h3>
-            <p>Active Users</p>
+            <h3>10K+</h3>
+            <p>Happy Families</p>
           </div>
           <div class="hero-stat">
-            <h3>120K+</h3>
+            <h3>45K+</h3>
             <p>Items Listed</p>
           </div>
           <div class="hero-stat">
             <h3>98%</h3>
-            <p>Happy Buyers</p>
+            <p>Parent Satisfaction</p>
           </div>
         </div>
       </div>
@@ -469,31 +407,31 @@
     <div class="container">
       <div class="highlights-grid stagger">
         <div class="highlight-item" data-animate="fade-in-up">
-          <div class="highlight-icon green">💲</div>
+          <div class="highlight-icon coral"><img src="images/icons/save-money.png" alt="Save Money" class="icon-img"></div>
           <div>
-            <h4>Affordable Prices</h4>
-            <p>Save up to 70% on quality items</p>
+            <h4>Save Up to 70%</h4>
+            <p>Quality kids' items at a fraction of retail</p>
           </div>
         </div>
         <div class="highlight-item" data-animate="fade-in-up">
-          <div class="highlight-icon blue">✅</div>
+          <div class="highlight-icon mint"><img src="images/icons/quality-check.png" alt="Quality Checked" class="icon-img"></div>
           <div>
-            <h4>Verified Sellers</h4>
-            <p>Trusted community of sellers</p>
+            <h4>Quality Checked</h4>
+            <p>Every item reviewed for safety & condition</p>
           </div>
         </div>
         <div class="highlight-item" data-animate="fade-in-up">
-          <div class="highlight-icon green">♻️</div>
+          <div class="highlight-icon purple"><img src="images/icons/eco-friendly.png" alt="Eco Friendly" class="icon-img"></div>
           <div>
-            <h4>Eco-Friendly Shopping</h4>
-            <p>Reduce waste, buy pre-loved</p>
+            <h4>Eco-Friendly</h4>
+            <p>Reduce waste, extend the life of great stuff</p>
           </div>
         </div>
         <div class="highlight-item" data-animate="fade-in-up">
-          <div class="highlight-icon gold">🔄</div>
+          <div class="highlight-icon warm"><img src="images/icons/community.png" alt="Community" class="icon-img"></div>
           <div>
-            <h4>Easy Returns</h4>
-            <p>Hassle-free 7-day returns</p>
+            <h4>Community Trusted</h4>
+            <p>Parent-to-parent marketplace you can rely on</p>
           </div>
         </div>
       </div>
@@ -504,179 +442,179 @@
   <section class="section" id="featured">
     <div class="container">
       <div class="section-header" data-animate="fade-in-up">
-        <span class="section-label">Marketplace</span>
-        <h2>Featured Listings</h2>
-        <p>Explore top picks from our community of sellers</p>
+        <span class="section-label">Just In</span>
+        <h2>Featured Kids' Items</h2>
+        <p>Hand-picked finds from our community of parents</p>
       </div>
       <div class="featured-tabs" data-animate="fade-in-up">
         <button class="featured-tab active" data-tab="trending">🔥 Trending</button>
-        <button class="featured-tab" data-tab="recent">🆕 Recently Added</button>
+        <button class="featured-tab" data-tab="recent">🆕 Just Added</button>
         <button class="featured-tab" data-tab="deals">💰 Best Deals</button>
       </div>
       <div class="grid grid-4 stagger" id="productGrid">
         <!-- Product 1 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop" alt="Headphones">
+            <img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?w=400&h=300&fit=crop" alt="Baby Stroller">
             <span class="badge badge-success product-badge">Like New</span>
             <div class="product-wishlist">♡</div>
           </div>
           <div class="product-info">
-            <span class="product-category">Electronics</span>
-            <h3 class="product-title">Premium Wireless Headphones</h3>
+            <span class="product-category">Baby Gear</span>
+            <h3 class="product-title">Lightweight Baby Stroller — Grey</h3>
             <div class="product-meta">
-              <span class="product-price">$49 <span class="old">$199</span></span>
-              <span class="badge badge-warning">-75%</span>
+              <span class="product-price">$65 <span class="old">$249</span></span>
+              <span class="badge badge-warning">-74%</span>
             </div>
             <div class="product-seller">
-              <div class="seller-avatar"></div>
-              <span>Sarah K. • ⭐ 4.9</span>
+              <div class="seller-avatar" style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent-primary),var(--accent-warm))"></div>
+              <span>Jessica M. • ⭐ 4.9</span>
             </div>
           </div>
         </div>
         <!-- Product 2 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=300&fit=crop" alt="Sneakers">
-            <span class="badge badge-info product-badge">Refurbished</span>
+            <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=400&h=300&fit=crop" alt="Kids Clothing Bundle">
+            <span class="badge badge-coral product-badge">Bundle</span>
             <div class="product-wishlist">♡</div>
           </div>
           <div class="product-info">
-            <span class="product-category">Fashion</span>
-            <h3 class="product-title">Designer Running Sneakers</h3>
+            <span class="product-category">Girls' Clothing</span>
+            <h3 class="product-title">Girls' Summer Dresses (5-pack) — Size 4T</h3>
             <div class="product-meta">
-              <span class="product-price">$35 <span class="old">$120</span></span>
-              <span class="badge badge-warning">-71%</span>
+              <span class="product-price">$18 <span class="old">$75</span></span>
+              <span class="badge badge-warning">-76%</span>
             </div>
             <div class="product-seller">
-              <div class="seller-avatar"></div>
-              <span>Mike R. • ⭐ 4.7</span>
+              <div class="seller-avatar" style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent-secondary),var(--accent-secondary-dark))"></div>
+              <span>Amanda R. • ⭐ 5.0</span>
             </div>
           </div>
         </div>
         <!-- Product 3 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=300&fit=crop" alt="Laptop">
+            <img src="https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=400&h=300&fit=crop" alt="LEGO Set">
             <span class="badge badge-success product-badge">Like New</span>
             <div class="product-wishlist">♡</div>
           </div>
           <div class="product-info">
-            <span class="product-category">Electronics</span>
-            <h3 class="product-title">MacBook Pro 2023 – 256GB</h3>
+            <span class="product-category">Toys & Games</span>
+            <h3 class="product-title">Building Blocks Mega Set — 500 Pieces</h3>
             <div class="product-meta">
-              <span class="product-price">$899 <span class="old">$1,499</span></span>
-              <span class="badge badge-warning">-40%</span>
+              <span class="product-price">$22 <span class="old">$60</span></span>
+              <span class="badge badge-warning">-63%</span>
             </div>
             <div class="product-seller">
-              <div class="seller-avatar"></div>
-              <span>Alex T. • ⭐ 5.0</span>
+              <div class="seller-avatar" style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent-tertiary),var(--accent-tertiary-light))"></div>
+              <span>Mark T. • ⭐ 4.8</span>
             </div>
           </div>
         </div>
         <!-- Product 4 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=300&fit=crop" alt="Sofa">
-            <span class="badge badge-purple product-badge">Used</span>
+            <img src="https://images.unsplash.com/photo-1519689373023-dd07c6c79de2?w=400&h=300&fit=crop" alt="Kids Bike">
+            <span class="badge badge-purple product-badge">Gently Used</span>
             <div class="product-wishlist">♡</div>
           </div>
           <div class="product-info">
-            <span class="product-category">Furniture</span>
-            <h3 class="product-title">Modern 3-Seater Sofa – Grey</h3>
+            <span class="product-category">Outdoor & Ride-On</span>
+            <h3 class="product-title">Kids' Balance Bike — Ages 3-5, Blue</h3>
             <div class="product-meta">
-              <span class="product-price">$180 <span class="old">$650</span></span>
-              <span class="badge badge-warning">-72%</span>
+              <span class="product-price">$35 <span class="old">$110</span></span>
+              <span class="badge badge-warning">-68%</span>
             </div>
             <div class="product-seller">
-              <div class="seller-avatar"></div>
-              <span>Emma L. • ⭐ 4.8</span>
+              <div class="seller-avatar" style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent-warm),var(--accent-primary))"></div>
+              <span>David K. • ⭐ 4.7</span>
             </div>
           </div>
         </div>
         <!-- Product 5 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="Phone">
-            <span class="badge badge-success product-badge">Like New</span>
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=300&fit=crop" alt="Picture Books">
+            <span class="badge badge-info product-badge">Great Deal</span>
             <div class="product-wishlist">♡</div>
           </div>
           <div class="product-info">
-            <span class="product-category">Mobiles</span>
-            <h3 class="product-title">iPhone 14 Pro – 128GB Unlocked</h3>
+            <span class="product-category">Books & Learning</span>
+            <h3 class="product-title">Children's Picture Book Bundle (12 Books)</h3>
             <div class="product-meta">
-              <span class="product-price">$599 <span class="old">$999</span></span>
-              <span class="badge badge-warning">-40%</span>
+              <span class="product-price">$15 <span class="old">$96</span></span>
+              <span class="badge badge-warning">-84%</span>
             </div>
             <div class="product-seller">
-              <div class="seller-avatar"></div>
-              <span>David W. • ⭐ 4.9</span>
+              <div class="seller-avatar" style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent-pink),var(--accent-primary))"></div>
+              <span>Sarah L. • ⭐ 5.0</span>
             </div>
           </div>
         </div>
         <!-- Product 6 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://i.pinimg.com/736x/15/aa/30/15aa30a3e11ac95acf0972858572bd5e.jpg" alt="Watch">
-            <span class="badge badge-info product-badge">Refurbished</span>
+            <img src="https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=400&h=300&fit=crop" alt="Baby Onesies">
+            <span class="badge badge-success product-badge">Like New</span>
             <div class="product-wishlist">♡</div>
           </div>
           <div class="product-info">
-            <span class="product-category">Accessories</span>
-            <h3 class="product-title">Classic Leather Watch – Brown</h3>
+            <span class="product-category">Baby Clothing</span>
+            <h3 class="product-title">Organic Cotton Onesies (6-pack) — 0-6M</h3>
             <div class="product-meta">
-              <span class="product-price">$45 <span class="old">$150</span></span>
-              <span class="badge badge-warning">-70%</span>
+              <span class="product-price">$12 <span class="old">$48</span></span>
+              <span class="badge badge-warning">-75%</span>
             </div>
             <div class="product-seller">
-              <div class="seller-avatar"></div>
-              <span>Lisa M. • ⭐ 4.6</span>
+              <div class="seller-avatar" style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent-secondary),var(--accent-tertiary))"></div>
+              <span>Emily W. • ⭐ 4.9</span>
             </div>
           </div>
         </div>
         <!-- Product 7 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=300&fit=crop" alt="Books">
-            <span class="badge badge-purple product-badge">Used</span>
+            <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&h=300&fit=crop" alt="Wooden Toys">
+            <span class="badge badge-pink product-badge">Adorable</span>
             <div class="product-wishlist">♡</div>
           </div>
           <div class="product-info">
-            <span class="product-category">Books</span>
-            <h3 class="product-title">Best Sellers Book Bundle (5 books)</h3>
+            <span class="product-category">Toys & Games</span>
+            <h3 class="product-title">Wooden Stacking Toy Set — Montessori</h3>
             <div class="product-meta">
-              <span class="product-price">$18 <span class="old">$75</span></span>
-              <span class="badge badge-warning">-76%</span>
+              <span class="product-price">$14 <span class="old">$40</span></span>
+              <span class="badge badge-warning">-65%</span>
             </div>
             <div class="product-seller">
-              <div class="seller-avatar"></div>
-              <span>Chris P. • ⭐ 4.8</span>
+              <div class="seller-avatar" style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent-warm),var(--accent-secondary))"></div>
+              <span>Lisa P. • ⭐ 4.8</span>
             </div>
           </div>
         </div>
         <!-- Product 8 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=400&h=300&fit=crop" alt="Camera">
+            <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=300&fit=crop" alt="Kids Sneakers">
             <span class="badge badge-success product-badge">Like New</span>
             <div class="product-wishlist">♡</div>
           </div>
           <div class="product-info">
-            <span class="product-category">Electronics</span>
-            <h3 class="product-title">DSLR Camera – Full Kit</h3>
+            <span class="product-category">Kids' Shoes</span>
+            <h3 class="product-title">Light-Up Sneakers — Toddler Size 8</h3>
             <div class="product-meta">
-              <span class="product-price">$320 <span class="old">$800</span></span>
-              <span class="badge badge-warning">-60%</span>
+              <span class="product-price">$10 <span class="old">$35</span></span>
+              <span class="badge badge-warning">-71%</span>
             </div>
             <div class="product-seller">
-              <div class="seller-avatar"></div>
-              <span>Nina V. • ⭐ 4.9</span>
+              <div class="seller-avatar" style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent-primary),var(--accent-tertiary))"></div>
+              <span>Chris H. • ⭐ 4.6</span>
             </div>
           </div>
         </div>
       </div>
       <div class="text-center mt-8">
-        <a href="shop.html" class="btn btn-outline">View All Listings →</a>
+        <a href="shop.html" class="btn btn-outline">Browse All Items →</a>
       </div>
     </div>
   </section>
@@ -685,84 +623,122 @@
   <section class="section" style="background: var(--bg-secondary);">
     <div class="container">
       <div class="section-header" data-animate="fade-in-up">
-        <span class="section-label">Browse</span>
+        <span class="section-label">Explore</span>
         <h2>Shop by Category</h2>
-        <p>Find exactly what you're looking for</p>
+        <p>Find exactly what your little one needs</p>
       </div>
-      <div class="grid grid-6 stagger">
-        <a href="shop.html?cat=electronics" class="category-card" data-animate="fade-in-up">
-          <div class="category-icon">📱</div>
-          <h3>Electronics</h3>
-          <p>2,400+ items</p>
+      <div class="grid grid-4 stagger">
+        <a href="shop.html?cat=baby-clothing" class="category-card" data-animate="fade-in-up">
+          <div class="category-icon"><img src="images/icons/baby-clothing.png" alt="Baby Clothing" class="icon-img"></div>
+          <h3>Baby Clothing</h3>
+          <p>3,200+ items</p>
         </a>
-        <a href="shop.html?cat=fashion" class="category-card" data-animate="fade-in-up">
-          <div class="category-icon">👗</div>
-          <h3>Fashion</h3>
+        <a href="shop.html?cat=girls-clothing" class="category-card" data-animate="fade-in-up">
+          <div class="category-icon"><img src="images/icons/girls-clothing.png" alt="Girls Clothing" class="icon-img"></div>
+          <h3>Girls' Clothing</h3>
           <p>5,100+ items</p>
         </a>
-        <a href="shop.html?cat=furniture" class="category-card" data-animate="fade-in-up">
-          <div class="category-icon">🛋️</div>
-          <h3>Furniture</h3>
+        <a href="shop.html?cat=boys-clothing" class="category-card" data-animate="fade-in-up">
+          <div class="category-icon"><img src="images/icons/boys-clothing.png" alt="Boys Clothing" class="icon-img"></div>
+          <h3>Boys' Clothing</h3>
+          <p>4,800+ items</p>
+        </a>
+        <a href="shop.html?cat=toys" class="category-card" data-animate="fade-in-up">
+          <div class="category-icon"><img src="images/icons/toys-games.png" alt="Toys Games" class="icon-img"></div>
+          <h3>Toys & Games</h3>
+          <p>6,400+ items</p>
+        </a>
+        <a href="shop.html?cat=outdoor" class="category-card" data-animate="fade-in-up">
+          <div class="category-icon"><img src="images/icons/outdoor-ride.png" alt="Outdoor Ride-On" class="icon-img"></div>
+          <h3>Outdoor & Ride-On</h3>
           <p>1,800+ items</p>
         </a>
         <a href="shop.html?cat=books" class="category-card" data-animate="fade-in-up">
-          <div class="category-icon">📚</div>
-          <h3>Books</h3>
-          <p>3,200+ items</p>
+          <div class="category-icon"><img src="images/icons/books-learning.png" alt="Books Learning" class="icon-img"></div>
+          <h3>Books & Learning</h3>
+          <p>8,200+ items</p>
         </a>
-        <a href="shop.html?cat=vehicles" class="category-card" data-animate="fade-in-up">
-          <div class="category-icon">🚗</div>
-          <h3>Vehicles</h3>
-          <p>890+ items</p>
+        <a href="shop.html?cat=gear" class="category-card" data-animate="fade-in-up">
+          <div class="category-icon"><img src="images/icons/baby-gear.png" alt="Baby Gear" class="icon-img"></div>
+          <h3>Baby Gear</h3>
+          <p>2,100+ items</p>
         </a>
-        <a href="shop.html?cat=mobiles" class="category-card" data-animate="fade-in-up">
-          <div class="category-icon">📲</div>
-          <h3>Mobiles</h3>
-          <p>1,600+ items</p>
+        <a href="shop.html?cat=shoes" class="category-card" data-animate="fade-in-up">
+          <div class="category-icon"><img src="images/icons/kids-shoes.png" alt="Kids Shoes" class="icon-img"></div>
+          <h3>Kids' Shoes</h3>
+          <p>3,600+ items</p>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Customer Reviews -->
-  <section class="section" id="reviews">
+  <!-- How It Works -->
+  <section class="section">
     <div class="container">
       <div class="section-header" data-animate="fade-in-up">
-        <span class="section-label">Testimonials</span>
-        <h2>What Our Users Say</h2>
-        <p>Real stories from real buyers and sellers</p>
+        <span class="section-label">Simple & Easy</span>
+        <h2>How It Works</h2>
+        <p>Buying and selling kids' items has never been easier</p>
+      </div>
+      <div class="grid grid-3 stagger">
+        <div class="how-step card p-8" data-animate="fade-in-up">
+          <div class="how-step-number" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-warm));">1</div>
+          <h3>List or Browse</h3>
+          <p class="text-secondary text-sm mt-2">Snap photos of outgrown items or browse thousands of kids' treasures from local parents.</p>
+        </div>
+        <div class="how-step card p-8" data-animate="fade-in-up">
+          <div class="how-step-number" style="background: linear-gradient(135deg, var(--accent-secondary), var(--accent-secondary-dark));">2</div>
+          <h3>Connect & Buy</h3>
+          <p class="text-secondary text-sm mt-2">Chat with sellers, ask questions, and purchase securely. Every transaction is protected.</p>
+        </div>
+        <div class="how-step card p-8" data-animate="fade-in-up">
+          <div class="how-step-number" style="background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-tertiary-light));">3</div>
+          <h3>Ship or Meet Up</h3>
+          <p class="text-secondary text-sm mt-2">Get items shipped to your door or arrange a local pickup. It's that simple!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews -->
+  <section class="section" id="reviews" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-animate="fade-in-up">
+        <span class="section-label">Happy Parents</span>
+        <h2>What Families Say</h2>
+        <p>Real stories from our community of parents</p>
       </div>
       <div class="reviews-grid stagger">
         <div class="review-card" data-animate="fade-in-up">
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Found an amazing MacBook at half the retail price. The seller was verified and the device was in perfect condition. Love this platform!"</p>
+          <p class="review-text">"Found an amazing Uppababy stroller for $80 — it retails for $400! My daughter loves her 'new' ride. This site is a game-changer for parents on a budget."</p>
           <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">JD</div>
+            <div class="review-avatar" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-warm));">JM</div>
             <div class="review-author-info">
-              <h4>James D.</h4>
-              <p>Buyer • Verified Purchase</p>
+              <h4>Jennifer M.</h4>
+              <p>Mom of 2 • 8 purchases</p>
             </div>
           </div>
         </div>
         <div class="review-card" data-animate="fade-in-up">
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Sold my old furniture in just 2 days! The listing process is so simple, and I love how quickly buyers reach out through the platform."</p>
+          <p class="review-text">"My kids outgrow clothes so fast! I sold 3 bags of outgrown clothes in one weekend and made $150. Now I use that money to buy the next sizes up. Love the cycle!"</p>
           <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">PR</div>
+            <div class="review-avatar" style="background: linear-gradient(135deg, var(--accent-secondary), var(--accent-secondary-dark));">RK</div>
             <div class="review-author-info">
-              <h4>Priya R.</h4>
-              <p>Seller • 45 listings sold</p>
+              <h4>Rachel K.</h4>
+              <p>Seller • 32 items sold</p>
             </div>
           </div>
         </div>
         <div class="review-card" data-animate="fade-in-up">
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">"As a student on a budget, this site is a lifesaver. I've furnished my entire dorm room for under $200. Everything was exactly as described."</p>
+          <p class="review-text">"As a first-time dad, we needed everything — crib, high chair, toys. We furnished the entire nursery for under $300 through Little Loops. Everything was in great condition!"</p>
           <div class="review-author">
-            <div class="review-avatar" style="background: linear-gradient(135deg, #6366f1, #818cf8);">MK</div>
+            <div class="review-avatar" style="background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-tertiary-light));">TP</div>
             <div class="review-author-info">
-              <h4>Maria K.</h4>
-              <p>Buyer • 12 purchases</p>
+              <h4>Tom P.</h4>
+              <p>New Dad • 15 purchases</p>
             </div>
           </div>
         </div>
@@ -774,11 +750,11 @@
   <section class="section">
     <div class="container">
       <div class="cta-banner" data-animate="scale-in">
-        <h2>Ready to Start Buying or Selling?</h2>
-        <p>Join thousands of happy users and discover amazing deals today.</p>
+        <h2>Ready to Give & Get Great Kids' Stuff?</h2>
+        <p>Join thousands of families saving money and reducing waste together.</p>
         <div class="flex justify-center gap-4">
-          <a href="shop.html" class="btn btn-secondary btn-lg">🛍 Start Buying</a>
-          <a href="sell.html" class="btn btn-lg" style="background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3);">💰 Start Selling</a>
+          <a href="shop.html" class="btn btn-secondary btn-lg">🛍 Start Shopping</a>
+          <a href="sell.html" class="btn btn-lg" style="background: rgba(255,255,255,0.15); color: #fff; border: 2px solid rgba(255,255,255,0.3);">📦 Start Selling</a>
         </div>
       </div>
     </div>
@@ -790,44 +766,43 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="nav-logo">
-            <div class="nav-logo-icon">🛒</div>
-            <span>ReShop</span>
+            <div class="nav-logo-icon">🧸</div>
+            <span>Little Loops</span>
           </a>
-          <p>Your trusted marketplace for pre-loved items. Buy smart, sell easy, and contribute to a sustainable future.</p>
+          <p>Your friendly neighborhood marketplace for gently used kids' clothes, toys, and gear. Great for your wallet, great for the planet.</p>
           <div class="footer-social">
             <a href="#" aria-label="Facebook">
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
             </a>
-            <a href="#" aria-label="Twitter">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-            </a>
             <a href="#" aria-label="Instagram">
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
             </a>
-            <a href="#" aria-label="YouTube">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <a href="#" aria-label="Pinterest">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="#" aria-label="TikTok">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89A2.89 2.89 0 019.49 12.4v-3.5a6.37 6.37 0 00-.98-.08A6.39 6.39 0 002.13 15.2a6.39 6.39 0 0011.14 4.29V13.1a8.2 8.2 0 004.72 1.49h.12V11.1a4.83 4.83 0 01-1.48.24 4.81 4.81 0 01-3.04-1.1V6.69h6z"/></svg>
             </a>
           </div>
         </div>
         <div>
-          <h4 class="footer-heading">Quick Links</h4>
-          <a href="shop.html" class="footer-link">Shop</a>
-          <a href="sell.html" class="footer-link">Sell an Item</a>
-          <a href="deals.html" class="footer-link">Deals</a>
+          <h4 class="footer-heading">Shop</h4>
+          <a href="shop.html" class="footer-link">All Items</a>
           <a href="categories.html" class="footer-link">Categories</a>
-          <a href="dashboard.html" class="footer-link">Dashboard</a>
+          <a href="deals.html" class="footer-link">Deals & Bundles</a>
+          <a href="shop.html?cat=baby-clothing" class="footer-link">Baby Clothing</a>
+          <a href="shop.html?cat=toys" class="footer-link">Toys & Games</a>
         </div>
         <div>
-          <h4 class="footer-heading">Company</h4>
+          <h4 class="footer-heading">Community</h4>
           <a href="about.html" class="footer-link">About Us</a>
           <a href="contact.html" class="footer-link">Contact</a>
-          <a href="#" class="footer-link">Careers</a>
-          <a href="#" class="footer-link">Blog</a>
-          <a href="#" class="footer-link">Press</a>
+          <a href="sell.html" class="footer-link">Sell Items</a>
+          <a href="dashboard.html" class="footer-link">My Dashboard</a>
         </div>
         <div>
-          <h4 class="footer-heading">Newsletter</h4>
-          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">Get the latest deals & updates.</p>
+          <h4 class="footer-heading">Stay in the Loop</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-4);">Get deals, tips & parenting hacks.</p>
           <div class="footer-newsletter">
             <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
               <input type="email" placeholder="Your email" aria-label="Email">
@@ -837,11 +812,11 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 ReShop. All rights reserved.</span>
+        <span>© 2026 Little Loops. All rights reserved.</span>
         <div class="footer-bottom-links">
           <a href="#">Privacy</a>
           <a href="#">Terms</a>
-          <a href="#">Cookies</a>
+          <a href="#">Safety</a>
         </div>
       </div>
     </div>
@@ -861,7 +836,7 @@
     document.querySelectorAll('.product-wishlist').forEach(btn => {
       btn.addEventListener('click', () => {
         btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
-        btn.style.color = btn.textContent === '♥' ? '#ef4444' : '';
+        btn.style.color = btn.textContent === '♥' ? 'var(--accent-pink)' : '';
       });
     });
   </script>

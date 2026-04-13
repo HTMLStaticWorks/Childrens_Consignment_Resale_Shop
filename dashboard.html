@@ -3,331 +3,262 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Dashboard — ReShop</title>
+  <title>My Dashboard — Little Loops</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav.css">
   <style>
-    .dash-layout {
-      padding-top: 100px;
-      padding-bottom: var(--space-20);
-      max-width: 100%;
-    }
-    .dash-sidebar {
-      background: var(--bg-secondary);
+    .dash-container { padding-top: 100px; padding-bottom: var(--space-20); }
+    .dash-header {
+      display: flex; align-items: center; gap: var(--space-6);
+      margin-bottom: var(--space-10); padding: var(--space-8);
+      background: var(--bg-secondary); border-radius: var(--radius-xl);
       border: 1px solid var(--border-color);
-      border-radius: var(--radius-xl);
-      padding: var(--space-6);
-      height: fit-content;
     }
-    .dash-nav-item {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      padding: var(--space-3) var(--space-4);
-      color: var(--text-secondary);
-      border-radius: var(--radius-md);
-      transition: all var(--transition-fast);
-      margin-bottom: var(--space-2);
-      cursor: pointer;
+    .dash-avatar {
+      width: 72px; height: 72px; border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-warm));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; flex-shrink: 0;
     }
-    .dash-nav-item:hover, .dash-nav-item.active {
-      background: rgba(16, 185, 129, 0.08);
-      color: var(--accent-primary);
+    .dash-info h2 { font-size: var(--text-2xl); margin-bottom: var(--space-1); }
+    .dash-info p { font-size: var(--text-sm); color: var(--text-muted); }
+    .dash-tabs {
+      display: flex; gap: var(--space-2); margin-bottom: var(--space-8);
+      border-bottom: 2px solid var(--border-color); padding-bottom: var(--space-2);
+      overflow-x: auto;
     }
-    .dash-stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-6);
-      margin-bottom: var(--space-10);
+    .dash-tab {
+      padding: var(--space-3) var(--space-5); font-size: var(--text-sm);
+      font-weight: 700; color: var(--text-muted); border-radius: var(--radius-full) var(--radius-full) 0 0;
+      transition: all var(--transition-fast); cursor: pointer; white-space: nowrap;
     }
+    .dash-tab:hover { color: var(--text-primary); }
+    .dash-tab.active { color: var(--accent-primary); border-bottom: 3px solid var(--accent-primary); }
+    .dash-panel { display: none; }
+    .dash-panel.active { display: block; }
+    .stat-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-bottom: var(--space-8); }
     .stat-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      padding: var(--space-6);
-      border-radius: var(--radius-lg);
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg); padding: var(--space-5); text-align: center;
     }
-    .stat-card h4 { color: var(--text-muted); font-size: var(--text-xs); text-transform: uppercase; margin-bottom: var(--space-2); }
-    .stat-card p { font-size: var(--text-2xl); font-weight: 800; color: var(--text-primary); }
-
-    .dash-table-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
+    .stat-card .stat-value { font-size: var(--text-2xl); font-weight: 900; margin-bottom: var(--space-1); }
+    .stat-card .stat-label { font-size: var(--text-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+    .order-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-4); background: var(--bg-card);
+      border: 1px solid var(--border-color); border-radius: var(--radius-lg);
+      margin-bottom: var(--space-3); transition: all var(--transition-fast);
     }
-    .dash-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .dash-table th {
-      text-align: left;
-      background: var(--bg-secondary);
-      padding: var(--space-4) var(--space-6);
-      font-size: var(--text-xs);
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-    .dash-table td {
-      padding: var(--space-4) var(--space-6);
-      border-bottom: 1px solid var(--border-light);
-      font-size: var(--text-sm);
-    }
-    .dash-table tr:last-child td { border-bottom: none; }
-
+    .order-row:hover { border-color: rgba(255,127,107,0.2); }
+    .order-item { display: flex; align-items: center; gap: var(--space-4); }
+    .order-img { width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--bg-secondary); object-fit: cover; }
     @media (max-width: 768px) {
-      .dash-layout { padding-top: 80px; padding-bottom: var(--space-10); }
-      .dash-stats { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
-      .dash-table-card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .dash-table th, .dash-table td { padding: var(--space-3) var(--space-3); white-space: nowrap; font-size: var(--text-xs); }
+      .stat-cards { grid-template-columns: repeat(2, 1fr); }
+      .dash-header { flex-direction: column; align-items: flex-start; }
+      .order-row { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
     }
     @media (max-width: 480px) {
-      .dash-stats { grid-template-columns: 1fr 1fr; gap: var(--space-3); }
-      .stat-card { padding: var(--space-4); }
-      .stat-card p { font-size: var(--text-xl); }
-      .dash-table-header { flex-direction: column; align-items: flex-start; gap: var(--space-4); }
-    }
-    @media (max-width: 360px) {
-      .dash-stats { grid-template-columns: 1fr; }
-    }
-
-    /* --- Welcome Banner --- */
-    .dash-welcome-banner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-4);
-      background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(99,102,241,0.08));
-      border: 1px solid rgba(16,185,129,0.2);
-      border-radius: var(--radius-xl);
-      padding: var(--space-6) var(--space-8);
-      margin-bottom: var(--space-8);
-      flex-wrap: wrap;
-    }
-    .dash-welcome-left { display: flex; align-items: center; gap: var(--space-4); }
-    .dash-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #fff;
-      flex-shrink: 0;
-      box-shadow: 0 0 0 3px rgba(16,185,129,0.2);
-    }
-    .dash-welcome-text h2 {
-      font-size: var(--text-2xl);
-      font-weight: 800;
-      color: var(--text-primary);
-      margin-bottom: 2px;
-    }
-    .dash-welcome-text p {
-      font-size: var(--text-sm);
-      color: var(--text-secondary);
-    }
-    .dash-welcome-right { display: flex; align-items: center; gap: var(--space-3); }
-    .dash-date-badge {
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      padding: var(--space-2) var(--space-4);
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-full);
-      font-size: var(--text-xs);
-      color: var(--text-secondary);
-      white-space: nowrap;
-    }
-    .btn-logout {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      padding: var(--space-2) var(--space-5);
-      background: rgba(239,68,68,0.1);
-      border: 1px solid rgba(239,68,68,0.3);
-      color: #ef4444;
-      font-size: var(--text-sm);
-      font-weight: 600;
-      border-radius: var(--radius-full);
-      cursor: pointer;
-      transition: all var(--transition-base);
-      white-space: nowrap;
-      text-decoration: none;
-    }
-    .btn-logout:hover {
-      background: rgba(239,68,68,0.18);
-      border-color: #ef4444;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(239,68,68,0.15);
-    }
-    @media (max-width: 600px) {
-      .dash-welcome-banner { padding: var(--space-4) var(--space-5); }
-      .dash-welcome-text h2 { font-size: var(--text-xl); }
-      .dash-date-badge { display: none; }
+      .stat-cards { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-<body style="overflow-x: hidden;">
-
-  <!-- Navbar -->
-  <nav class="navbar" id="navbar">
+<body>
+  <nav class="navbar scrolled" id="navbar">
     <div class="container">
-      <a href="index.html" class="nav-logo">
-        <div class="nav-logo-icon">🛒</div>
-        <span>ReShop</span>
-      </a>
-      
+      <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🧸</div><span>Little Loops</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="home2.html" class="nav-link">Home 2</a><a href="shop.html" class="nav-link">Shop</a><a href="categories.html" class="nav-link">Categories</a>
+        <a href="sell.html" class="nav-link">Sell Items</a><a href="deals.html" class="nav-link">Deals</a><a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a><a href="dashboard.html" class="nav-link active">Dashboard</a>
+      </div>
+      <div class="nav-actions"><a href="login.html" class="nav-btn-login">Login</a><a href="signup.html" class="nav-btn-signup">Sign Up</a><a href="sell.html" class="nav-cta">Sell Now</a></div>
+      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+    </div>
   </nav>
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link">Home</a>
+    <a href="home2.html" class="mobile-nav-link">Home 2</a><a href="shop.html" class="mobile-nav-link">Shop</a><a href="categories.html" class="mobile-nav-link">Categories</a>
+    <a href="sell.html" class="mobile-nav-link">Sell Items</a><a href="deals.html" class="mobile-nav-link">Deals</a><a href="about.html" class="mobile-nav-link">About</a>
+    <a href="contact.html" class="mobile-nav-link">Contact</a><a href="dashboard.html" class="mobile-nav-link active">Dashboard</a>
+    <a href="login.html" class="mobile-nav-link">Login</a><a href="signup.html" class="mobile-nav-signup">Sign Up</a><a href="sell.html" class="mobile-nav-cta">🧸 Sell Now</a>
+  </div>
 
- 
+  <main class="container dash-container">
+    <div class="dash-header">
+      <div class="dash-avatar">👋</div>
+      <div class="dash-info">
+        <h2>Welcome Back!</h2>
+        <p>Member since January 2026 • ⭐ 4.9 rating • 🏆 Trusted Seller</p>
+      </div>
+    </div>
 
-  <main class="container">
-    <div class="dash-layout">
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--accent-primary);">12</div>
+        <div class="stat-label">Active Listings</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--accent-secondary);">38</div>
+        <div class="stat-label">Items Sold</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--accent-warm);">$482</div>
+        <div class="stat-label">Total Earned</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--accent-tertiary);">7</div>
+        <div class="stat-label">Purchases</div>
+      </div>
+    </div>
 
-      <div class="dash-content">
-        <!-- Welcome Banner -->
-        <div class="dash-welcome-banner">
-          <div class="dash-welcome-left">
-            <div class="dash-avatar">J</div>
-            <div class="dash-welcome-text">
-              <h2>Welcome back, John! 🚀</h2>
-              <p>Here's what's happening with your account today.</p>
-            </div>
-          </div>
-          <div class="dash-welcome-right">
-            <div class="dash-date-badge" id="dashDate">📅 Loading…</div>
-            <a href="index.html" class="btn-logout" id="logoutBtn">🚪 Logout</a>
+    <div class="dash-tabs">
+      <button class="dash-tab active" onclick="switchTab('listings')">📦 My Listings</button>
+      <button class="dash-tab" onclick="switchTab('orders')">🛍 Purchases</button>
+      <button class="dash-tab" onclick="switchTab('favorites')">💖 Favorites</button>
+      <button class="dash-tab" onclick="switchTab('messages')">💬 Messages</button>
+    </div>
+
+    <!-- Listings Panel -->
+    <div class="dash-panel active" id="panel-listings">
+      <div class="flex justify-between items-center mb-6">
+        <h3>Your Active Listings</h3>
+        <a href="sell.html" class="btn btn-primary">+ Add New Listing</a>
+      </div>
+      <div class="order-row">
+        <div class="order-item">
+          <img class="order-img" src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=100&h=100&fit=crop" alt="Listing">
+          <div>
+            <div class="font-semibold text-sm">Girls' Summer Dresses Bundle (5 pcs)</div>
+            <div class="text-xs text-muted">Listed 3 days ago • 24 views</div>
           </div>
         </div>
-
-        <div class="dash-stats">
-          <div class="stat-card"><h4>Active Listings</h4><p>12</p></div>
-          <div class="stat-card"><h4>Total Earnings</h4><p>$1,420</p></div>
-          <div class="stat-card"><h4>Pending Orders</h4><p>3</p></div>
-          <div class="stat-card"><h4>Account Credit</h4><p>$45.00</p></div>
+        <div class="flex items-center gap-4">
+          <span class="badge badge-success">Active</span>
+          <span class="font-bold" style="color:var(--accent-primary);">$18</span>
         </div>
-
-        <div class="dash-table-card">
-          <div class="p-6 flex justify-between items-center dash-table-header">
-            <h3 class="text-lg">Recent Listings</h3>
-            <a href="sell.html" class="btn btn-primary btn-sm">+ New Listing</a>
+      </div>
+      <div class="order-row">
+        <div class="order-item">
+          <img class="order-img" src="https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=100&h=100&fit=crop" alt="Listing">
+          <div>
+            <div class="font-semibold text-sm">Building Blocks Mega Set — 500 pcs</div>
+            <div class="text-xs text-muted">Listed 1 week ago • 56 views</div>
           </div>
-          <table class="dash-table">
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>iPhone 13 Pro Max</td>
-                <td>Mobiles</td>
-                <td>$540</td>
-                <td><span class="badge badge-success">Active</span></td>
-                <td><button class="btn btn-ghost text-xs">Edit</button></td>
-              </tr>
-              <tr>
-                <td>MacBook Pro 14"</td>
-                <td>Electronics</td>
-                <td>$1,299</td>
-                <td><span class="badge badge-warning">Sold</span></td>
-                <td><button class="btn btn-ghost text-xs">Details</button></td>
-              </tr>
-              <tr>
-                <td>Grey Sectional Sofa</td>
-                <td>Furniture</td>
-                <td>$350</td>
-                <td><span class="badge badge-danger">Pending</span></td>
-                <td><button class="btn btn-ghost text-xs">Review</button></td>
-              </tr>
-            </tbody>
-          </table>
         </div>
+        <div class="flex items-center gap-4">
+          <span class="badge badge-success">Active</span>
+          <span class="font-bold" style="color:var(--accent-primary);">$22</span>
+        </div>
+      </div>
+      <div class="order-row">
+        <div class="order-item">
+          <img class="order-img" src="https://images.unsplash.com/photo-1522771930-78848d9293e8?w=100&h=100&fit=crop" alt="Listing">
+          <div>
+            <div class="font-semibold text-sm">Lightweight Stroller — Like New</div>
+            <div class="text-xs text-muted">Listed 2 weeks ago • 89 views</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="badge badge-warning">Pending Sale</span>
+          <span class="font-bold" style="color:var(--accent-primary);">$65</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orders Panel -->
+    <div class="dash-panel" id="panel-orders">
+      <h3 class="mb-6">Your Purchases</h3>
+      <div class="order-row">
+        <div class="order-item">
+          <img class="order-img" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=100&h=100&fit=crop" alt="Order">
+          <div>
+            <div class="font-semibold text-sm">Picture Book Bundle (12 books)</div>
+            <div class="text-xs text-muted">Purchased Apr 8, 2026</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="badge badge-success">Delivered</span>
+          <span class="font-bold" style="color:var(--accent-primary);">$15</span>
+        </div>
+      </div>
+      <div class="order-row">
+        <div class="order-item">
+          <img class="order-img" src="https://images.unsplash.com/photo-1519689373023-dd07c6c79de2?w=100&h=100&fit=crop" alt="Order">
+          <div>
+            <div class="font-semibold text-sm">Kids' Balance Bike — Blue</div>
+            <div class="text-xs text-muted">Purchased Apr 2, 2026</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="badge badge-info">Shipped</span>
+          <span class="font-bold" style="color:var(--accent-primary);">$35</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Favorites Panel -->
+    <div class="dash-panel" id="panel-favorites">
+      <h3 class="mb-6">Saved Items</h3>
+      <div class="grid grid-3 stagger">
+        <div class="product-card">
+          <div class="product-img"><img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&h=300&fit=crop" alt="Wooden Toys"><span class="badge badge-pink product-badge">Saved</span></div>
+          <div class="product-info"><span class="product-category">Toys</span><h3 class="product-title">Wooden Stacking Toy — Montessori</h3><div class="product-meta"><span class="product-price">$14</span></div></div>
+        </div>
+        <div class="product-card">
+          <div class="product-img"><img src="https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=400&h=300&fit=crop" alt="Baby Clothes"><span class="badge badge-pink product-badge">Saved</span></div>
+          <div class="product-info"><span class="product-category">Baby Clothing</span><h3 class="product-title">Organic Cotton Onesies (6-pack)</h3><div class="product-meta"><span class="product-price">$12</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Messages Panel -->
+    <div class="dash-panel" id="panel-messages">
+      <h3 class="mb-6">Messages</h3>
+      <div class="order-row" style="cursor:pointer;">
+        <div class="order-item">
+          <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent-secondary),var(--accent-secondary-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:var(--text-sm);">AM</div>
+          <div>
+            <div class="font-semibold text-sm">Amanda R. — About: Girls' Summer Dresses</div>
+            <div class="text-xs text-muted">"Hi! Are these still available? Would you do $15?"</div>
+          </div>
+        </div>
+        <span class="badge badge-coral">New</span>
+      </div>
+      <div class="order-row" style="cursor:pointer;">
+        <div class="order-item">
+          <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent-tertiary),var(--accent-tertiary-light));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:var(--text-sm);">JK</div>
+          <div>
+            <div class="font-semibold text-sm">Jessica K. — About: Baby Stroller</div>
+            <div class="text-xs text-muted">"Can I pick this up Saturday?"</div>
+          </div>
+        </div>
+        <span class="text-xs text-muted">2 hrs ago</span>
       </div>
     </div>
   </main>
 
-  <!-- Quick Actions Section -->
-  <section class="section" style="background:var(--bg-secondary);">
+  <footer class="footer">
     <div class="container">
-      <div class="section-header" data-animate="fade-in-up">
-        <span class="section-label">Shortcuts</span>
-        <h2>Quick Actions</h2>
-        <p>Jump straight to the tasks you do most</p>
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="nav-logo"><div class="nav-logo-icon">🧸</div><span>Little Loops</span></a><p>Your friendly marketplace for gently used kids' stuff.</p></div>
+        <div><h4 class="footer-heading">Shop</h4><a href="shop.html" class="footer-link">All Items</a><a href="categories.html" class="footer-link">Categories</a><a href="deals.html" class="footer-link">Deals</a></div>
+        <div><h4 class="footer-heading">Community</h4><a href="about.html" class="footer-link">About Us</a><a href="contact.html" class="footer-link">Contact</a><a href="sell.html" class="footer-link">Sell Items</a></div>
+        <div><h4 class="footer-heading">Stay in the Loop</h4><p style="font-size:var(--text-sm); color:var(--text-secondary); margin-bottom:var(--space-4);">Deals & tips.</p><div class="footer-newsletter"><form class="footer-newsletter-form" onsubmit="event.preventDefault();"><input type="email" placeholder="Your email" aria-label="Email"><button type="submit">→</button></form></div></div>
       </div>
-      <div class="grid grid-4 stagger mt-8">
-        <a href="sell.html" class="card p-6 text-center" style="text-decoration:none;" data-animate="fade-in-up">
-          <div style="font-size:2rem; margin-bottom:var(--space-3);">➕</div>
-          <h4>New Listing</h4>
-          <p class="text-xs text-muted mt-1">Create a new item listing</p>
-        </a>
-        <a href="shop.html" class="card p-6 text-center" style="text-decoration:none;" data-animate="fade-in-up">
-          <div style="font-size:2rem; margin-bottom:var(--space-3);">🛍️</div>
-          <h4>Browse Shop</h4>
-          <p class="text-xs text-muted mt-1">Discover items to buy</p>
-        </a>
-        <a href="deals.html" class="card p-6 text-center" style="text-decoration:none;" data-animate="fade-in-up">
-          <div style="font-size:2rem; margin-bottom:var(--space-3);">🔥</div>
-          <h4>Flash Deals</h4>
-          <p class="text-xs text-muted mt-1">Limited-time offers</p>
-        </a>
-        <a href="contact.html" class="card p-6 text-center" style="text-decoration:none;" data-animate="fade-in-up">
-          <div style="font-size:2rem; margin-bottom:var(--space-3);">💬</div>
-          <h4>Get Support</h4>
-          <p class="text-xs text-muted mt-1">Contact our team</p>
-        </a>
-      </div>
+      <div class="footer-bottom"><span>© 2026 Little Loops. All rights reserved.</span><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Safety</a></div></div>
     </div>
-  </section>
-
-  <!-- Activity Feed Section -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header" data-animate="fade-in-up">
-        <span class="section-label">Account Updates</span>
-        <h2>Recent Activity</h2>
-        <p>What's been happening on your account</p>
-      </div>
-      <div style="max-width:680px; margin:var(--space-10) auto 0; display:flex; flex-direction:column; gap:var(--space-4);" class="stagger">
-        <div class="card p-5" style="display:flex; align-items:center; gap:var(--space-4);" data-animate="fade-in-up">
-          <div style="width:44px;height:44px;border-radius:50%;background:rgba(16,185,129,0.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">✅</div>
-          <div style="flex:1;"><p><strong>iPhone 13 Pro Max</strong> listing was approved</p><p class="text-xs text-muted mt-1">2 hours ago</p></div>
-          <span class="badge badge-success">Active</span>
-        </div>
-        <div class="card p-5" style="display:flex; align-items:center; gap:var(--space-4);" data-animate="fade-in-up">
-          <div style="width:44px;height:44px;border-radius:50%;background:rgba(245,158,11,0.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">💬</div>
-          <div style="flex:1;"><p>New message from <strong>Alex T.</strong> about your MacBook listing</p><p class="text-xs text-muted mt-1">5 hours ago</p></div>
-          <span class="badge badge-warning">Unread</span>
-        </div>
-        <div class="card p-5" style="display:flex; align-items:center; gap:var(--space-4);" data-animate="fade-in-up">
-          <div style="width:44px;height:44px;border-radius:50%;background:rgba(99,102,241,0.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">💳</div>
-          <div style="flex:1;"><p>Payout of <strong>$1,299</strong> for MacBook Pro 14" processed</p><p class="text-xs text-muted mt-1">Yesterday</p></div>
-          <span class="badge badge-info">Paid</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
- 
-
+  </footer>
   <script src="nav.js"></script>
   <script>
-    // Live date badge
-    (function() {
-      const el = document.getElementById('dashDate');
-      if (!el) return;
-      const now = new Date();
-      const opts = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
-      el.textContent = '📅 ' + now.toLocaleDateString('en-US', opts);
-    })();
+    function switchTab(tab) {
+      document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.dash-panel').forEach(p => p.classList.remove('active'));
+      document.querySelector(`[onclick="switchTab('${tab}')"]`).classList.add('active');
+      document.getElementById(`panel-${tab}`).classList.add('active');
+    }
   </script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="30" cy="30" r="30" fill="#1A1A2E"/>
+  <circle cx="30" cy="27" r="8" fill="url(#ttgrad)"/>
+  <rect x="29" y="35" width="2" height="10" fill="#FF7F6B"/>
+  <rect x="25" y="43" width="10" height="2" rx="1" fill="#FF7F6B"/>
+  <defs>
+    <radialGradient id="ttgrad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30 27) rotate(90) scale(8)">
+      <stop stop-color="#FF7F6B"/>
+      <stop offset="0.5" stop-color="#4ECDC4"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </radialGradient>
+  </defs>
+</svg>

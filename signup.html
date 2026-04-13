@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up — ReShop</title>
+  <title>Sign Up — Little Loops</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav.css">
   <style>
-    .auth-layout {
+    .auth-page {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: var(--space-12) var(--space-6);
-      background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.05), transparent 40%),
-                  radial-gradient(circle at bottom left, rgba(99, 102, 241, 0.05), transparent 40%);
+      padding: var(--space-16) var(--space-6);
+      background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
     }
     .auth-card {
       width: 100%;
@@ -26,99 +25,77 @@
       padding: var(--space-10);
       box-shadow: var(--shadow-lg);
     }
-    .social-auth {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-4);
-      margin-bottom: var(--space-8);
+    .auth-logo { text-align: center; margin-bottom: var(--space-8); }
+    .auth-logo-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-warm));
+      border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin: 0 auto var(--space-4);
+      box-shadow: var(--shadow-glow);
     }
-    .social-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-2);
-      padding: var(--space-3);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      font-size: var(--text-sm);
-      color: var(--text-primary);
-      transition: all var(--transition-fast);
-    }
-    .social-btn:hover { background: var(--bg-secondary); }
+    .auth-logo h2 { font-size: var(--text-2xl); }
+    .auth-logo p { font-size: var(--text-sm); color: var(--text-muted); margin-top: var(--space-2); }
     .auth-divider {
-      display: flex;
-      align-items: center;
-      gap: var(--space-4);
-      margin-bottom: var(--space-8);
-      color: var(--text-muted);
-      font-size: var(--text-xs);
-      text-transform: uppercase;
+      display: flex; align-items: center; gap: var(--space-4); margin: var(--space-6) 0;
+      color: var(--text-muted); font-size: var(--text-sm);
     }
-    .auth-divider::before, .auth-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border-color);
+    .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--border-color); }
+    .social-btn {
+      width: 100%; padding: var(--space-3) var(--space-4);
+      background: var(--bg-secondary); border: 2px solid var(--border-color);
+      border-radius: var(--radius-md); color: var(--text-primary);
+      font-weight: 600; font-size: var(--text-sm);
+      display: flex; align-items: center; justify-content: center; gap: var(--space-3);
+      transition: all var(--transition-base); margin-bottom: var(--space-3);
     }
-    .auth-footer {
-      margin-top: var(--space-8);
-      text-align: center;
-      font-size: var(--text-sm);
-      color: var(--text-muted);
-    }
-    .auth-footer a {
-      color: var(--accent-primary);
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .auth-footer a:hover {
-      text-decoration: underline;
-    }
+    .social-btn:hover { border-color: var(--accent-primary); background: var(--bg-card-hover); }
+    .auth-footer { text-align: center; margin-top: var(--space-6); font-size: var(--text-sm); color: var(--text-muted); }
+    .auth-footer a { color: var(--accent-primary); font-weight: 600; }
+    .auth-footer a:hover { text-decoration: underline; }
+    .perk-list { margin-top: var(--space-4); }
+    .perk-list li { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-2); }
   </style>
 </head>
 <body>
-  <div class="auth-layout">
+  <div class="auth-page">
     <div class="auth-card">
-      <div class="text-center mb-10">
-        <a href="index.html" class="nav-logo justify-center">
-          <div class="nav-logo-icon">🛒</div>
-          <span>ReShop</span>
-        </a>
-        <h1 class="text-xl mt-4">Create your account</h1>
-        <p class="text-sm text-muted mt-2">Join thousands of smart buyers and sellers</p>
+      <div class="auth-logo">
+        <div class="auth-logo-icon">🧸</div>
+        <h2>Join Little Loops</h2>
+        <p>Join 10,000+ families saving on kids' stuff</p>
       </div>
-
-      <div class="social-auth">
-        <button class="social-btn"><span>G</span> Google</button>
-        <button class="social-btn"><span>F</span> Facebook</button>
-      </div>
-
-      <div class="auth-divider">Or continue with email</div>
-
-      <!-- Signup Form -->
-      <form id="signupForm" onsubmit="alert('Registered!'); window.location.href='dashboard.html'; return false;">
-        <div class="form-group">
-          <label class="form-label">Full Name</label>
-          <input type="text" class="form-input" placeholder="John Doe" required>
+      <button class="social-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Sign up with Google
+      </button>
+      <button class="social-btn">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+        Sign up with Facebook
+      </button>
+      <div class="auth-divider">or sign up with email</div>
+      <form onsubmit="alert('Welcome to Little Loops! 🎉'); return false;">
+        <div class="grid grid-2">
+          <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" placeholder="Jessica" required></div>
+          <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" placeholder="Miller" required></div>
         </div>
+        <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="jessica@email.com" required></div>
+        <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" placeholder="At least 8 characters" required></div>
         <div class="form-group">
-          <label class="form-label">Email Address</label>
-          <input type="email" class="form-input" placeholder="email@example.com" required>
+          <label style="display:flex; align-items:flex-start; gap:var(--space-2); font-size:var(--text-sm); color:var(--text-secondary); cursor:pointer;">
+            <input type="checkbox" style="accent-color:var(--accent-primary); margin-top:3px;" required>
+            I agree to the <a href="#" style="color:var(--accent-primary);">Terms of Service</a> and <a href="#" style="color:var(--accent-primary);">Privacy Policy</a>
+          </label>
         </div>
-        <div class="form-group">
-          <label class="form-label">Password</label>
-          <input type="password" class="form-input" placeholder="••••••••" required>
-        </div>
-        <p class="text-xs text-muted mb-6">By signing up, you agree to our <a href="#" class="text-accent">Terms</a> and <a href="#" class="text-accent">Privacy Policy</a>.</p>
-        <button type="submit" class="btn btn-primary w-full btn-lg">Create Account 🚀</button>
+        <button type="submit" class="btn btn-primary btn-lg w-full">Create Free Account</button>
       </form>
-
-      <div class="auth-footer">
-        Already have an account? <a href="login.html">Login</a>
-      </div>
+      <ul class="perk-list">
+        <li>✅ Free to join — no listing fees</li>
+        <li>🛡️ Buyer protection on every purchase</li>
+        <li>💰 Start selling in under 2 minutes</li>
+      </ul>
+      <div class="auth-footer">Already have an account? <a href="login.html">Log in</a></div>
     </div>
   </div>
-
-  <script src="nav.js"></script>
 </body>
 </html>
