@@ -346,6 +346,11 @@
   background: var(--accent-primary-dark);
 }
 
+@media (max-width: 1100px) {
+  .footer-newsletter { padding-right: 100px; }
+  body.rtl .footer-newsletter { padding-right: 0; padding-left: 100px; }
+}
+
 .footer-bottom {
   border-top: 1px solid var(--border-color);
   padding-top: var(--space-6);
@@ -378,5 +383,6 @@
 }
 @media (max-width: 480px) {
   .footer-grid { grid-template-columns: 1fr; }
-  .footer-newsletter { padding-right: 70px; }
+  .footer-newsletter { padding-right: 100px; }
+  body.rtl .footer-newsletter { padding-right: 0; padding-left: 100px; }
 }

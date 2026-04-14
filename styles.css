@@ -435,12 +435,13 @@ h1, h2, h3, h4, h5, h6 {
   .grid-6 { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 768px) {
-  .grid-2 { grid-template-columns: 1fr; }
-  .grid-3 { grid-template-columns: repeat(2, 1fr); }
-  .grid-4 { grid-template-columns: repeat(2, 1fr); }
-  .grid-6 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2, .grid-3, .grid-4, .grid-6 { grid-template-columns: 1fr; }
   .section { padding: var(--space-12) 0; }
   .section-header h2 { font-size: var(--text-3xl); }
+  
+  /* Stacking buttons on mobile */
+  .cta-banner-actions { flex-direction: column !important; align-items: stretch !important; gap: var(--space-4) !important; }
+  .cta-banner-actions .btn { width: 100% !important; padding: var(--space-4) var(--space-6) !important; }
 }
 @media (max-width: 640px) {
   .grid-3 { grid-template-columns: 1fr; }
@@ -734,4 +735,17 @@ body.rtl .form-select {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+
+/* Auth Page Utilities Override */
+.auth-page .floating-utilities {
+  top: var(--space-6);
+  bottom: auto;
+  right: var(--space-6);
+  flex-direction: row-reverse;
+  gap: var(--space-3);
+}
+
+.auth-page .floating-utilities #scrollTopBtn {
+  display: none !important;
 }

@@ -8,7 +8,17 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav.css">
   <style>
-    .dash-container { padding-top: 100px; padding-bottom: var(--space-20); }
+    .dash-container { padding-top: 40px; padding-bottom: var(--space-20); }
+    .dash-minimal-header {
+      padding: var(--space-0) 0;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
     .dash-header {
       display: flex; align-items: center; gap: var(--space-6);
       margin-bottom: var(--space-10); padding: var(--space-8);
@@ -64,27 +74,14 @@
   </style>
 </head>
 <body>
-  <nav class="navbar scrolled" id="navbar">
-    <div class="container">
-      <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🧸</div><span>Little Loops</span></a>
-      <div class="nav-links">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="home2.html" class="nav-link">Home 2</a><a href="shop.html" class="nav-link">Shop</a><a href="categories.html" class="nav-link">Categories</a>
-        <a href="sell.html" class="nav-link">Sell Items</a><a href="deals.html" class="nav-link">Deals</a><a href="about.html" class="nav-link">About</a>
-        <a href="contact.html" class="nav-link">Contact</a><a href="dashboard.html" class="nav-link active">Dashboard</a>
-      </div>
-      <div class="nav-actions"><a href="login.html" class="nav-btn-login">Login</a><a href="signup.html" class="nav-btn-signup">Sign Up</a><a href="sell.html" class="nav-cta">Sell Now</a></div>
-      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+  <header class="dash-minimal-header">
+    <div class="container" style="display: flex; align-items: center; height: 70px;">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🧸</div>
+        <span>Little Loops</span>
+      </a>
     </div>
-  </nav>
-  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
-  <div class="mobile-nav" id="mobileNav">
-    <a href="index.html" class="mobile-nav-link">Home</a>
-    <a href="home2.html" class="mobile-nav-link">Home 2</a><a href="shop.html" class="mobile-nav-link">Shop</a><a href="categories.html" class="mobile-nav-link">Categories</a>
-    <a href="sell.html" class="mobile-nav-link">Sell Items</a><a href="deals.html" class="mobile-nav-link">Deals</a><a href="about.html" class="mobile-nav-link">About</a>
-    <a href="contact.html" class="mobile-nav-link">Contact</a><a href="dashboard.html" class="mobile-nav-link active">Dashboard</a>
-    <a href="login.html" class="mobile-nav-link">Login</a><a href="signup.html" class="mobile-nav-signup">Sign Up</a><a href="sell.html" class="mobile-nav-cta">🧸 Sell Now</a>
-  </div>
+  </header>
 
   <main class="container dash-container">
     <div class="dash-header">
@@ -129,7 +126,7 @@
       </div>
       <div class="order-row">
         <div class="order-item">
-          <img class="order-img" src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=100&h=100&fit=crop" alt="Listing">
+          <img class="order-img" src="images/products/dresses.png" alt="Summer Dresses">
           <div>
             <div class="font-semibold text-sm">Girls' Summer Dresses Bundle (5 pcs)</div>
             <div class="text-xs text-muted">Listed 3 days ago • 24 views</div>
@@ -142,7 +139,7 @@
       </div>
       <div class="order-row">
         <div class="order-item">
-          <img class="order-img" src="https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=100&h=100&fit=crop" alt="Listing">
+          <img class="order-img" src="images/products/blocks.png" alt="Building Blocks">
           <div>
             <div class="font-semibold text-sm">Building Blocks Mega Set — 500 pcs</div>
             <div class="text-xs text-muted">Listed 1 week ago • 56 views</div>
@@ -155,7 +152,7 @@
       </div>
       <div class="order-row">
         <div class="order-item">
-          <img class="order-img" src="https://images.unsplash.com/photo-1522771930-78848d9293e8?w=100&h=100&fit=crop" alt="Listing">
+          <img class="order-img" src="images/products/stroller.png" alt="Lightweight Stroller">
           <div>
             <div class="font-semibold text-sm">Lightweight Stroller — Like New</div>
             <div class="text-xs text-muted">Listed 2 weeks ago • 89 views</div>
@@ -173,7 +170,7 @@
       <h3 class="mb-6">Your Purchases</h3>
       <div class="order-row">
         <div class="order-item">
-          <img class="order-img" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=100&h=100&fit=crop" alt="Order">
+          <img class="order-img" src="images/products/books.png" alt="Picture Books">
           <div>
             <div class="font-semibold text-sm">Picture Book Bundle (12 books)</div>
             <div class="text-xs text-muted">Purchased Apr 8, 2026</div>
@@ -186,7 +183,7 @@
       </div>
       <div class="order-row">
         <div class="order-item">
-          <img class="order-img" src="https://images.unsplash.com/photo-1519689373023-dd07c6c79de2?w=100&h=100&fit=crop" alt="Order">
+          <img class="order-img" src="images/products/bike.png" alt="Balance Bike">
           <div>
             <div class="font-semibold text-sm">Kids' Balance Bike — Blue</div>
             <div class="text-xs text-muted">Purchased Apr 2, 2026</div>
@@ -204,11 +201,11 @@
       <h3 class="mb-6">Saved Items</h3>
       <div class="grid grid-3 stagger">
         <div class="product-card">
-          <div class="product-img"><img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&h=300&fit=crop" alt="Wooden Toys"><span class="badge badge-pink product-badge">Saved</span></div>
+          <div class="product-img"><img src="images/products/stacking-toy.png" alt="Wooden Stacking Toy"><span class="badge badge-pink product-badge">Saved</span></div>
           <div class="product-info"><span class="product-category">Toys</span><h3 class="product-title">Wooden Stacking Toy — Montessori</h3><div class="product-meta"><span class="product-price">$14</span></div></div>
         </div>
         <div class="product-card">
-          <div class="product-img"><img src="https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=400&h=300&fit=crop" alt="Baby Clothes"><span class="badge badge-pink product-badge">Saved</span></div>
+          <div class="product-img"><img src="images/products/onesies.png" alt="Organic Onesies"><span class="badge badge-pink product-badge">Saved</span></div>
           <div class="product-info"><span class="product-category">Baby Clothing</span><h3 class="product-title">Organic Cotton Onesies (6-pack)</h3><div class="product-meta"><span class="product-price">$12</span></div></div>
         </div>
       </div>
@@ -240,15 +237,9 @@
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand"><a href="index.html" class="nav-logo"><div class="nav-logo-icon">🧸</div><span>Little Loops</span></a><p>Your friendly marketplace for gently used kids' stuff.</p></div>
-        <div><h4 class="footer-heading">Shop</h4><a href="shop.html" class="footer-link">All Items</a><a href="categories.html" class="footer-link">Categories</a><a href="deals.html" class="footer-link">Deals</a></div>
-        <div><h4 class="footer-heading">Community</h4><a href="about.html" class="footer-link">About Us</a><a href="contact.html" class="footer-link">Contact</a><a href="sell.html" class="footer-link">Sell Items</a></div>
-        <div><h4 class="footer-heading">Stay in the Loop</h4><p style="font-size:var(--text-sm); color:var(--text-secondary); margin-bottom:var(--space-4);">Deals & tips.</p><div class="footer-newsletter"><form class="footer-newsletter-form" onsubmit="event.preventDefault();"><input type="email" placeholder="Your email" aria-label="Email"><button type="submit">→</button></form></div></div>
-      </div>
-      <div class="footer-bottom"><span>© 2026 Little Loops. All rights reserved.</span><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Safety</a></div></div>
+  <footer style="padding: var(--space-10) 0; border-top: 1px solid var(--border-color); background: var(--bg-secondary);">
+    <div class="container" style="text-align: center;">
+      <p class="text-xs text-muted">© 2026 Little Loops Dashboard — Focused on your family, powered by community.</p>
     </div>
   </footer>
   <script src="nav.js"></script>

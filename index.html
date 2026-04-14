@@ -306,20 +306,28 @@
     .cta-banner p { color: rgba(255,255,255,0.8); font-size: var(--text-lg); margin-bottom: var(--space-8); }
     .cta-banner .btn { position: relative; z-index: 2; }
 
-    @media (max-width: 992px) {
-      .highlights-grid { grid-template-columns: repeat(2, 1fr); }
-      .reviews-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 768px) {
+    @media (max-width: 850px) {
       .hero h1 { font-size: 2.2rem; }
       .hero-stats { gap: var(--space-6); flex-wrap: wrap; }
-      .hero-buttons { flex-direction: column; }
-      .hero-buttons .btn { width: 100%; }
+      .hero-buttons { flex-direction: column !important; display: flex !important; }
+      .hero-buttons .btn { width: 100% !important; }
+      
+      .cta-banner-actions { display: block !important; }
+      .cta-banner-actions .btn { 
+        display: block !important; 
+        width: 100% !important; 
+        margin-bottom: var(--space-4) !important; 
+        padding: var(--space-4) var(--space-6) !important; 
+        text-align: center !important;
+      }
+      .cta-banner-actions .btn:last-child { margin-bottom: 0 !important; }
+      
+      .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
     }
     @media (max-width: 480px) {
-      .highlights-grid { grid-template-columns: 1fr; }
-      .cta-banner { padding: var(--space-10) var(--space-5); }
-      .cta-banner h2 { font-size: var(--text-2xl); }
+      .highlights-grid { grid-template-columns: 1fr !important; }
+      .cta-banner { padding: var(--space-10) var(--space-4) !important; }
+      .cta-banner h2 { font-size: var(--text-2xl) !important; }
     }
   </style>
 </head>
@@ -334,11 +342,11 @@
       <div class="nav-links">
         <a href="index.html" class="nav-link active">Home</a>
         <a href="home2.html" class="nav-link">Home 2</a>
+        <a href="about.html" class="nav-link">About</a>
         <a href="shop.html" class="nav-link">Shop</a>
         <a href="categories.html" class="nav-link">Categories</a>
         <a href="sell.html" class="nav-link">Sell Items</a>
         <a href="deals.html" class="nav-link">Deals</a>
-        <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
         <a href="dashboard.html" class="nav-link">Dashboard</a>
       </div>
@@ -358,11 +366,11 @@
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html" class="mobile-nav-link active">Home</a>
     <a href="home2.html" class="mobile-nav-link">Home 2</a>
+    <a href="about.html" class="mobile-nav-link">About</a>
     <a href="shop.html" class="mobile-nav-link">Shop</a>
     <a href="categories.html" class="mobile-nav-link">Categories</a>
     <a href="sell.html" class="mobile-nav-link">Sell Items</a>
     <a href="deals.html" class="mobile-nav-link">Deals</a>
-    <a href="about.html" class="mobile-nav-link">About</a>
     <a href="contact.html" class="mobile-nav-link">Contact</a>
     <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
     <a href="login.html" class="mobile-nav-link">Login</a>
@@ -455,7 +463,7 @@
         <!-- Product 1 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?w=400&h=300&fit=crop" alt="Baby Stroller">
+            <img src="images/products/stroller.png" alt="Baby Stroller">
             <span class="badge badge-success product-badge">Like New</span>
             <div class="product-wishlist">♡</div>
           </div>
@@ -475,7 +483,7 @@
         <!-- Product 2 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=400&h=300&fit=crop" alt="Kids Clothing Bundle">
+            <img src="images/products/dresses.png" alt="Girls' Summer Dresses">
             <span class="badge badge-coral product-badge">Bundle</span>
             <div class="product-wishlist">♡</div>
           </div>
@@ -495,7 +503,7 @@
         <!-- Product 3 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=400&h=300&fit=crop" alt="LEGO Set">
+            <img src="images/products/blocks.png" alt="Building Blocks Mega Set">
             <span class="badge badge-success product-badge">Like New</span>
             <div class="product-wishlist">♡</div>
           </div>
@@ -515,7 +523,7 @@
         <!-- Product 4 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1519689373023-dd07c6c79de2?w=400&h=300&fit=crop" alt="Kids Bike">
+            <img src="images/products/bike.png" alt="Kids' Balance Bike">
             <span class="badge badge-purple product-badge">Gently Used</span>
             <div class="product-wishlist">♡</div>
           </div>
@@ -535,7 +543,7 @@
         <!-- Product 5 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=300&fit=crop" alt="Picture Books">
+            <img src="images/products/books.png" alt="Children's Picture Books">
             <span class="badge badge-info product-badge">Great Deal</span>
             <div class="product-wishlist">♡</div>
           </div>
@@ -555,7 +563,7 @@
         <!-- Product 6 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=400&h=300&fit=crop" alt="Baby Onesies">
+            <img src="images/products/onesies.png" alt="Organic Cotton Onesies">
             <span class="badge badge-success product-badge">Like New</span>
             <div class="product-wishlist">♡</div>
           </div>
@@ -575,7 +583,7 @@
         <!-- Product 7 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&h=300&fit=crop" alt="Wooden Toys">
+            <img src="images/products/stacking-toy.png" alt="Wooden Stacking Toy Set">
             <span class="badge badge-pink product-badge">Adorable</span>
             <div class="product-wishlist">♡</div>
           </div>
@@ -595,7 +603,7 @@
         <!-- Product 8 -->
         <div class="product-card" data-animate="fade-in-up">
           <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=300&fit=crop" alt="Kids Sneakers">
+            <img src="images/products/sneakers.png" alt="Toddler Light-Up Sneakers">
             <span class="badge badge-success product-badge">Like New</span>
             <div class="product-wishlist">♡</div>
           </div>
@@ -752,7 +760,7 @@
       <div class="cta-banner" data-animate="scale-in">
         <h2>Ready to Give & Get Great Kids' Stuff?</h2>
         <p>Join thousands of families saving money and reducing waste together.</p>
-        <div class="flex justify-center gap-4">
+        <div class="cta-banner-actions flex justify-center gap-4">
           <a href="shop.html" class="btn btn-secondary btn-lg">🛍 Start Shopping</a>
           <a href="sell.html" class="btn btn-lg" style="background: rgba(255,255,255,0.15); color: #fff; border: 2px solid rgba(255,255,255,0.3);">📦 Start Selling</a>
         </div>
@@ -780,18 +788,13 @@
             <a href="#" aria-label="Pinterest">
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
             </a>
-            <a href="#" aria-label="TikTok">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89A2.89 2.89 0 019.49 12.4v-3.5a6.37 6.37 0 00-.98-.08A6.39 6.39 0 002.13 15.2a6.39 6.39 0 0011.14 4.29V13.1a8.2 8.2 0 004.72 1.49h.12V11.1a4.83 4.83 0 01-1.48.24 4.81 4.81 0 01-3.04-1.1V6.69h6z"/></svg>
-            </a>
           </div>
         </div>
         <div>
           <h4 class="footer-heading">Shop</h4>
           <a href="shop.html" class="footer-link">All Items</a>
           <a href="categories.html" class="footer-link">Categories</a>
-          <a href="deals.html" class="footer-link">Deals & Bundles</a>
-          <a href="shop.html?cat=baby-clothing" class="footer-link">Baby Clothing</a>
-          <a href="shop.html?cat=toys" class="footer-link">Toys & Games</a>
+          <a href="deals.html" class="footer-link">Deals</a>
         </div>
         <div>
           <h4 class="footer-heading">Community</h4>

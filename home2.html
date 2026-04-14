@@ -12,15 +12,31 @@
     /* ---- Split Hero ---- */
     .hero2 {
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      padding-top: 80px;
-      gap: var(--space-12);
+      justify-content: center;
+      padding: 120px var(--space-6) var(--space-12);
+      text-align: center;
+      position: relative;
+      background: url('images/hero-bg-4k.png') center/cover no-repeat;
       overflow: hidden;
     }
+    .hero2::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(26,26,46,0.75), rgba(26,26,46,0.92));
+      z-index: 1;
+    }
+    .hero2 .container {
+      position: relative;
+      z-index: 10;
+    }
     .hero2-text {
-      padding: var(--space-16) var(--space-6) var(--space-16) 0;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0;
     }
     .hero2-tag {
       display: inline-flex;
@@ -33,7 +49,7 @@
       font-size: var(--text-sm);
       font-weight: 700;
       color: var(--accent-primary);
-      margin-bottom: var(--space-6);
+      margin: 0 auto var(--space-6);
       animation: fadeInDown 0.6s ease both;
     }
     .hero2 h1 {
@@ -54,11 +70,14 @@
       color: var(--text-secondary);
       line-height: 1.8;
       margin-bottom: var(--space-8);
-      max-width: 480px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
       animation: fadeInUp 0.7s ease 0.2s both;
     }
     .hero2-actions {
       display: flex;
+      justify-content: center;
       gap: var(--space-4);
       flex-wrap: wrap;
       animation: fadeInUp 0.7s ease 0.3s both;
@@ -66,6 +85,7 @@
     .hero2-trust {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: var(--space-4);
       margin-top: var(--space-10);
       animation: fadeInUp 0.7s ease 0.4s both;
@@ -103,7 +123,7 @@
       position: absolute;
       inset: 0;
       background: url('images/hero-bg.png') center/cover no-repeat;
-      border-radius: 0 0 0 60px;
+      border-radius: var(--radius-xl);
       overflow: hidden;
     }
     .hero2-visual-bg::after {
@@ -183,10 +203,23 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       padding-bottom: var(--space-4);
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+      /* Show scrollbar on mobile/tablet as requested */
+      -ms-overflow-style: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-primary) transparent;
     }
-    .trending-scroll::-webkit-scrollbar { display: none; }
+    .trending-scroll::-webkit-scrollbar { 
+      display: block;
+      height: 6px;
+    }
+    .trending-scroll::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+    .trending-scroll::-webkit-scrollbar-thumb {
+      background: var(--accent-primary);
+      border-radius: 10px;
+    }
     .trending-scroll .product-card {
       min-width: 280px;
       scroll-snap-align: start;
@@ -269,13 +302,9 @@
     .cta-sell { background: linear-gradient(135deg, var(--accent-secondary-dark), var(--accent-tertiary)); }
 
     @media (max-width: 992px) {
-      .hero2 { grid-template-columns: 1fr; min-height: auto; padding-bottom: 0; }
-      .hero2-text { padding: var(--space-8) 0 var(--space-4); text-align: center; }
-      .hero2-desc { margin: 0 auto var(--space-8); }
-      .hero2-actions { justify-content: center; }
-      .hero2-trust { justify-content: center; }
+      .hero2 { min-height: auto; padding-top: 100px; }
       .hero2-visual { min-height: 350px; }
-      .hero2-visual-bg { border-radius: 0; }
+      .hero2-visual-bg { border-radius: var(--radius-xl); }
       .eco-grid { grid-template-columns: 1fr; }
       .tip-grid { grid-template-columns: 1fr; }
       .cta-split { grid-template-columns: 1fr; }
@@ -300,11 +329,11 @@
       <div class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="home2.html" class="nav-link active">Home 2</a>
+        <a href="about.html" class="nav-link">About</a>
         <a href="shop.html" class="nav-link">Shop</a>
         <a href="categories.html" class="nav-link">Categories</a>
         <a href="sell.html" class="nav-link">Sell Items</a>
         <a href="deals.html" class="nav-link">Deals</a>
-        <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
         <a href="dashboard.html" class="nav-link">Dashboard</a>
       </div>
@@ -320,11 +349,11 @@
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html" class="mobile-nav-link">Home</a>
     <a href="home2.html" class="mobile-nav-link active">Home 2</a>
+    <a href="about.html" class="mobile-nav-link">About</a>
     <a href="shop.html" class="mobile-nav-link">Shop</a>
     <a href="categories.html" class="mobile-nav-link">Categories</a>
     <a href="sell.html" class="mobile-nav-link">Sell Items</a>
     <a href="deals.html" class="mobile-nav-link">Deals</a>
-    <a href="about.html" class="mobile-nav-link">About</a>
     <a href="contact.html" class="mobile-nav-link">Contact</a>
     <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
     <a href="login.html" class="mobile-nav-link">Login</a>
@@ -355,23 +384,7 @@
         </div>
       </div>
     </div>
-    <div class="hero2-visual">
-      <div class="hero2-visual-bg"></div>
-      <div class="hero2-floating-cards">
-        <div class="float-card" style="animation: fadeInUp 0.6s ease 0.4s both;">
-          <div class="float-card-icon" style="background:rgba(255,127,107,0.12);">👗</div>
-          <div><h4>Just Listed</h4><p>Girls' Summer Dress — $8</p></div>
-        </div>
-        <div class="float-card" style="animation: fadeInUp 0.6s ease 0.6s both;">
-          <div class="float-card-icon" style="background:rgba(78,205,196,0.12);">🧸</div>
-          <div><h4>Sold in 2 hours!</h4><p>LEGO Duplo Set — $15</p></div>
-        </div>
-        <div class="float-card" style="animation: fadeInUp 0.6s ease 0.8s both;">
-          <div class="float-card-icon" style="background:rgba(167,139,250,0.12);">⭐</div>
-          <div><h4>5-Star Review</h4><p>"Best deal ever!" — Mom of 3</p></div>
-        </div>
-      </div>
-    </div>
+   
   </section>
 
   <!-- Shop by Age -->
@@ -421,27 +434,27 @@
       </div>
       <div class="trending-scroll">
         <div class="product-card">
-          <div class="product-img"><img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?w=400&h=300&fit=crop" alt="Stroller"><span class="badge badge-success product-badge">Like New</span><div class="product-wishlist">♡</div></div>
+          <div class="product-img"><img src="images/products/stroller.png" alt="Stroller"><span class="badge badge-success product-badge">Like New</span><div class="product-wishlist">♡</div></div>
           <div class="product-info"><span class="product-category">Baby Gear</span><h3 class="product-title">City Mini Stroller — Grey</h3><div class="product-meta"><span class="product-price">$65 <span class="old">$249</span></span><span class="badge badge-warning">-74%</span></div></div>
         </div>
         <div class="product-card">
-          <div class="product-img"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=400&h=300&fit=crop" alt="Girls Clothes"><span class="badge badge-coral product-badge">Bundle</span><div class="product-wishlist">♡</div></div>
+          <div class="product-img"><img src="images/products/dresses.png" alt="Girls Clothes"><span class="badge badge-coral product-badge">Bundle</span><div class="product-wishlist">♡</div></div>
           <div class="product-info"><span class="product-category">Girls' Clothing</span><h3 class="product-title">Summer Dress Pack (5 pcs) — 4T</h3><div class="product-meta"><span class="product-price">$18 <span class="old">$75</span></span><span class="badge badge-warning">-76%</span></div></div>
         </div>
         <div class="product-card">
-          <div class="product-img"><img src="https://i.pinimg.com/1200x/87/fd/50/87fd5027de8a64aa660f1cf68dc9c970.jpg" alt="Blocks"><span class="badge badge-success product-badge">Like New</span><div class="product-wishlist">♡</div></div>
+          <div class="product-img"><img src="images/products/blocks.png" alt="Blocks"><span class="badge badge-success product-badge">Like New</span><div class="product-wishlist">♡</div></div>
           <div class="product-info"><span class="product-category">Toys & Games</span><h3 class="product-title">Building Blocks Mega Set — 500 pcs</h3><div class="product-meta"><span class="product-price">$22 <span class="old">$60</span></span><span class="badge badge-warning">-63%</span></div></div>
         </div>
         <div class="product-card">
-          <div class="product-img"><img src="https://i.pinimg.com/736x/c0/7a/9c/c07a9ca5fc905f80a5938e378de14b2e.jpg" alt="Bike"><span class="badge badge-purple product-badge">Gently Used</span><div class="product-wishlist">♡</div></div>
+          <div class="product-img"><img src="images/products/bike.png" alt="Bike"><span class="badge badge-purple product-badge">Gently Used</span><div class="product-wishlist">♡</div></div>
           <div class="product-info"><span class="product-category">Outdoor</span><h3 class="product-title">Kids' Balance Bike — Ages 3-5</h3><div class="product-meta"><span class="product-price">$35 <span class="old">$110</span></span><span class="badge badge-warning">-68%</span></div></div>
         </div>
         <div class="product-card">
-          <div class="product-img"><img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=300&fit=crop" alt="Books"><span class="badge badge-info product-badge">Great Deal</span><div class="product-wishlist">♡</div></div>
+          <div class="product-img"><img src="images/products/books.png" alt="Books"><span class="badge badge-info product-badge">Great Deal</span><div class="product-wishlist">♡</div></div>
           <div class="product-info"><span class="product-category">Books</span><h3 class="product-title">Picture Book Bundle (12 Books)</h3><div class="product-meta"><span class="product-price">$15 <span class="old">$96</span></span><span class="badge badge-warning">-84%</span></div></div>
         </div>
         <div class="product-card">
-          <div class="product-img"><img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&h=300&fit=crop" alt="Wooden Toys"><span class="badge badge-pink product-badge">Adorable</span><div class="product-wishlist">♡</div></div>
+          <div class="product-img"><img src="images/products/stacking-toy.png" alt="Wooden Toys"><span class="badge badge-pink product-badge">Adorable</span><div class="product-wishlist">♡</div></div>
           <div class="product-info"><span class="product-category">Toys</span><h3 class="product-title">Montessori Wooden Stacking Toy</h3><div class="product-meta"><span class="product-price">$14 <span class="old">$40</span></span><span class="badge badge-warning">-65%</span></div></div>
         </div>
       </div>
@@ -454,11 +467,13 @@
   <!-- Sustainability Section -->
   <section class="section" style="background:var(--bg-secondary);">
     <div class="container">
+      <div class="section-header" style="text-align: center !important;" data-animate="fade-in-up">
+        <span class="section-label" style="display: block; margin-bottom: var(--space-3);">♻️ Our Impact</span>
+        <h2 class="mb-4" style="font-size:var(--text-3xl); text-align: center !important;">Good for Your Wallet.<br>Great for the Planet.</h2>
+        <p class="text-secondary mb-8" style="text-align: center !important; margin: 0 auto var(--space-8); max-width: 600px;">Every item bought on Little Loops is one less item in a landfill. Together, our community is making a real difference.</p>
+      </div>
       <div class="eco-grid">
         <div data-animate="slide-left">
-          <span class="section-label">♻️ Our Impact</span>
-          <h2 class="mb-4" style="font-size:var(--text-3xl);">Good for Your Wallet.<br>Great for the Planet.</h2>
-          <p class="text-secondary mb-8">Every item bought on Little Loops is one less item in a landfill. Together, our community is making a real difference.</p>
           <div class="eco-stat-row" data-animate="fade-in-up">
             <div class="eco-icon">🌍</div>
             <div><h4>12,000+ lbs</h4><p>of textile waste prevented this year</p></div>
@@ -474,7 +489,7 @@
         </div>
         <div data-animate="slide-right" style="display:flex;align-items:center;justify-content:center;">
           <div style="position:relative;">
-            <img src="https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=500&h=500&fit=crop" alt="Kids playing sustainably" style="border-radius:var(--radius-xl); box-shadow:var(--shadow-lg); max-width:100%;">
+            <img src="images/products/blocks.png" alt="Kids playing sustainably" style="border-radius:var(--radius-xl); box-shadow:var(--shadow-lg); max-width:100%;">
             <div style="position:absolute; bottom:-20px; right:-20px; background:var(--accent-secondary); color:var(--text-inverse); padding:var(--space-4) var(--space-6); border-radius:var(--radius-lg); font-weight:800; font-size:var(--text-lg); box-shadow:var(--shadow-md);">
               🌱 98% Happy Parents
             </div>
@@ -548,7 +563,7 @@
           <h4 class="footer-heading">Shop</h4>
           <a href="shop.html" class="footer-link">All Items</a>
           <a href="categories.html" class="footer-link">Categories</a>
-          <a href="deals.html" class="footer-link">Deals & Bundles</a>
+          <a href="deals.html" class="footer-link">Deals</a>
         </div>
         <div>
           <h4 class="footer-heading">Community</h4>
