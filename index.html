@@ -331,12 +331,12 @@
       .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
     }
     @media (max-width: 600px) {
-      .reviews-grid { grid-template-columns: 1fr; }
+      .highlights-grid, .reviews-grid, .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
       .review-card { padding: var(--space-6); }
+      .hero h1 { font-size: 1.8rem; }
     }
 
     @media (max-width: 480px) {
-      .highlights-grid { grid-template-columns: 1fr !important; }
       .cta-banner { padding: var(--space-10) var(--space-4) !important; }
       .cta-banner h2 { font-size: var(--text-2xl) !important; }
     }
