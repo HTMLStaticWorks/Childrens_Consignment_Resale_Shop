@@ -17,13 +17,16 @@
     .team-img { width: 100%; aspect-ratio: 1; border-radius: var(--radius-xl); background: var(--bg-card); margin-bottom: var(--space-4); border: 1px solid var(--border-color); overflow: hidden; }
     .team-img img { width: 100%; height: 100%; object-fit: cover; }
     .value-emoji { font-size: 3rem; margin-bottom: var(--space-4); display: block; }
+    @media (max-width: 992px) {
+      .impact-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 768px) {
       .mission-grid { grid-template-columns: 1fr; text-align: center; }
-      .team-grid { grid-template-columns: repeat(2, 1fr); }
-      .impact-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 480px) {
       .impact-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>

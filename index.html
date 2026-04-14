@@ -132,9 +132,9 @@
     }
     .highlight-item {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: var(--space-4);
-      padding: var(--space-4);
+      padding: var(--space-5);
       border-radius: var(--radius-lg);
       transition: all var(--transition-base);
     }
@@ -233,17 +233,17 @@
       color: #fff;
     }
 
-    /* ---- Reviews ---- */
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: var(--space-6);
+      transition: all var(--transition-base);
     }
     .review-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-lg);
-      padding: var(--space-6);
+      padding: var(--space-8);
       transition: all var(--transition-base);
     }
     .review-card:hover {
@@ -306,6 +306,12 @@
     .cta-banner p { color: rgba(255,255,255,0.8); font-size: var(--text-lg); margin-bottom: var(--space-8); }
     .cta-banner .btn { position: relative; z-index: 2; }
 
+    @media (max-width: 1100px) {
+      .hero h1 { font-size: 2.5rem; }
+      .highlights-grid { grid-template-columns: repeat(2, 1fr) !important; padding: 0 var(--space-6); }
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width: 850px) {
       .hero h1 { font-size: 2.2rem; }
       .hero-stats { gap: var(--space-6); flex-wrap: wrap; }
@@ -322,8 +328,13 @@
       }
       .cta-banner-actions .btn:last-child { margin-bottom: 0 !important; }
       
-      .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
+      .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
     }
+    @media (max-width: 600px) {
+      .reviews-grid { grid-template-columns: 1fr; }
+      .review-card { padding: var(--space-6); }
+    }
+
     @media (max-width: 480px) {
       .highlights-grid { grid-template-columns: 1fr !important; }
       .cta-banner { padding: var(--space-10) var(--space-4) !important; }
