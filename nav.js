@@ -88,28 +88,35 @@ document.addEventListener('DOMContentLoaded', () => {
   function initUtilities() {
     const utilsHTML = `
       <div class="floating-utilities">
-        <button id="themeToggle" class="util-btn" title="Toggle Theme">🌞</button>
-        <button id="rtlToggle" class="util-btn" title="Toggle RTL" style="font-size: 0.9rem;">RTL</button>
         <button id="scrollTopBtn" class="util-btn" title="Move to Top">↑</button>
       </div>
     `;
     document.body.insertAdjacentHTML('beforeend', utilsHTML);
 
-    const themeToggle = document.getElementById('themeToggle');
-    const rtlToggle = document.getElementById('rtlToggle');
+    const themeToggles = document.querySelectorAll('#themeToggle, #themeToggleNav');
+    const rtlToggles = document.querySelectorAll('#rtlToggle, #rtlToggleNav');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
 
     // Theme Logic
+    const updateThemeIcons = (isLight) => {
+      themeToggles.forEach(btn => {
+        btn.textContent = isLight ? '🌙' : '🌞';
+      });
+    };
+
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
       document.body.classList.add('light-theme');
-      themeToggle.textContent = '🌙';
+      updateThemeIcons(true);
     }
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('light-theme');
-      const isLight = document.body.classList.contains('light-theme');
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      themeToggle.textContent = isLight ? '🌙' : '🌞';
+    
+    themeToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+        const isLight = document.body.classList.contains('light-theme');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        updateThemeIcons(isLight);
+      });
     });
 
     // RTL Logic
@@ -117,24 +124,27 @@ document.addEventListener('DOMContentLoaded', () => {
     if (savedRtl === 'true') {
       document.body.classList.add('rtl');
     }
-    rtlToggle.addEventListener('click', () => {
-      document.body.classList.toggle('rtl');
-      const isRtl = document.body.classList.contains('rtl');
-      localStorage.setItem('rtl', isRtl ? 'true' : 'false');
+    
+    rtlToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        document.body.classList.toggle('rtl');
+        const isRtl = document.body.classList.contains('rtl');
+        localStorage.setItem('rtl', isRtl ? 'true' : 'false');
+      });
     });
 
     // Scroll to Top Logic
     function handleScrollTopBtn() {
       if (window.scrollY > 300) {
-        scrollTopBtn.classList.add('show');
+        scrollTopBtn?.classList.add('show');
       } else {
-        scrollTopBtn.classList.remove('show');
+        scrollTopBtn?.classList.remove('show');
       }
     }
     window.addEventListener('scroll', handleScrollTopBtn, { passive: true });
     handleScrollTopBtn(); // Initial check
 
-    scrollTopBtn.addEventListener('click', () => {
+    scrollTopBtn?.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }

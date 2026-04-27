@@ -668,6 +668,10 @@ body.light-theme {
   --border-color: rgba(26, 26, 46, 0.1);
   --border-light: rgba(26, 26, 46, 0.05);
 
+  --accent-primary: #E8634F;
+  --accent-primary-light: #FF8575;
+  --accent-warm: #D9A426;
+
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
   --shadow-lg: 0 10px 40px rgba(0,0,0,0.1);

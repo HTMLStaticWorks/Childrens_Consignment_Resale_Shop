@@ -9,16 +9,18 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: var(--space-3) 0;
+  padding: var(--space-4) 0;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition-base);
+}
+
+.navbar.scrolled {
   background: var(--bg-glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-light);
-  transition: all var(--transition-base);
-}
-.navbar.scrolled {
-  background: var(--bg-glass);
   box-shadow: var(--shadow-md);
+  border-bottom: 1px solid var(--border-light);
   padding: var(--space-2) 0;
 }
 .navbar .container {
@@ -55,6 +57,19 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  transition: all var(--transition-base);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.scrolled .nav-logo span {
+  filter: none;
+}
+
+body.light-theme .scrolled .nav-logo span {
+  background: linear-gradient(135deg, var(--accent-primary-dark), var(--accent-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Nav Links */
@@ -80,6 +95,12 @@
 .nav-link.active {
   color: var(--accent-primary);
   background: rgba(255,127,107,0.12);
+  text-shadow: 0 0 1px rgba(255,127,107,0.2);
+}
+
+body.light-theme .scrolled .nav-link.active {
+  color: var(--accent-primary-dark);
+  background: rgba(232, 99, 79, 0.1);
 }
 .nav-link.active::after {
   content: '';
@@ -133,6 +154,28 @@
   box-shadow: 0 0 30px rgba(255,127,107,0.3);
 }
 
+.nav-icon-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 1.1rem;
+}
+
+.nav-icon-btn:hover {
+  background: rgba(255,127,107,0.08);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
 .nav-btn-signup {
   border: 2px solid var(--accent-primary);
   color: var(--accent-primary);
@@ -142,6 +185,16 @@
 .nav-btn-signup:hover {
   background: rgba(255,127,107,0.1);
   transform: translateY(-2px);
+}
+
+/* Auth Page Utilities */
+.auth-nav {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  display: flex;
+  gap: var(--space-3);
+  z-index: 100;
 }
 
 /* Hamburger */

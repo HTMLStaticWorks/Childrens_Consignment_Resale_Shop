@@ -80,9 +80,13 @@
         <div class="nav-logo-icon">🧸</div>
         <span>Little Loops</span>
       </a>
-      <button onclick="handleLogout()" class="btn btn-outline" style="padding: var(--space-2) var(--space-4); font-size: var(--text-sm);">
-        🚪 Logout
-      </button>
+      <div style="display: flex; align-items: center; gap: var(--space-3);">
+        <button id="themeToggleNav" class="nav-icon-btn" title="Toggle Theme">🌞</button>
+        <button id="rtlToggleNav" class="nav-icon-btn" title="Toggle RTL">RTL</button>
+        <button onclick="handleLogout()" class="btn btn-outline" style="padding: var(--space-2) var(--space-4); font-size: var(--text-sm);">
+          🚪 Logout
+        </button>
+      </div>
     </div>
   </header>
 
