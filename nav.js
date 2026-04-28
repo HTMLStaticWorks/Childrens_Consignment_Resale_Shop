@@ -33,11 +33,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Scroll-based navbar ---
   const navbar = document.querySelector('.navbar');
+  const startsScrolled = navbar?.classList.contains('scrolled');
+
   function handleScroll() {
     if (window.scrollY > 50) {
       navbar?.classList.add('scrolled');
     } else {
-      navbar?.classList.remove('scrolled');
+      if (!startsScrolled) {
+        navbar?.classList.remove('scrolled');
+      }
     }
   }
   window.addEventListener('scroll', handleScroll, { passive: true });
@@ -93,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileUtils.className = 'mobile-nav-utils';
       mobileUtils.innerHTML = `
         <button id="themeToggleMobile" class="nav-icon-btn" title="Toggle Theme">🌞</button>
-        <button id="rtlToggleMobile" class="nav-icon-btn" title="Toggle RTL">RTL</button>
+        <button id="rtlToggleMobile" class="nav-icon-btn" title="Toggle RTL">⇄</button>
       `;
       mobileNav.prepend(mobileUtils);
     }
@@ -110,6 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggles = document.querySelectorAll('#themeToggle, #themeToggleNav, #themeToggleMobile');
     const rtlToggles = document.querySelectorAll('#rtlToggle, #rtlToggleNav, #rtlToggleMobile');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    // RTL Icon injection for desktop/nav buttons if they have text
+    rtlToggles.forEach(btn => {
+      btn.setAttribute('aria-label', 'Toggle RTL Direction');
+      if (btn.textContent.trim() === 'RTL') {
+        btn.innerHTML = '⇄';
+      }
+    });
 
     // Theme Logic
     const updateThemeIcons = (isLight) => {
