@@ -19,6 +19,17 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
+    .dash-nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .dash-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
     .dash-header {
       display: flex; align-items: center; gap: var(--space-6);
       margin-bottom: var(--space-10); padding: var(--space-8);
@@ -65,26 +76,38 @@
     .order-img { width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--bg-secondary); object-fit: cover; }
     @media (max-width: 768px) {
       .stat-cards { grid-template-columns: repeat(2, 1fr); }
-      .dash-header { flex-direction: column; align-items: flex-start; }
+      .dash-header { flex-direction: column; align-items: center; text-align: center; padding: var(--space-6); }
       .order-row { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+    }
+    @media (max-width: 600px) {
+      .dash-minimal-header .container { height: 60px !important; }
+      .nav-logo span { display: none; }
+      .dash-header { padding: var(--space-5); }
+      .dash-avatar { width: 60px; height: 60px; font-size: 1.5rem; }
+      .dash-info h2 { font-size: var(--text-xl); }
+      .dash-info p { font-size: var(--text-xs); }
+      .logout-text { display: none; }
+      .btn-outline { padding: var(--space-2) var(--space-3) !important; }
     }
     @media (max-width: 480px) {
       .stat-cards { grid-template-columns: 1fr; }
+      .stat-card { padding: var(--space-4); }
+      .stat-card .stat-value { font-size: var(--text-xl); }
     }
   </style>
 </head>
 <body>
   <header class="dash-minimal-header">
-    <div class="container" style="display: flex; align-items: center; justify-content: space-between; height: 70px;">
+    <div class="container dash-nav-container">
       <a href="index.html" class="nav-logo">
         <div class="nav-logo-icon">🧸</div>
         <span>Little Loops</span>
       </a>
-      <div style="display: flex; align-items: center; gap: var(--space-3);">
+      <div class="dash-nav-actions">
         <button id="themeToggleNav" class="nav-icon-btn" title="Toggle Theme">🌞</button>
         <button id="rtlToggleNav" class="nav-icon-btn" title="Toggle RTL">RTL</button>
-        <button onclick="handleLogout()" class="btn btn-outline" style="padding: var(--space-2) var(--space-4); font-size: var(--text-sm);">
-          🚪 Logout
+        <button onclick="handleLogout()" class="btn btn-outline">
+          🚪 <span class="logout-text">Logout</span>
         </button>
       </div>
     </div>

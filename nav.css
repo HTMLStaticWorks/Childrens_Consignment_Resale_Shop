@@ -165,8 +165,8 @@ body.light-theme .scrolled .nav-link.active {
 
 .nav-icon-btn {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
   width: 40px;
   height: 40px;
   border-radius: var(--radius-full);
@@ -185,7 +185,17 @@ body.light-theme .scrolled .nav-link.active {
   transform: translateY(-2px);
 }
 
-body.light-theme .navbar.scrolled .nav-icon-btn {
+/* On dark backgrounds (like hero section at top of page) */
+.navbar:not(.scrolled) .nav-icon-btn,
+body:not(.light-theme) .nav-icon-btn {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* In light theme, icons should be dark when on light backgrounds */
+body.light-theme .navbar.scrolled .nav-icon-btn,
+body.light-theme .dash-minimal-header .nav-icon-btn,
+body.light-theme .auth-nav .nav-icon-btn {
   color: var(--text-primary);
   border-color: var(--border-color);
 }
@@ -229,6 +239,16 @@ body.light-theme .navbar.scrolled .nav-icon-btn {
   border-radius: var(--radius-full);
   transition: all var(--transition-base);
 }
+
+/* Ensure visibility on dark hero section when navbar is transparent */
+.navbar:not(.scrolled) .hamburger span {
+  background: #fff;
+}
+
+/* When menu is open, it sits over the mobile nav panel which is light in light-theme */
+.navbar:not(.scrolled) .hamburger.open span {
+  background: var(--text-primary);
+}
 .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .hamburger.open span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
 .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
@@ -266,6 +286,16 @@ body.light-theme .navbar.scrolled .nav-icon-btn {
   box-shadow: -10px 0 30px rgba(0,0,0,0.25);
 }
 .mobile-nav.open { transform: translateX(0); }
+
+.mobile-nav-utils {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+  padding: 0 var(--space-2);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: var(--space-6);
+}
 
 .mobile-nav-link {
   display: block;

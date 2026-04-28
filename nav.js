@@ -86,15 +86,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Floating Utilities Injection ---
   function initUtilities() {
+    // Inject mobile toggles into drawer if they don't exist
+    const mobileNav = document.querySelector('.mobile-nav');
+    if (mobileNav && !mobileNav.querySelector('.mobile-nav-utils')) {
+      const mobileUtils = document.createElement('div');
+      mobileUtils.className = 'mobile-nav-utils';
+      mobileUtils.innerHTML = `
+        <button id="themeToggleMobile" class="nav-icon-btn" title="Toggle Theme">🌞</button>
+        <button id="rtlToggleMobile" class="nav-icon-btn" title="Toggle RTL">RTL</button>
+      `;
+      mobileNav.prepend(mobileUtils);
+    }
+
     const utilsHTML = `
       <div class="floating-utilities">
         <button id="scrollTopBtn" class="util-btn" title="Move to Top">↑</button>
       </div>
     `;
-    document.body.insertAdjacentHTML('beforeend', utilsHTML);
+    if (!document.querySelector('.floating-utilities')) {
+      document.body.insertAdjacentHTML('beforeend', utilsHTML);
+    }
 
-    const themeToggles = document.querySelectorAll('#themeToggle, #themeToggleNav');
-    const rtlToggles = document.querySelectorAll('#rtlToggle, #rtlToggleNav');
+    const themeToggles = document.querySelectorAll('#themeToggle, #themeToggleNav, #themeToggleMobile');
+    const rtlToggles = document.querySelectorAll('#rtlToggle, #rtlToggleNav, #rtlToggleMobile');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
 
     // Theme Logic
