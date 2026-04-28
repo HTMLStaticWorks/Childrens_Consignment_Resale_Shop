@@ -82,15 +82,24 @@ body.light-theme .scrolled .nav-logo span {
   padding: var(--space-2) var(--space-3);
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.9);
   border-radius: var(--radius-full);
   transition: all var(--transition-fast);
   white-space: nowrap;
   position: relative;
 }
 .nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* In light theme, links should only be dark when the navbar is scrolled (over light background) */
+body.light-theme .navbar.scrolled .nav-link {
+  color: var(--text-secondary);
+}
+body.light-theme .navbar.scrolled .nav-link:hover {
   color: var(--text-primary);
-  background: rgba(255,127,107,0.08);
+  background: rgba(0, 0, 0, 0.05);
 }
 .nav-link.active {
   color: var(--accent-primary);
@@ -156,8 +165,8 @@ body.light-theme .scrolled .nav-link.active {
 
 .nav-icon-btn {
   background: transparent;
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
   width: 40px;
   height: 40px;
   border-radius: var(--radius-full);
@@ -174,6 +183,11 @@ body.light-theme .scrolled .nav-link.active {
   border-color: var(--accent-primary);
   color: var(--accent-primary);
   transform: translateY(-2px);
+}
+
+body.light-theme .navbar.scrolled .nav-icon-btn {
+  color: var(--text-primary);
+  border-color: var(--border-color);
 }
 
 .nav-btn-signup {
@@ -258,10 +272,13 @@ body.light-theme .scrolled .nav-link.active {
   padding: var(--space-3) var(--space-4);
   font-size: var(--text-base);
   font-weight: 600;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.85);
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   margin-bottom: var(--space-1);
+}
+body.light-theme .mobile-nav-link {
+  color: var(--text-secondary);
 }
 .mobile-nav-link:hover,
 .mobile-nav-link.active {
